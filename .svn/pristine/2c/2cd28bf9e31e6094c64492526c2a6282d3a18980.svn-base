@@ -1,0 +1,98 @@
+16:23:53 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuAnTKhYiYjkpZ1V0eC8hh-4]]></FromUserName>
+<CreateTime>1422260635</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=2#wechat_redirect]]></EventKey>
+</xml>
+16:23:53 T <xml>
+<ToUserName><![CDATA[oaNgWuAnTKhYiYjkpZ1V0eC8hh-4]]></ToUserName>
+<FromUserName><![CDATA[gh_5c20261e5f68]]></FromUserName>
+<CreateTime>1422260633</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[跳转链接 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=2#wechat_redirect]]></Content>
+</xml>
+16:25:02 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuNFwRBinyC6BP7_dnZRW3uQ]]></FromUserName>
+<CreateTime>1422260703</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></EventKey>
+</xml>
+16:25:02 T <xml>
+<ToUserName><![CDATA[oaNgWuNFwRBinyC6BP7_dnZRW3uQ]]></ToUserName>
+<FromUserName><![CDATA[gh_5c20261e5f68]]></FromUserName>
+<CreateTime>1422260702</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[跳转链接 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></Content>
+</xml>
+16:27:49 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuCsgoLBTAkJ8S4MQbK_bWKA]]></FromUserName>
+<CreateTime>1422260871</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+16:27:49 T <xml>
+<ToUserName><![CDATA[oaNgWuCsgoLBTAkJ8S4MQbK_bWKA]]></ToUserName>
+<FromUserName><![CDATA[gh_5c20261e5f68]]></FromUserName>
+<CreateTime>1422260869</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[取消关注]]></Content>
+</xml>
+16:29:59 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuPQr-XehhQ-jYNiAvibvzCw]]></FromUserName>
+<CreateTime>1422261001</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></EventKey>
+</xml>
+16:29:59 T <xml>
+<ToUserName><![CDATA[oaNgWuPQr-XehhQ-jYNiAvibvzCw]]></ToUserName>
+<FromUserName><![CDATA[gh_5c20261e5f68]]></FromUserName>
+<CreateTime>1422260999</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[跳转链接 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></Content>
+</xml>
+16:41:44 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuP0i-LSVO-AJpOD2LbRy_ns]]></FromUserName>
+<CreateTime>1422261706</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[unsubscribe]]></Event>
+<EventKey><![CDATA[]]></EventKey>
+</xml>
+16:41:44 T <xml>
+<ToUserName><![CDATA[oaNgWuP0i-LSVO-AJpOD2LbRy_ns]]></ToUserName>
+<FromUserName><![CDATA[gh_5c20261e5f68]]></FromUserName>
+<CreateTime>1422261704</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[取消关注]]></Content>
+</xml>
+16:43:50 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuPQr-XehhQ-jYNiAvibvzCw]]></FromUserName>
+<CreateTime>1422261832</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></EventKey>
+</xml>
+16:43:50 T <xml>
+<ToUserName><![CDATA[oaNgWuPQr-XehhQ-jYNiAvibvzCw]]></ToUserName>
+<FromUserName><![CDATA[gh_5c20261e5f68]]></FromUserName>
+<CreateTime>1422261830</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[跳转链接 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></Content>
+</xml>
+16:44:42 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuDwH-LftlGWg6q3jHl42saw]]></FromUserName>
+<CreateTime>1422261884</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></EventKey>
+</xml>
+16:44:42 T <xml>
+<ToUserName><![CDATA[oaNgWuDwH-LftlGWg6q3jHl42saw]]></ToUserName>
+<FromUserName><![CDATA[gh_5c20261e5f68]]></FromUserName>
+<CreateTime>1422261882</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[跳转链接 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></Content>
+</xml>

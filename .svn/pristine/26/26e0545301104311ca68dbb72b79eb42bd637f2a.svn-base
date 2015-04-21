@@ -1,0 +1,464 @@
+<?php
+class promotion 
+{
+
+	
+	
+	//计算商品总价（根据店铺store_id)
+	public function  Do_total($store_id)
+	{
+		$db=&db();
+		
+		//1、清空sessionid，store_id对应的促销商品销售表		
+		
+		$sql_cxspxs="delete from ecm_promotion_sale where store_id = {$store_id} AND session_id='" . SESS_ID . "'";
+		$db->query($sql_cxspxs);
+        //删除赠品表
+        $sql_cxspxs="delete from ecm_cart where store_id = {$store_id} AND session_id='" . SESS_ID . "' and spec_id=0  and is_sale=0";
+		$db->query($sql_cxspxs);
+		
+		
+		//2、用购物车商品数量还原购物车的剩余数量，
+		$sql_upcart="update ecm_cart set remains=quantity  where store_id = {$store_id} AND session_id='" . SESS_ID . "'";
+		$db->query($sql_upcart);
+		
+	
+		//3、遍历所有满足的促销，分别取判断组合A和组合B是否满足
+		$cart_model =& m('cart');
+
+		$cart_items      =  $cart_model->find(array(
+			'conditions' => " store_id = {$store_id} AND session_id='" . SESS_ID . "'",
+			'join'       => 'belongs_to_goodsspec',
+			));
+		if (empty($cart_items))
+		{
+			return false;
+		}
+		
+		$string_cuxiaoids=array();
+		foreach ($cart_items as $rec_id => $goods)
+		{
+			$arr_ids=explode(",", $goods['cuxiao_ids']);
+			foreach ($arr_ids as $value) {
+				if(!empty( $value)){
+					$string_cuxiaoids[]= $value;  //拼接所有的促销id
+				}
+			}
+		}
+		//去重		
+		$arr_cuxiaoids=array_unique($string_cuxiaoids);
+		
+    
+		//按照权重排序
+		$arr_cuxiaoids= $this-> weight_order($db,$arr_cuxiaoids);
+	
+		
+		//当有匹配到的开启中促销的活动时
+		if(count( $arr_cuxiaoids)>0)
+		{		
+			//将促销id进行分类，筛选组合，满赠，满减
+			for($j=0;$j<count($arr_cuxiaoids);$j++)
+			{	
+				
+				$string_type="select p_type from ecm_promotion where  p_id=".$arr_cuxiaoids[$j];
+				$rows_type= $db->getOne($string_type);				
+				if(empty( $rows_type))
+				{
+					continue;
+				}
+				switch ($rows_type)
+				{
+					case 1:									
+						$cart_items= $this->miaosha($arr_cuxiaoids[$j],$cart_items,$db,$store_id );//计算秒杀						
+						break;  
+					case 2:							
+						$cart_items= $this->zuhe($arr_cuxiaoids[$j],$cart_items,$db,$store_id );//计算组合
+						break;
+					case 3:
+					
+						$arr_cuxiaoidmj[]=$arr_cuxiaoids[$j];//满减
+						break;
+					case 4:
+						$arr_cuxiaoidmz[]=$arr_cuxiaoids[$j];//满赠
+						break;
+					default:
+						break;
+				}
+
+			}
+		}		
+        
+		//计算满赠
+		$cart_items= $this->manzeng($arr_cuxiaoidmz,$cart_items,$db,$store_id);
+
+		//计算总价和满减
+		return $this-> total($arr_cuxiaoidmj,$cart_items,$db,$store_id);
+		
+	}
+
+
+	//修改计算秒杀促销
+	public function miaosha($_cuxiaoid,$cart_items,$db,$store_id)
+	{			
+		
+		$bool_a=0;			
+		$agoods_id=array();//存放符合条件的goods_id
+		
+		$anum=array();//存放符合条件的num数量			
+		
+		// 确定是否有这个促销
+		
+		
+		$sql_state="select * from ecm_promotion where p_id=".$_cuxiaoid." and state=3 and (unix_timestamp() between  start_time and end_time )";
+		
+		$get_state=$db->getRow($sql_state);			
+		
+		
+		if(empty($get_state))
+		{
+			return $cart_items;
+		}			
+		$sql_a="select * from ecm_promotion_goods where  p_id=".$_cuxiaoid;
+		// 该促销下的商品
+		$que1=$db->getAll($sql_a);		
+		
+		
+		for($i=0;$i<count($que1);$i++)
+		{
+			
+			$cart_items=$this->cart_msremain($db,$cart_items,$que1[$i]['goods_id'],$que1[$i]['quantity'],$que1[$i]['p_id'],$que1[$i]['price'],$store_id);
+		}
+
+		return $cart_items;
+	}
+
+
+
+
+	//计算组合促销
+	public function zuhe($_cuxiaoid,$cart_items,$db,$store_id)
+	{
+		
+		$bool_a=0;			
+		$agoods_id=array();//存放符合条件的goods_id
+		$anum=array();//存放符合条件的num数量
+		// 确定是否有这个促销
+		$sql_state="select * from ecm_promotion where p_id=".$_cuxiaoid." and state=3 and (unix_timestamp() between  start_time and end_time )";			
+		$get_state=$db->getRow($sql_state);
+		
+		if(empty($get_state))
+		{
+			continue;
+		}
+		
+		$sql_a="select * from ecm_promotion_goods where  p_id=".$_cuxiaoid;
+		// 该促销下的商品
+		$que1=$db->getAll($sql_a);		
+		
+		while(true)
+		{
+			$bool_a=0;	
+			
+			for($i=0;$i<count($que1);$i++)
+			{				
+				if( $this->cart_num($cart_items,$que1[$i]['goods_id'],$que1[$i]['quantity']))
+				{
+					$bool_a++;
+				}
+
+			}		
+			
+			if($bool_a==count($que1))
+			{
+				//5、遍历此促销的所有商品，更新购物车商品数
+				for($i=0;$i<count($que1);$i++)
+				{					
+					$cart_items=$this->cart_remain($db,$cart_items,$que1[$i]['goods_id'],$que1[$i]['quantity'],$que1[$i]['p_id'],$que1[$i]['price'],$store_id);
+				}
+			}else
+			{
+				//商品数量不再满足则跳出循环
+				break;
+			}
+			
+		}					
+		
+		return $cart_items;
+	}
+
+	//计算满赠
+	public function manzeng($arr_cuxiaoids,$cart_items,$db,$store_id )
+	{
+		//4、在遍历算法内，将满足促销的商品数量从购物车减去插入促销商品表内。
+		for($j=0;$j<count($arr_cuxiaoids);$j++)
+		{			
+			$bool_a=0;			
+			$agoods_id=array();//存放符合条件的goods_id
+			$anum=array();//存放符合条件的num数量
+			$sql_state="select * from ecm_promotion where p_id=".$arr_cuxiaoids[$j]." and state=3 and (unix_timestamp() between  start_time and end_time )";
+			$get_state=$db->getRow($sql_state);
+			if(empty($get_state))
+			{
+				continue;
+			}
+			//判断购物车中剩余商品总价是否满足购买条件
+			//  1.筛选分类
+			$conditions="";	
+			
+			if(!intval($get_state['allow_cates']))
+			{						
+				$conditions="where a.store_id = {$store_id} AND a.session_id='" . SESS_ID . "' ";
+			}else
+			{
+				$s_cates= implode(",", array_filter(explode(",",$get_state['allow_cates'])));
+				$conditions="where a.store_id = {$store_id} AND a.session_id='" . SESS_ID . "' and b.cate_id_1 in(".$s_cates.") or b.cate_id_2 in(".$s_cates.") or b.cate_id_3 in(".$s_cates.") or b.cate_id_4 in(".$s_cates.")";
+			}
+			$string_cart="SELECT a.* from ecm_cart a LEFT JOIN ecm_goods b on a.goods_id=b.goods_id ".$conditions;		
+			
+			$row_cart=$db->getAll($string_cart);
+
+		
+			//  2.判断价格
+			$total_count=0;
+			foreach ($row_cart as $key=>$value)//$value是购物车单项
+			{
+				$total_count+=  $value["price"]*$value["remains"];
+			}
+			//总价不够继续相加
+			if(!($total_count>=$get_state['g_amount']))
+			{
+				continue;
+			}
+			
+			//总价满额获取等店面 的奖品
+			$sql_a="select * from ecm_promotion_goods where  p_id=".$arr_cuxiaoids[$j]." and store_id=".$row_cart[0]['store_id'];
+			$que1=$db->getAll($sql_a); 
+            
+          
+            
+			foreach ($que1 as $key=>$value)//$value是购物车单项
+			{         
+            //获取赠送商品图片
+                $sql_goods_r="select * from ecm_goods where  goods_id=".$value['goods_id'];
+			   $goods_iamge=$db->getRow($sql_goods_r); 
+               $_image=$goods_iamge['default_image'];
+                $data = array(
+                    'user_id'       =>$row_cart[0]['user_id'],
+                    'session_id'     =>$row_cart[0]['session_id'],
+                    'store_id'     =>$row_cart[0]['store_id'],
+                    'goods_id'   => $value['goods_id'],
+                    'sku'       =>$value['goods_sn'],
+                    'goods_name'       =>'满额赠送商品--【'.$value['goods_name'].'】',
+                    'spec_id'     => 0,
+                    'price'   => $value['price'],
+                    'quantity'     => $value['quantity'],
+                    'remains'     => 0,
+                    'goods_image'     =>$_image,
+                    'is_sale'     => 0,
+                );                
+                $_cart =& m('cart');
+               $add_cart_id=  $_cart->add($data);
+               $cart_model =& m('cart');		
+			}
+		}
+		
+		return $cart_items;
+	}
+    
+    //返回满赠商品
+    public function _getmanzeng_goods( $store_id)
+    {
+     
+        $_arr=array(     
+        );
+         $cart_model =& m('cart');
+		  $zeng_goods    =  $cart_model->find(array(
+			'conditions' => " is_sale=0  and spec_id=0 and store_id = {$store_id} AND session_id='" . SESS_ID . "'",			
+			));
+            
+        foreach ($zeng_goods as $key=>$value)//$value是购物车单项
+		{
+            $_mz_good=array();
+            $_mz_good['rec_id']  = $value['rec_id'];//订单id 
+            $_mz_good['user_id']  = $value['user_id'];         //用户id
+            $_mz_good ['session_id']    =  $value['session_id'];        //session_id
+            $_mz_good ['store_id']  =$value['store_id'];            //店铺id
+            $_mz_good['goods_id'] =$value['goods_id'];          //商品id
+            $_mz_good ['sku' ]     =$value['sku'];         //sn
+            $_mz_good ['goods_name']      =$value['goods_name'];  //商品名字 
+            $_mz_good['spec_id' ]  =$value['spec_id'];   //属性
+            $_mz_good ['specification']  ='';     //
+            $_mz_good['price']   =$value['price'];     //价格
+            $_mz_good ['quantity']  =$value['quantity'];      //数量
+            $_mz_good ['remains']  =$value['remains'];      //剩余
+            $_mz_good ['goods_image']   =$value['goods_image'];      //商品图片
+            $_mz_good ['is_sale']   =$value['is_sale'];      //是否购买
+            $_mz_good['cuxiao_ids' ]  ='';     //促销
+            $_mz_good ['spec_1']  =0;     
+            $_mz_good['spec_2' ]  = 0;     
+            $_mz_good ['color_rgb']  ='';      
+            $_mz_good ['stock']  = 99;      //库存
+            $_mz_good ['subtotal']   =0;     //小计
+            
+		    $_arr[$key]=$_mz_good;
+        }           
+            
+        
+        return $_arr;        
+        
+    }
+    
+	//满减
+	public function manjian($arr_cuxiaoids,$cart_items,$db,$store_id,$total_count)
+	{
+		
+		//$linshi=$total_count;
+		for($j=0;$j<count($arr_cuxiaoids);$j++)
+		{
+			
+			$bool_a=0;			
+			$agoods_id=array();//存放符合条件的goods_id
+			$anum=array();//存放符合条件的num数量
+			$sql_state="select * from ecm_promotion where p_id=".$arr_cuxiaoids[$j]." and state=3 and (unix_timestamp() between  start_time and end_time )";
+			$get_state=$db->getRow($sql_state);
+			//没有促销信息
+            if(empty($get_state))
+			{
+				continue;
+			}
+			//判断购物车中剩余商品总价是否满足购买条件
+			//  1.筛选分类
+			$conditions="";
+			if(!intval($get_state['allow_cates']))
+			{
+				$conditions="where a.store_id = {$store_id} AND a.session_id='" . SESS_ID . "' ";
+			}else
+			{
+				$s_cates= implode(",", array_filter(explode(",",$get_state['allow_cates'])));
+				$conditions="where a.store_id = {$store_id} AND a.session_id='" . SESS_ID . "' and b.cate_id_1 in(".$s_cates.") or b.cate_id_2 in(".$s_cates.") or b.cate_id_3 in(".$s_cates.") or b.cate_id_4 in(".$s_cates.")";
+			}
+			$string_cart="SELECT a.* from ecm_cart a LEFT JOIN ecm_goods b on a.goods_id=b.goods_id ".$conditions;
+			$row_cart=$db->getAll($string_cart);
+         
+			//  2.判断价格
+			$total_count_L=0;
+            //参加活动的商品总价
+			foreach ($row_cart as $key=>$value)//$value是购物车单项
+			{
+				$total_count_L+=  $value["price"]*$value["remains"];
+			}
+			if(!($total_count_L>=$get_state['g_amount']))
+			{
+				continue;
+			}
+            //总价减去满减价格--				
+			$total_count=$total_count-$get_state['discount'];
+		}        
+		return $total_count;
+	}
+
+
+	//计算总价
+	public	function total($arr_cuxiaoids,$cart_items,$db,$store_id)
+	{
+		//计算购物车总价
+		$total_count=0;
+		$string_cart="select * from ecm_cart where store_id = {$store_id} AND session_id='" . SESS_ID . "' and remains>0";
+		$arr_cart=$db->getAll($string_cart);
+		foreach ($arr_cart as $key=>$value)//$value是购物车单项
+		{
+			$total_count+=  $value["price"]*$value["remains"];
+		}
+
+		//计算满减
+		$total_count=$this->manjian($arr_cuxiaoids,$cart_items,$db,$store_id,$total_count);
+        
+		//echo $total_count;
+		//计算促销商品销售总价
+		$string_promotion="select * from ecm_promotion_sale where store_id = {$store_id} AND session_id='" . SESS_ID . "'";
+		$arr_promotion=$db->getAll($string_promotion);        
+       
+		foreach ($arr_promotion as $key=>$value)//$value是购物车单项
+		{
+			$total_count+=  $value["sale_price"]*$value["sale_num"];
+		}
+		// echo $total_count;
+		//返回总价
+		return $total_count;
+		
+
+	}
+	//权重排序  //--vz且在开启中活动 并在开启活动中
+	public	function weight_order($db,$arr_cuxiaoids)
+	{		
+		$_now=gmtime();	
+		$string_in="select p_id from ecm_promotion where  state=3 and start_time<".$_now." and end_time>".$_now."  and( p_id in (". implode(",",$arr_cuxiaoids).") or p_type=3 or p_type=4 ) order by weight desc";
+		
+		$arr_idrows= $db->getAll($string_in);	
+		
+        $arr_ids=array();
+        foreach($arr_idrows as $key=>$value)
+		{			
+			$arr_ids[$key]=$value['p_id'];			
+		}
+      
+		return $arr_ids;
+	}
+
+	//更新购物车相应商品的remains字段值,$goods_id促销商品里的商品id，$num促销商品里的促销商品数量
+	public	function cart_msremain($db,$cart_items,$goods_id,$num,$promotion_id,$promotion_price,$store_id)
+	{	
+		foreach ($cart_items as $key=>$value)//$value是购物车单项
+		{			
+			if($value["goods_id"]==$goods_id)
+			{				
+				$string_update="update ecm_cart set remains=0 where  store_id = {$store_id} AND session_id='" . SESS_ID . "' and goods_id={$goods_id};";
+				$db->query($string_update);
+				$string_insert="insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_price,sale_num,user_id,session_id,sale_flag,store_id) values( {$promotion_id} ,{$goods_id} ,'{$value['sku']}','{$value['goods_name']}',{$promotion_price},{$value['remains']},{$value['user_id']},'" . SESS_ID . "',0,{$store_id})";
+				$db->query($string_insert);			
+				//修改秒杀商品信息
+				$cart_items[$key]["remains"]=0;								
+				return $cart_items;
+			}
+		}
+		return $cart_items;
+
+	}
+	//更新购物车相应商品的remains字段值,$goods_id促销商品里的商品id，$num促销商品里的促销商品数量
+	public	function cart_remain($db,$cart_items,$goods_id,$num,$promotion_id,$promotion_price,$store_id)
+	{		
+		foreach ($cart_items as $key=>$value)//$value是购物车单项
+		{
+			
+			if($value["goods_id"]==$goods_id&&$value["remains"]>=$num)
+			{
+				$value["remains"]=$value["remains"]-$num;
+				$string_update="update ecm_cart set remains=remains-".$num." where  store_id = {$store_id} AND session_id='" . SESS_ID . "' and goods_id={$goods_id};";
+				$db->query($string_update);
+				$string_insert="insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_price,sale_num,user_id,session_id,sale_flag,store_id) values( {$promotion_id} ,{$goods_id} ,'{$value['sku']}','{$value['goods_name']}',{$promotion_price},{$num},{$value['user_id']},'" . SESS_ID . "',0,{$store_id})";
+				$db->query($string_insert);		
+				//修改订单数量信息
+				$cart_items[$key]["remains"]=$value["remains"];	
+				return $cart_items;
+			}
+		}
+		return $cart_items;
+
+	}
+	
+	
+	//查找购物车指定商品的数量
+	public	function cart_num($cart_items,$goods_id,$num)
+	{
+		foreach ($cart_items as $key=>$value)
+		{
+			if($value["goods_id"]==$goods_id&&$value["remains"]>=$num)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+}
+?>

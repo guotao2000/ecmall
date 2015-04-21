@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-选择店铺</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        
+        <meta content="telephone=no" name="format-detection" />
+        
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->      
+        <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/style/com/com.css'; ?>"/>
+        <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/style/shop/shop.css'; ?>"/>
+        
+   		<script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/com.js'; ?>"></script>
+        
+        
+        <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/template.js'; ?>"></script>
+        
+    </head>
+<body>
+    <div class="com-content">
+        
+    	<div class="page-title">
+           <!--<a href="<?php echo url('app=default'); ?>"><i class="retun"> </i></a>-->
+            请选择附近的店铺
+           <a href="javascript:history.back(-1);"><i class="homebutom"></i></a>
+		</div>
+        
+        
+        <div class="shoplist">
+            <h3>
+                离我最近的店铺
+            </h3>
+            <ul>
+				<?php $_from = $this->_var['stores']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'store');if (count($_from)):
+    foreach ($_from AS $this->_var['store']):
+?>
+					<li> <a href="index.php?app=store&act=redirect&id=<?php echo $this->_var['store']['store_id']; ?>">
+						<i class="shop_icon"></i>
+						<div class="shop_name">
+							<?php echo htmlspecialchars($this->_var['store']['store_name']); ?><br />
+							距离：<span>0.65 Km</span>
+						</div>
+						<i class="shop_anjian"></i></a>
+                	</li>
+				<?php endforeach; else: ?>
+				<li>
+					暂无店铺
+				</li>
+				<?php endif; unset($_from); ?><?php $this->pop_vars();; ?>
+            </ul>
+        </div>
+        
+     
+      </div>
+</body>
+</html>

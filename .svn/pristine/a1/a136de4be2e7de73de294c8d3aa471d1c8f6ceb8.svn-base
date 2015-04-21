@@ -1,0 +1,94 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>促销管理</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=_ms_promotion&amp;act=add">添加促销</a></li>
+	
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="_ms_promotion" />
+                <input type="hidden" name="act" value="index" />
+                活动名称:
+                <input class="queryInput" type="text" name="s_p_name" value="{$s_p_name}" />
+               
+                <select id="schedule_name" name="s_p_type" onchange="addTime(this);">
+                   <option value="0">全部</option>
+                    <option { if $s_p_type eq 1} selected="selected" {/if} value="1">秒杀</option>
+                    <option { if $s_p_type eq 2} selected="selected" {/if} value="2">组合</option>
+                    <option { if $s_p_type eq 3} selected="selected" {/if} value="3">满减</option>
+                    <option { if $s_p_type eq 4} selected="selected" {/if} value="4">满赠</option>
+                
+                </select>
+
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $discounts}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left">促销活动名称</td>
+            <td>开始时间</td>
+            <td align="left">结束时间</td>
+            <td>促销状态</td>	
+            <td>促销类型</td>	
+            <td>操作时间</td>            
+			<td align="left">操作人</td>
+			<td>活动商品</td>
+            <td>操作</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$discounts item=discount}-->
+        <tr class="tatr2">
+            <td class="firstCell"><!--{if !$discount.code}--><input type="checkbox" class="checkitem" value="{$discount.p_id}"/><!--{/if}--></td>
+            <td> {if $discount.p_type neq 3} <a href="index.php?app=_ms_promotion&amp;act=list_zhuhe&amp;id={$discount.p_id}">{$discount.p_name} {else} {$discount.p_name} </a>{/if} </td>
+            <td>{$discount.start_time|date:complete}</td>
+            <td>{$discount.end_time|date:complete}</td>
+            <td>{ if $discount.state eq 1}未确认{elseif $discount.state eq 2}确认{elseif  $discount.state eq 3}启动中{elseif  $discount.state eq 4}终止{/if}</td>
+            <td>{$discount.p_type_name}</td>
+			<td>{$discount.add_time|date:complete}</td>
+			<td>{$discount.operate_person}</td>
+			<td> {if $discount.p_type neq 3} <a href="index.php?app=_ms_promotion&amp;act=edit_sp&amp;id={$discount.p_id}&amp;p_type={$discount.p_type}&amp;state={$discount.state}">编辑活动商品 </a>{/if}</td>
+			<td><a href="index.php?app=_ms_promotion&amp;act=edit&amp;id={$discount.p_id}">编辑</a>|<a href="index.php?app=_ms_promotion&amp;act=drop&amp;id={$discount.p_id}">删除</a></td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $discounts}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=_ms_promotion&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="未确认" name="id" uri="index.php?app=_ms_promotion&act=unbesure" />
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="确认" name="id" uri="index.php?app=_ms_promotion&act=besure" />
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="启动" name="id" uri="index.php?app=_ms_promotion&act=executing" />
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="终止" name="id" uri="index.php?app=_ms_promotion&act=finished" />
+            &nbsp;&nbsp;
+            <!--<input class="formbtn batchButton" type="button" value="lang.update_order" name="id" presubmit="updateOrder(this);" />-->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

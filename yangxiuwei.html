@@ -1,0 +1,31 @@
+<html>
+<head>
+<script type="text/javascript" src="/themes/bqmart/js/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("a").click(function(event){
+    event.preventDefault();
+  });
+        var div = document.getElementById('going');//touchmove
+	    div.addEventListener('touchstart',function(event){
+		 event.preventDefault();
+		 document.getElementById('going').value="开始";
+		},false);
+		div.addEventListener('touchmove',function(event){
+		 event.preventDefault();
+		 document.getElementById('going').value="进行中";
+		},false);
+		div.addEventListener('touchend',function(event){
+		 event.preventDefault();
+		 document.getElementById('going').value="结束";
+		},false);
+});
+</script>
+</head>
+<body>
+
+<div class="start" id="start" style="border-bottom: thin solid #ccc;height:200px;"><input id="state" value="开始" /></div>
+<div class="going" id="going" style="border-bottom: thin solid #ccc;height:200px;">进行中</div>
+<div class="end" id="end" style="border-bottom: thin solid #ccc;height:200px;">结束</div>
+</body>
+</html>

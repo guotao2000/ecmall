@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-订单详情</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="template/css/com/com.css"/> 
+        <link type="text/css" rel="stylesheet" href="template/css/home/index.css"/>
+        <script src="js/jquery.js"></script>
+        <!-- 控制整体标签宽度的js -->
+        <script src="template/js/com/com.js"></script>
+        <!-- 控制整体标签宽度的js end -->
+        <!-- 控制图片缩放比例的js -->
+        <script src="template/js/com/template.js"></script>
+        <!-- 控制图片缩放比例的js end -->
+</head>
+<body>
+<div class="com-content">
+<!-- 头部区域开始 by-wei 2014.12.08  -->
+  <div class="com-header-area" id="js-com-header-area">
+          <a href="#" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">订单详情</span>
+          <a href="default.htm" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+<!-- 头部区域结束 end -->
+<!-- 确认订单信息页面中心区域开始-->
+  <div class="com-content-area" id="js-com-content-area" style=" margin:0px;">
+      <!-- 确认订单信息页面内容区域开始-->
+         <div class="page-role good-page">
+         <link type="text/css" rel="stylesheet" href="template/css/good/index.css" />
+         <link type="text/css" rel="stylesheet" href="template/css/order/index.css" />
+         <link type="text/css" rel="stylesheet" href="template/css/user/index.css" />
+
+    <div class="pxui-area">
+        <div class="bq_makeorder-box" id="js-attrs-title">
+           <!--商品清单区域开始-->
+            <div class="makeorder_spqd-title">
+            <p>本次所购商品清单</p>
+            <span class="usereorder_spqd-anniu"><a href="default.htm" style="color:#6C6C6C;">继续购物</a></span>
+           </div>
+           <div class="makeorder_spqd-info userorder_spqd-info">
+              <div class="bq_goods_cx pxui-list" data-model="radio">
+              <a style="border-top:none;"> 
+              <i class="goods_sx_icon"></i>
+                <div class="goods_spqd-number">
+                   共计 2 件商品
+                 </div>
+               <span class="makeorder_chakan">点击查看</span>
+               <i class="goods_anjian"></i></a>
+               <div class="user_orderlist-info" style="display:none;">
+                 <ul>
+                 <li>
+                   <img src="images/bq_cplb_jp1.jpg">
+                   <div class="orderlist_Pre-info">
+                     <p class="orderlist_Pre-name" style=" max-height:40px;">
+                       可口可乐汽水330ml可口可乐汽水330ml可口可乐汽水330ml可口可乐汽水330ml可口可乐汽水330ml可口可乐汽水330ml
+                     </p>
+                     <span class="orderlist_Pre-price">价格：&nbsp;&nbsp;￥&nbsp; 2.5</span>
+                     <span class="orderlist_Pre-number">数量：&nbsp;&nbsp;X&nbsp;&nbsp;  2</span>
+                   </div>
+                 </li>
+                 <li>
+                   <img src="images/bq_cplb_jp2.jpg">
+                   <div class="orderlist_Pre-info">
+                     <p class="orderlist_Pre-name" style=" max-height:40px;">
+                       可口可乐汽水330ml
+                     </p>
+                     <span class="orderlist_Pre-price">价格：&nbsp;&nbsp;￥&nbsp; 2.5</span>
+                     <span class="orderlist_Pre-number">数量：&nbsp;&nbsp;X&nbsp;&nbsp;  2</span>
+                   </div>
+                 </li>
+                 
+              </ul>
+                  
+               </div>  
+         </div>   
+           </div>
+           <!--商品清单区域结束--->
+           <!--订单状态区块开始--->
+           <div class="userorder_ddzt-title">
+             <p>订单状态信息</p>
+             <span class="usereorder_ddzt-anniu"><a href="pay_order.htm" style="color:#6C6C6C;">去 支 付</a></span>
+           </div>
+           <div class="userorder_ddzt-info">
+              <p><span>订单状态：</span><b>等待买家付款</b></p>
+              <p><span>订单号：</span>1435198165</p>
+              <p><span>下单时间：</span>2014-12-18 09:30:31</p>
+           </div>
+           <!--订单状态区块结束--->
+           <!--卖家信息区块开始--->
+           <div class="userorder_seller-title">
+             <p>卖家店铺信息</p>
+             <span class="userorder_seller-anniu"><a href="default.htm" style="color:#6C6C6C;">去 逛 逛</a></span>
+           </div>
+           <div class="userorder_seller-info">
+              <p><span>店铺名称：</span><b>倍全新生活家园店</b></p>
+              <p><span>店铺地址：</span>济南市高新区舜华北路559号 </p>
+              <p><span>店长电话：</span><a href="">15668333567</a></p>
+           </div>
+           <!--卖家信息区块结束--->
+           <!--买家信息区块开始--->
+           <div class="userorder_buyer-title">
+             <p>买家收货人信息</p>
+           </div>
+           <div class="userorder_buyer-info">
+              <p><span>收货人：</span><b>卫大爷</b></p>
+              <p><span>收货地址：</span>济南市高新区工业南路59号中铁才智中心6号楼1016室 </p>
+              <p><span>手机号：</span><a href="">15668333567</a></p>
+           </div>
+           <!--买家信息区块结束--->
+           <!-- 金额结束区域开始--->
+           <div class="make_order-moneybox">
+             <span class="order_money-ht"></span>
+             <div  class="order_money-info">
+             	<div class="order_money-left">
+                   <dl>
+                       <dt>商品金额：</dt>
+                        <span class="order_total_view price">￥234.50</span>
+                   </dl>
+                   <dl>
+                   <dt>- 红&#12288;包：</dt>
+                   <span class="order_total_view price">￥13.90</span>
+                   </dl>
+                   <dl>
+                   <dt>- 积&#12288;分：</dt>
+                   <span class="order_total_view price">￥0.90</span>
+                   </dl>
+                   <dl>
+                    <dt>+ 运&#12288;费：</dt>
+                    <span class="order_total_view price">￥0.00</span>
+                    </dl>
+                </div>
+                <div class="order_money-left right">
+                   <span style="font-size:16px;">实付金额<br>
+                   <span class="order_amount_view price">￥239.30</span></span>
+                </div>
+             </div>
+             <span class="make_order-bgborder"><span class="make_order-bgicon"></span></span>
+             <div class="make_order-submit">
+                 <a type="button"  class="make_order-sbbtn" href="default.htm"  style="color:#FFF;">继续购物</a>
+             </div>
+           </div>
+           <!---金额结算区域结束-->           
+         </div>
+    </div>
+</div>
+      <!-- 确认订单信息页面内容区域结束-->
+      <!-- 内容页底部区域开始-->
+      <div class="com-footer-area" id="js-com-footer-area" style="margin:20px 0px 30px;">
+			<div class="com-footer-nav">
+				<a href="#">商家入驻</a><a href="#">帮助中心</a><a href="#">反馈建议</a>
+			</div>
+			<div class="com-footer">
+				<p>
+					<strong style="line-height:28px;">
+						© 2014-2015 Bei Quan By Wei<br />
+                        京ICP备14026542号-1
+                        
+					</strong>
+				</p>
+                <br /> 
+                <p style="border-bottom:none;">
+                <a href='/mobile/'>倍全商城 </a>
+                 - -有倍全的地方就有家！
+                </p>
+             </div>
+		</div>
+      <!-- 内容页底部区域结束-->
+
+</div> 
+<!-- 确认订单信息页面中心区域开始-->
+</div>
+</body>
+<!--控制购物车中单选按钮的js执行函数 开始-->
+<script type="text/javascript">
+$(function(){
+
+	$('div[name="city"]').inputbox({
+		height:24,
+		width:100
+	});
+	
+	$('.cbt').inputbox();
+	
+	$('[name="rbt"], [name="rbt2"]').inputbox();
+
+});
+</script>
+<!--控制购物车中单选按钮的js执行函数 结束-->
+<!--控制使用红包单选执行函数开始-->
+<script type="text/javascript">
+$(function(){
+
+	$(".nav p").click(function(){
+		var ul=$(".new");
+		if(ul.css("display")=="none"){
+			ul.slideDown();
+		}else{
+			ul.slideUp();
+		}
+	});
+	
+	$(".set").click(function(){
+		var _name = $(this).attr("name");
+		if( $("[name="+_name+"]").length > 1 ){
+			$("[name="+_name+"]").removeClass("select");
+			$(this).addClass("select");
+		} else {
+			if( $(this).hasClass("select") ){
+				$(this).removeClass("select");
+			} else {
+				$(this).addClass("select");
+			}
+		}
+	});
+	
+	$(".nav li").click(function(){
+		var li=$(this).text();
+		$(".nav p").html(li);
+		$(".new").hide();
+		/*$(".set").css({background:'none'});*/
+		$("p").removeClass("select") ;   
+	});
+})
+</script>
+
+<!---控制使用红包单选执行函数结束-->
+</html>

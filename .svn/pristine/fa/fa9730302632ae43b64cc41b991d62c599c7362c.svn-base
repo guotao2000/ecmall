@@ -1,0 +1,78 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>促销商品管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=_ms_promotion">{$lang.manage}</a></li>
+        <li><a class="btn1" href="index.php?app=_ms_promotion&amp;act=add">添加促销</a></li>
+	
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="_ms_promotion" />
+                <input type="hidden" name="act" value="list_zhuhe" />
+               商品名:
+                <input class="queryInput" type="text" name="title" value="{$title}" />
+                <input class="queryInput" type="hidden" name="id" value="{$id}" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+          
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $zhuhes}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left">秒杀促销名称</td>
+            <td>商品编号</td>
+            <td align="left">商品名称</td>
+            <td>商品原价</td>
+			<td align="left">商品促销价</td>
+            <td>促销数量</td>
+
+            <td>操作</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$zhuhes item=zhuhe}-->
+        <tr class="tatr2">
+            <td class="firstCell"><!--{if !$zhuhe.code}--><input type="checkbox" class="checkitem" value="{$zhuhe.id}"/><!--{/if}--></td>
+            <td>{$zhuhe.p_name}</td>
+            <td>{$zhuhe.goods_id}</td>
+            <td>{$zhuhe.goods_name}-{$zhuhe.store_id}</td>
+            <td>{$zhuhe.oldprice}</td>
+			<td>{$zhuhe.newprice}</td>
+			<td>{$zhuhe.quantity}</td>
+			<td><a href="index.php?app=_ms_promotion&amp;act=edit_zhuhe&amp;id={$zhuhe.id}">编辑</a>|<a href="index.php?app=_ms_promotion&amp;act=drop_zhuhe&amp;id={$zhuhe.id}">删除</a></td>
+			
+          
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $zhuhes}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=_ms_promotion&act=drop_zhuhe" presubmit="confirm('{$lang.drop_confirm}');" />
+            &nbsp;&nbsp;
+			<input class="formbtn" type="button" onclick="history.back()" value="返回" />
+            <!--<input class="formbtn batchButton" type="button" value="lang.update_order" name="id" presubmit="updateOrder(this);" />-->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

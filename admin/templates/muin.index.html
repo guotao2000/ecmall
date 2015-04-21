@@ -1,0 +1,71 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>修改推荐号</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=muin&amp;act=add">修改</a></li>
+		<!--<li><a class="btn1" href="index.php?app=discount&amp;act=list_zhuhe">组合列表</a></li>-->
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="muin" />
+                <input type="hidden" name="act" value="index" />
+                推荐号:
+                <input class="queryInput" type="text" name="uin" value="{$query.title|escape}" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $muins}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left">推荐号姓名</td>
+            <td>推荐号</td>
+            <td align="left">改成推荐号姓名</td>
+            <td>改成推荐号</td>
+			<td>修改会员数</td>
+			<td>修改推荐订单数</td>
+			<td align="left">生成时间</td>
+			<td>操作人</td>
+            <!--<td>操作</td>-->
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$muins item=muin}-->
+        <tr class="tatr2">
+            <td class="firstCell"><!--{if !$muin.code}--><input type="checkbox" class="checkitem" value="{$muin.id}"/><!--{/if}--></td>
+            <td>{$muin.old_username|truncate:15}</td>
+            <td>{$muin.old_uin}</td>
+            <td>{$muin.new_username|truncate:15}</td>
+			<td>{$muin.new_uin}</td>
+			<td><a href="index.php?app=muin&amp;act=show_member&amp;id={$muin.id}">{$muin.member_num}</a></td>
+			<td><a href="index.php?app=muin&amp;act=show_order&amp;id={$muin.id}">{$muin.order_num}</a></td>
+			<td>{$muin.create_time|date:complete}</td>
+			<td>{$muin.operate_person}</td>
+			<!--<td><a href="index.php?app=muin&amp;act=edit&amp;id={$muin.id}">编辑</a></td>-->
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $muins}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+       
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

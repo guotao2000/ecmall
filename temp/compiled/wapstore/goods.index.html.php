@@ -1,0 +1,428 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-商品详情页</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        
+        <meta content="telephone=no" name="format-detection" />
+        
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/com/com.css'; ?>"/> 
+        <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/home/index.css'; ?>"/>
+        <script src="<?php echo $this->res_base . "/" . 'bqmart/js/jquery.js'; ?>"></script>
+        
+        <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/com.js'; ?>"></script>
+        
+        
+        <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/template.js'; ?>"></script>
+        
+        
+        <script type="text/javascript" src="<?php echo $this->res_base . "/" . 'bqmart/template/js/home/swipe.js'; ?>" charset="utf-8"></script>
+        
+        
+        <script type="text/javascript" src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/jquery.spinner.js'; ?>"></script>
+    
+    </head>
+    <body>
+
+<script type="text/javascript" src="<?php echo $this->lib_base . "/" . 'goodsinfo.js'; ?>" charset="utf-8"></script>
+<script type="text/javascript" src="<?php echo $this->lib_base . "/" . 'ecmall.js'; ?>" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "<?php echo $this->_var['site_url']; ?>";
+var REAL_SITE_URL = "<?php echo $this->_var['real_site_url']; ?>";
+var PRICE_FORMAT = '<?php echo $this->_var['price_format']; ?>';
+/* buy */
+function buy()
+{
+    if (goodsspec.getSpec() == null)
+    {
+        alert(lang.select_specs);
+        return;
+    }
+    var spec_id = goodsspec.getSpec().id;
+
+    var quantity = $("#quantity").val();
+    if (quantity == '')
+    {
+        alert(lang.input_quantity);
+        return;
+    }
+    if (parseInt(quantity) < 1)
+    {
+        alert(lang.invalid_quantity);
+        return;
+    }
+
+    var store_id = <?php echo htmlspecialchars($this->_var['goods']['store_id']); ?>;
+   
+    //add_to_cart(spec_id, quantity);
+    add_to_cart(spec_id, quantity, store_id);
+}
+
+/* add cart */
+/*function add_to_cart(spec_id, quantity)
+{	
+    var url = '<?php echo $this->_var['site_url']; ?>/index.php?app=cart&act=add';
+ 
+    $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
+        if (data.done)
+        {
+            $('.bold_num').text(data.retval.cart.kinds);
+            $('.bold_mly').html(price_format(data.retval.cart.amount));
+           $(".msg").slideDown().delay(5000).slideUp();
+           // $('.msg').slideDown('slow');
+           // setTimeout(slideUp_fn, 5000);
+        }
+        else
+        { 
+            alert(data.msg);
+        }
+    });
+}*/
+
+function add_to_cart(spec_id, quantity, store_id)
+{	
+    var url = '/index.php?app=cart&act=to_shop&spec_id='+spec_id+'&quantity='+quantity+'&store_id='+store_id;
+            //alert(url);
+
+			$.getJSON(url, '', function(data){
+				if (data.done)
+				{
+					window.location.href='index.php?app=cart';
+				}
+				else
+				{ 
+					alert(data.msg);
+				}
+			});
+}
+
+function to_shop()
+{
+	
+	 if (goodsspec.getSpec() == null)
+    {
+        alert(lang.select_specs);
+        return;
+    }
+	
+    var spec_id = goodsspec.getSpec().id;
+
+    var quantity = $("#quantity").val();
+	
+    if (quantity == '')
+    {
+        alert(lang.input_quantity);
+        return;
+    }
+    
+    if (parseInt(quantity) < 1)
+    {
+        alert(lang.invalid_quantity);
+        return;
+    }
+    
+    var store_id = <?php echo htmlspecialchars($this->_var['goods']['store_id']); ?>;
+    
+    add_to_shop(spec_id, quantity, store_id);
+    //add_to_shop(spec_id, quantity);
+    
+}
+
+function add_to_shop(spec_id, quantity,store_id)
+		{	
+			var url = '/index.php?app=cart&act=to_shop&spec_id='+spec_id+'&quantity='+quantity+'&store_id='+store_id;
+            //alert(url);
+
+			$.getJSON(url, '', function(data){
+				if (data.done)
+				{
+					window.location.href='index.php?app=cart';
+				}
+				else
+				{ 
+					alert(data.msg);
+				}
+			});
+		}
+
+
+var specs = new Array();
+<?php $_from = $this->_var['goods']['_specs']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'spec');if (count($_from)):
+    foreach ($_from AS $this->_var['spec']):
+?>
+specs.push(new spec(<?php echo $this->_var['spec']['spec_id']; ?>, '<?php echo htmlspecialchars($this->_var['spec']['spec_1']); ?>', '<?php echo htmlspecialchars($this->_var['spec']['spec_2']); ?>', <?php echo $this->_var['spec']['price']; ?>, <?php echo $this->_var['spec']['stock']; ?>));
+<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+var specQty = <?php echo $this->_var['goods']['spec_qty']; ?>;
+var defSpec = <?php echo htmlspecialchars($this->_var['goods']['default_spec']); ?>;
+var goodsspec = new goodsspec(specs, specQty, defSpec);
+//]]>
+</script>
+
+    <div class="com-content">
+       
+        <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">商品详情页</span>
+          <a href="<?php echo url('app=default'); ?>" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+      
+      
+      <div class="com-content-area" id="js-com-content-area" style=" margin-top:0px;">
+         <div class="page-role good-page">
+         <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/good/index.css'; ?>" />
+       
+        <script>
+         /*是否下线*/
+         var isDown = false;
+        </script>
+        
+	<script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/jquery.touchslider.min.js'; ?>"></script>
+    <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/good/index.js'; ?>"></script>
+<script>
+jQuery(function($) {
+	$(".touchslider").touchSlider({mouseTouch: true, autoplay: true});
+});
+</script>	
+
+    <div class="pxui-area">
+        
+		<div class="touchslider" id="js-attrs-title">
+		   <div class="touchslider-viewport" style="height:240px;overflow:hidden">
+            <div>
+            <?php $_from = $this->_var['goods']['_images']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'goods_image');$this->_foreach['fe_goods_image'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['fe_goods_image']['total'] > 0):
+    foreach ($_from AS $this->_var['goods_image']):
+        $this->_foreach['fe_goods_image']['iteration']++;
+?>
+	            <div class="touchslider-item">
+                   <a><span class="img320">
+                         <img src="<?php echo $this->_var['site_url']; ?>/<?php echo $this->_var['goods_image']['thumbnail']; ?>"/>
+                       </span>
+                    </a>
+                 </div>
+			<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+				</div>
+             </div>
+            <div class="bq_xq_good-title">
+                 <h1><?php echo htmlspecialchars($this->_var['goods']['goods_name']); ?> </h1>
+                 <a href="javascript:collect_goods(<?php echo $this->_var['goods']['goods_id']; ?>);" class="com-sc-manu"></a>
+		         <dfn></dfn>
+                 <a href="javascript:collect_goods(<?php echo $this->_var['goods']['goods_id']; ?>);" class="bq_xq_sc">收藏</a>
+                 
+            </div>
+            
+				<a class="touchslider-prev"></a>
+                <a class="touchslider-next"></a>
+            
+		</div>	
+        <ul class="goodinfo" id="js-goodinfo">
+            <li>
+                <div style="width:60%; margin-right:0px; margin-left:10px;">
+                <b name="detail_mao" id="detail_mao" style="font-size:16px;">倍全价:</b>
+                <p><strong class="pxui-color-red" style="font-size:18px;"><?php if ($this->_var['promotion']): ?><?php echo $this->_var['promotion']['kuaixun_price']; ?><?php else: ?><?php echo price_format($this->_var['goods']['_specs']['0']['price']); ?><?php endif; ?></strong></p>
+                <b>市场价：</b><p><del class="pxui-color-gray"><?php echo price_format($this->_var['goods']['_specs']['0']['shichang']); ?></del></p> 
+                </div>
+                <span style="display:inline-block; width:75px; padding-top:15px;"  gid="<?php echo $this->_var['goods']['_specs']['0']['spec_id']; ?>"   sid="<?php echo $this->_var['goods']['store_id']; ?>">
+                	<input type="text" class="spinnerExample" id="quantity" />
+                </span>
+            </li>
+            <!-- <li>
+              <div style="margin-left:10px;">
+                <b>口&nbsp;&nbsp;&nbsp;味 :</b>
+                <p>
+                     <a href="#" title="白/浅粉" class="bq_cp_shuxing selected">酸甜</a>
+                     <a href="#" title="浅蓝/浅红" class="bq_cp_shuxing" style="background:#A7C22C; color:#FFF; border:none;">甘苦</a>
+                     <a href="#" title="深粉/蓝" class="bq_cp_shuxing" style="background:#9345B3; color:#FFF; border:none;">香辣</a>
+                 </p>
+              </div>
+            </li> -->
+            <li>
+              <div style="margin-left:10px;">
+                <b>销&nbsp;&nbsp;&nbsp;量 :</b>
+                <p>
+                   <span><?php echo $this->_var['sales_info']; ?><?php echo $this->_var['comments']; ?></span> 
+                 </p> 
+               </div>
+            </li>
+            <li>
+              <div style="margin-left:10px;">
+                <b>所在地 :</b>
+                <p>
+                   <span><?php echo htmlspecialchars($this->_var['store']['region_name']); ?></span> 
+                 </p> 
+               </div>
+            </li>
+            <?php if ($this->_var['shipping']): ?>
+            <li>
+              <div style="margin-left:10px;">
+                <b>运&nbsp;&nbsp;&nbsp;费 :</b>
+                <p>
+                   <?php $_from = $this->_var['shipping']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'shippings');if (count($_from)):
+    foreach ($_from AS $this->_var['shippings']):
+?>
+                   <span><?php echo $this->_var['shippings']['shipping_name']; ?>：¥<?php echo $this->_var['shippings']['first_price']; ?></span> 
+                   <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+                 </p> 
+               </div>
+            </li>
+            <?php endif; ?>
+                        
+         </ul>
+         
+         <div style="margin:0 5px; height:60px;">
+         <input type="button" onclick="to_shop()" class="pxui-light-button addtocart" style="margin:10px 0px; width:48%; float:left; background:#EC0000;border:none;" value="立即购买"/>
+         <input type="button" onclick="buy()" class="pxui-light-button addtocart" style="margin:10px 0px; width:48%; float:right; background:#4DC90F; border:none;" value="加入购物车"/>
+         </div>
+         
+         <div class="msg" style="display:none;">
+            	<p><b></b>购物车内共有<span class="bold_num"></span>种商品 共计 <span class="bold_mly" style="color:#8D0303;"></span>！</p>
+                <a href="<?php echo url('app=cart'); ?>" class="white_btn">查看购物车</a>
+                <a  onclick="$('.msg').css({'display':'none'});" class="white_btn">继续购物</a>
+         </div>
+         
+         
+         <div  style="height:15px; background:#EDEBE9; clear:both;"></div>
+         
+         <div class="bq_goods_cx pxui-list" data-model="radio"><a>
+              <i class="goods_cx_icon"></i>
+                <div class="goods_cx_name">
+                   优惠促销
+                 </div>
+              <i class="goods_anjian"></i></a>
+               <div class="pxui-list-con" style="display:none;">
+                   <?php if ($this->_var['promotion']): ?>
+                   <?php echo local_date("Y-m-d H:i:s",$this->_var['promotion']['start_time']); ?>  到 <?php echo local_date("Y-m-d H:i:s",$this->_var['promotion']['end_time']); ?><br/>
+                   <strong>·</strong> 秒杀活动，原价<b><?php echo price_format($this->_var['promotion']['price']); ?>元</b>，现价<b><?php echo price_format($this->_var['promotion']['kuaixun_price']); ?>元</b>
+                   <?php else: ?>
+                   该商品暂时没有参与促销活动
+                   <?php endif; ?>
+               </div>  
+               <div style="clear:both;height:4px;margin: 0;padding: 0px; width:100%;"></div>
+         </div>
+         
+         
+         <div class="bq_goods_tw"><a href="index.php?app=goods&amp;spec_id=<?php echo $this->_var['goods']['_specs']['0']['spec_id']; ?>&amp;act=tuwen">
+              <i class="goods_tw_icon"></i>
+                <div class="goods_tw_name">
+                   图文详情
+                </div>
+              <i class="goods_anjian"></i></a>
+              
+         </div>
+         
+         
+         <div class="bq_goods_sx pxui-list" data-model="radio"><a>
+              <i class="goods_sx_icon"></i>
+                <div class="goods_sx_name">
+                   商品属性
+                 </div>
+              <i class="goods_anjian"></i></a>
+              <div class="pxui-list-con" style="display:none;">
+                  <ul class="attrs">
+                     <?php if ($this->_var['goods']['spec_qty'] > 0): ?>
+                     	<li><?php echo htmlspecialchars($this->_var['goods']['spec_name_1']); ?>: <?php echo htmlspecialchars($this->_var['goods']['_specs']['0']['spec_1']); ?> </li>
+                     <?php endif; ?>
+                     <?php if ($this->_var['goods']['spec_qty'] > 1): ?>
+                     	<li><?php echo htmlspecialchars($this->_var['goods']['spec_name_2']); ?>: <?php echo htmlspecialchars($this->_var['goods']['_specs']['0']['spec_2']); ?> </li>
+                     <?php endif; ?>
+                     
+                  </ul>
+               </div>  
+               <div style="clear:both;height:4px;margin: 0;padding: 0px; width:100%;"></div>
+         </div>
+         
+         
+         
+      	<!-- 抢购产品循环列表开始 
+	    <div class="content-box">
+		   <div class="content-box-category" style="padding:5px 0px 5px 25px;; background:#EDEBE9;">
+			<span><strong>猜你喜欢.....</strong></span>
+		    </div>
+		    <div class="content-box-list" id="slider-id">
+				<ul>
+                    <?php $_from = $this->_var['rgoods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'interest_items');if (count($_from)):
+    foreach ($_from AS $this->_var['interest_items']):
+?>
+					<div class="slider-item">
+                    	<?php $_from = $this->_var['interest_items']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'interest_item');if (count($_from)):
+    foreach ($_from AS $this->_var['interest_item']):
+?>
+						<li>
+							<div style="width:99%;">
+							   <a href="index.php?app=goods&id=<?php echo htmlspecialchars($this->_var['interest_item']['goods_id']); ?>" class="product-image-link"><img src="<?php echo htmlspecialchars($this->_var['interest_item']['default_image']); ?>" /></a>
+						    </div>
+							<div style="width:99%; overflow: hidden; position:relative;">
+							    <a href="" class="product-title-link"><?php echo htmlspecialchars($this->_var['interest_item']['goods_name']); ?></a>
+							    <p>折扣价：<?php echo price_format($this->_var['interest_item']['price']); ?></p>
+                                <a href="index.php?app=goods&id=<?php echo htmlspecialchars($this->_var['interest_item']['goods_id']); ?>" class="bq_qianggou_anniu" style=" color:#FFF;">抢购</a>
+							</div>
+						</li>	
+						<?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+					</div>
+                    <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+				</ul>	
+		</div>
+            <div class="bq_zuoyou_mnue">
+               <span class="bq_qg_prev"></span>
+               <span class="bq_qg_next"></span>
+             </div>
+		</div>-->
+	<!-- 抢购产品循环列表结束
+    <script type="text/javascript">
+	window.mySwipe = new Swipe(document.getElementById('slider-id'), {
+	startSlide: 0,
+	speed: 400,
+	auto: 3000,
+	continuous: true,
+	disableScroll: false,
+	stopPropagation: false,
+	callback: function(index, elem) {},
+	transitionEnd: function(index, elem) {}
+	});           
+    </script>
+      
+       抢购模块结束  Eed Wei 2012.12.09-->			
+        <div class="fixed-add-to-cart" id="js-fixed-add-to-cart" style="z-index:999;">
+            <div>
+             <a href="javascript:buy();"><input type="button" class="pxui-light-button addtocart" style="background:#FFF; border-color:#D9D6D1; color:#63625D;" value="加入购物车"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
+             <a href="javascript:buy();"><input type="button" class="pxui-light-button addtocart" style="background:#F50000;" value="立即结算"/></a>
+            </div>
+        </div>
+    </div>
+</div>
+		</div>
+        
+      
+      
+      <?php echo $this->fetch('member.footer.html'); ?>
+      
+
+</div>
+</body>
+
+<script type="text/javascript">
+$('.spinnerExample').spinner({
+	value:1,
+	min:1
+});
+</script>
+
+
+
+</html>

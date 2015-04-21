@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+  <head>
+    <title>倍全商城-订单列表页</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+    <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+    
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    
+    <meta content="telephone=no" name="format-detection" />
+    
+    <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+    
+    <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+    <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/com/com.css'; ?>"/>
+    <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/home/index.css'; ?>"/>
+    <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/good/index.css'; ?>" />
+   <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/user/index.css'; ?>" />
+    <script src="<?php echo $this->res_base . "/" . 'bqmart/js/jquery.js'; ?>"></script>
+    
+    <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/com.js'; ?>"></script>
+    
+    
+    <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/template.js'; ?>"></script>
+    
+    
+    <script type="text/javascript" src="<?php echo $this->res_base . "/" . 'bqmart/template/js/home/swipe.js'; ?>" charset="utf-8"></script>
+    
+    
+    <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/home/index.js'; ?>"></script>
+    
+    <script type="text/javascript" src="index.php?act=jslang"></script>
+    <style> 
+        .black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 100%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+        .white_content { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 250px; 
+            height: 150px; 
+            padding: 40px 10px 10px; 
+            border: 5px solid #FD5744; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+        } 
+    </style> 
+  </head>
+  <body>
+    <div class="com-content">
+       
+        <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">订单列表</span>
+          <a href="<?php echo url('app=default'); ?>" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+      
+       
+        <div class="com-content-area" id="js-com-content-area">
+          <div class="page-role user_order-page">
+          
+          <div class="pxui-area">
+           
+         <div  style="height:10px; background:#EDEBE9; clear:both;"></div>
+           <div class="pxui-tab pxui-tab-style pxui-tab-no-top">
+          <a href="<?php echo url('app=buyer_order&act=index&type=all'); ?>" <?php if ($this->_var['type'] == all): ?> class="selected" <?php endif; ?>>全部</a>
+          <a href="<?php echo url('app=buyer_order&act=index&type=pending'); ?>" <?php if ($this->_var['type'] == pending): ?> class="selected" <?php endif; ?>>待付款</a>
+          <a href="<?php echo url('app=buyer_order&act=index&type=accepted'); ?>" <?php if ($this->_var['type'] == accepted): ?> class="selected" <?php endif; ?> >待发货</a>
+          <a href="<?php echo url('app=buyer_order&act=index&type=shipped'); ?>" <?php if ($this->_var['type'] == shipped): ?> class="selected" <?php endif; ?> >待收货</a>
+          <a href="<?php echo url('app=buyer_order&act=index&type=finished'); ?>" <?php if ($this->_var['type'] == finished): ?> class="selected" <?php endif; ?> >已完成</a>
+          </div>
+         
+         <div class="bq_cplb_bg" style="margin-top:-4px;"></div>
+          <div class="pxui-shoes">
+          
+          <?php $_from = $this->_var['orders']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'order');if (count($_from)):
+    foreach ($_from AS $this->_var['order']):
+?>
+          <div class="user_orderlist-show" style="margin-bottom:15px;">
+            <div class="order_showlist-title">
+               <span class="order_shop-icon"></span>
+               <p class="order_shop-name"><?php echo htmlspecialchars($this->_var['order']['seller_name']); ?>
+               </p>
+               <p class="order_shop-number">订单号：<span><?php echo htmlspecialchars($this->_var['order']['order_sn']); ?></span></p>
+            </div>
+            <div class="user_orderlist-info" >
+              <ul>
+              <?php $_from = $this->_var['order']['order_goods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'goods');if (count($_from)):
+    foreach ($_from AS $this->_var['goods']):
+?>
+                 <li>
+                 
+                     <img src="<?php echo $this->_var['goods']['goods_image']; ?>">
+                  
+                   <div class="orderlist_Pre-info">
+                     <p class="orderlist_Pre-name" style=" max-height:40px;">
+                       <?php echo htmlspecialchars($this->_var['goods']['goods_name']); ?>
+                     </p>
+                     <span class="orderlist_Pre-price">价格：&nbsp;&nbsp;<?php echo price_format($this->_var['goods']['price']); ?></span>
+                     <span class="orderlist_Pre-number">数量：&nbsp;&nbsp;X&nbsp;&nbsp;<?php echo $this->_var['goods']['quantity']; ?></span>
+                   </div>
+                 </li>
+               <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>  
+              </ul>
+            </div>
+            <div class="order_list-btn" style="border-bottom:1px #b2b2b2 dashed; padding-bottom:10px; margin-top:10px;">
+            	<b>&nbsp;&nbsp;订单状态：<font style="color:#b20005;">
+                
+                        <?php if ($this->_var['order']['status'] == 11): ?>等待买家付款<?php endif; ?>
+                        <?php if ($this->_var['order']['status'] == 12): ?>等待买家收货付款<?php endif; ?>
+                        <?php if ($this->_var['order']['status'] == 13): ?>买家已付款<?php endif; ?>
+                        <?php if ($this->_var['order']['status'] == 20): ?>等待卖家发货<?php endif; ?>
+                        <?php if ($this->_var['order']['status'] == 21): ?>货到付款已发货<?php endif; ?>
+                        <?php if ($this->_var['order']['status'] == 30): ?>卖家已发货<?php endif; ?>
+                        <?php if ($this->_var['order']['status'] == 40): ?>交易完成<?php endif; ?>
+                        <?php if ($this->_var['order']['status'] == 0): ?>交易关闭<?php endif; ?> 
+
+                </font></b>
+            </div>
+            <div class="order_list-btn">
+              <?php if ($this->_var['order']['status'] == 11): ?>
+              <a href="<?php echo url('app=cashier&order_id=' . $this->_var['order']['order_id']. ''); ?>" style="margin-left:0px; float:none;">去支付</a>
+              <?php endif; ?>
+              <?php if ($this->_var['order']['status'] == 13 || $this->_var['order']['status'] == 30): ?>
+              <a href="javascript:confirm_order(<?php echo $this->_var['order']['order_id']; ?>)"  style="margin-left:0px; float:none;">确认收货</a>
+              <?php endif; ?>
+              <?php if ($this->_var['order']['status'] == 11 || $this->_var['order']['status'] == 12 || $this->_var['order']['status'] == 21): ?>
+              <a href="javascript:cancel_order(<?php echo $this->_var['order']['order_id']; ?>);"  style="margin-left:0px; float:none;">取消订单</a>
+              <?php endif; ?>
+              <a href="<?php echo url('app=buyer_order&act=view&order_id=' . $this->_var['order']['order_id']. ''); ?>" style=" margin-left:0px; float:none; ">查看订单</a>
+              <!--<a href="#" style=" margin-left:0px; float:none; <?php if ($this->_var['order']['status'] != ORDER_FINISHED): ?>display:none;<?php endif; ?>" >再次购买</a>-->
+                <!-- <?php if ($this->_var['order']['status'] == 13 || $this->_var['order']['status'] == 21 || $this->_var['order']['status'] == 30): ?>
+              <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'" style=" margin-left:0px; float:none;" >退换货</a>
+              <?php endif; ?>
+              <div>
+              <div id="light" class="white_content" >
+                <p style=" font-size:16px;">客官，想退换货请先致电客服：</p> 
+                 <p style=" font-size:28px; padding:10px 0px; color:#F00;"> <?php echo $this->_var['order']['store_info']['tel']; ?></p> 
+                 <p style=" font-size:14px;">注：根据规定生鲜产品不允许退换货</p> 
+                <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" style=" height:20px; width:30px; float:none; position:absolute; top:0px; right:-10px; min-width:0px; padding:3px 10px 6px; ">关闭</a></div> 
+        <div id="fade" class="black_overlay"></div>  -->
+            </div>
+            
+            
+            <div class="order_list-btn" style="display:none; text-align:left;" id="order_<?php echo $this->_var['order']['order_id']; ?>">
+            	<form method="post" id="order_form_<?php echo $this->_var['order']['order_id']; ?>">
+                	<p><input type="radio" checked name="cancel_reason_<?php echo $this->_var['order']['order_id']; ?>" value="改选其他商品" onClick="change_radio_r(<?php echo $this->_var['order']['order_id']; ?>)" /><label>改选其他商品</label></p>
+                    <p><input type="radio" name="cancel_reason_<?php echo $this->_var['order']['order_id']; ?>" value="改选其他配送方式" onClick="change_radio_r(<?php echo $this->_var['order']['order_id']; ?>)" /><label>改选其他配送方式</label></p>
+                    <p><input type="radio" name="cancel_reason_<?php echo $this->_var['order']['order_id']; ?>" value="改选其他卖家" onClick="change_radio_r(<?php echo $this->_var['order']['order_id']; ?>)" /><label>改选其他卖家</label></p>
+                    <p><input type="radio" name="cancel_reason_<?php echo $this->_var['order']['order_id']; ?>" value="其他原因" onClick="change_radio(<?php echo $this->_var['order']['order_id']; ?>)" /><label>其他原因</label></p>
+                    <p id="other_reason_<?php echo $this->_var['order']['order_id']; ?>" style="display:none;"><textarea class="text" style="width:200px;" name="remark_<?php echo $this->_var['order']['order_id']; ?>"></textarea></p>
+                    <p><input type="button" name="btn_<?php echo $this->_var['order']['order_id']; ?>" id="btn_<?php echo $this->_var['order']['order_id']; ?>" value="确认" onClick="javascript:if(confirm('您是否确定要取消以下订单？')){post_data(<?php echo $this->_var['order']['order_id']; ?>);}" />&nbsp;&nbsp;<input type="button" name="btn_reset_<?php echo $this->_var['order']['order_id']; ?>" id="btn_reset_<?php echo $this->_var['order']['order_id']; ?>" value="取消" onClick="reset_data(<?php echo $this->_var['order']['order_id']; ?>)" /></p>
+                </form>
+            </div>
+            
+            
+            
+            <div class="order_list-btn" style="display:none; text-align:left;" id="confirm_order_<?php echo $this->_var['order']['order_id']; ?>">
+            <form id="confirm_form_<?php echo $this->_var['order']['order_id']; ?>" style="padding:0px 10px; border-top:1px solid #ccc; ">
+            <p style="color:#1695e6;padding:5px 0px; font-size:16px;">您是否确已经收到以下订单的货品？</p>
+            <p>订单号:&nbsp;&nbsp;<span style="color:#1695e6;"><?php echo $this->_var['order']['order_sn']; ?></span></p>
+            <p>注意:&nbsp;&nbsp;如果你尚未收到货品请不要点击“确认”。大部分被骗案件都是由于提前确认付款被骗的，请谨慎操作！ </p>
+            <p style="text-align: center; margin-top:5px; border-top: 1px dashed #ccc; padding-top:10px;"><input type="button" value="确认" onClick="javascript:if(confirm('您确定要确认吗？')) confirm_yes(<?php echo $this->_var['order']['order_id']; ?>);" style="padding: 5px 20px; border-radius: 6px; border:none;background:#ec0000;color: #fff;" />&nbsp;&nbsp;<input type="button" onClick="confirm_cancel(<?php echo $this->_var['order']['order_id']; ?>)" value="取消"style="padding: 5px 20px; border-radius: 6px;" /></p>
+        	</form>
+            </div>
+            
+         
+         </div>
+         <?php endforeach; else: ?>
+         <div class="null" style="display:none; margin-top:120px;">
+         	<p><img src="/themes/mall/default/styles/wxmall/images/order_null.png" /></p>
+            <p>你没有订单信息~</p>
+            <p><a href="javascript:history.back(-1);" class="white_btn">去购物</a></p>
+         </div>
+         <?php endif; unset($_from); ?><?php $this->pop_vars();; ?>
+         
+          </div>
+          <div class="page">
+          	
+           <?php if (! $this->_var['goods_list_order']): ?><?php echo $this->fetch('page.bottom.html'); ?><?php endif; ?>
+           
+          </div>
+          </div>
+          </div>
+		</div>
+        
+		<script type="text/javascript">
+
+		    //取消订单操作
+		    function cancel_order(order_id) {
+		        $('#order_' + order_id).slideDown('slow');
+		    }
+
+		    //取消操作
+		    function reset_data(order_id) {
+		        $('#order_' + order_id).slideUp('slow');
+		    }
+
+		    //单击显示其他原因
+		    function change_radio(order_id) {
+		        $('#other_reason_' + order_id).show();
+		    }
+
+		    //单击隐藏其他原因
+		    function change_radio_r(order_id) {
+		        $('#other_reason_' + order_id).hide();
+		    }
+
+		    //异步提交表单
+		    function post_data(order_id) {
+		        var reason = '';
+		        var len = document.getElementsByName("cancel_reason_" + order_id).length;
+
+		        //获取选中单选按钮
+		        for (var i = 0; i < len; i++) {
+		            if (document.getElementsByName("cancel_reason_" + order_id).item(i).checked) {
+		                reason = document.getElementsByName("cancel_reason_" + order_id).item(i).value;
+		            }
+		        }
+
+		        //获取其他原因输入内容
+		        var remark = (document.getElementsByName("remark_" + order_id).item(0).value).length == 0 ? 'null_data' : (document.getElementsByName("remark_" + order_id).item(0).value);
+
+		        //异步操作开始
+		        var url = "index.php?app=buyer_order&act=cancel_order_new&order_id=" + order_id + "&reason=" + reason + "&remark=" + remark;
+		        $.getJSON(url, '', function (data) {
+		            if (data.done) {
+		                alert('操作成功！');
+		                $('#order_' + order_id).slideUp('slow');
+		                location.reload();
+		            } else {
+		                alert(data.msg);
+		            }
+		        });
+
+
+		    }
+
+		    //以下为确认收货操作部分
+
+		    function confirm_order(order_id) {
+		        $('#confirm_order_' + order_id).slideDown('slow');
+		    }
+
+		    function confirm_cancel(order_id) {
+		        $('#confirm_order_' + order_id).slideUp('slow');
+		    }
+
+		    //确认操作
+		    function confirm_yes(order_id) {
+		        //异步操作开始
+		        var url = "index.php?app=buyer_order&act=confirm_order_new&order_id=" + order_id;
+		        $.getJSON(url, '', function (data) {
+		            if (data.done) {
+		                alert('操作成功！');
+		                $('#confirm_order_' + order_id).slideUp('slow');
+		                location.reload();
+		            } else {
+		                alert(data.msg);
+		            }
+		        });
+		    }
+			
+  		</script>
+       
+       <?php echo $this->fetch('member.footer.html'); ?>
+       
+      
+</div>
+
+<?php echo $this->fetch('store.menu.html'); ?>
+
+</body>
+</html>

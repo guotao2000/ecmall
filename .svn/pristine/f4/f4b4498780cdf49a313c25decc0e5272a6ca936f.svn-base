@@ -1,0 +1,115 @@
+{include file="header.html"}
+<script type="text/javascript">
+	function add(obj,id){
+	var price = $("#"+id+"_price").val();
+	var oprice = $("#"+id+"_oprice").val();
+	var shichang = $("#"+id+"_shichang").val();
+	var oshichang = $("#"+id+"_oshichang").val();
+	var person = $("#"+id+"_person").val();
+	var store = $("#"+id+"_store").val();
+	var name = $("#"+id+"_name").html();
+	var sn = $("#"+id+"_sn").html();
+	var title = $("#title").val();
+	var goods_sn = $("#goods_sn").val();
+	var page = $("#page").val();
+		$.post('index.php',{
+		app:'price',
+		act:'add',
+		goods_id:id,
+		store:store,
+		price:price,
+		oprice:oprice,
+		shichang:shichang,
+		oshichang:oshichang,
+		person:person,
+		sn:sn,
+		name:name
+		},
+		function(data){
+			alert(data);
+			window.location.href="index.php?app=price&amp;act=index&amp;goods_sn="+goods_sn+"&amp;title="+title+"&amp;page="+page; 
+			//alert(page);
+		});
+	}
+</script>
+<div id="rightTop">
+    <p>价格批量管理</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=price&amp;act=back">查看历史</a></li>
+		<!--<li><a class="btn1" href="index.php?app=discount&amp;act=list_zhuhe">组合列表</a></li>-->
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="price" />
+                <input type="hidden" name="act" value="index" />
+                商品关键字:
+                <input class="queryInput" id ="title" type="text" name="title" value="{$query.title|escape}" />
+				<input type="hidden" id ="page" type="text" value="{$page11}" />
+				商品条码:
+                <input class="queryInput" id="goods_sn" type="text" name="goods_sn" value="{$query.tag|escape}">
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+	<form method="post">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $prices}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left">商品编号</td>
+            <td>商品名称</td>
+            <td align="left">商品价格</td>
+			 <td align="left">市场价格</td>
+			<td>店铺名</td>
+            <td align="left">执行店铺</td>
+			<td>操作人</td>
+			<td align="left">操作</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$prices item=price}-->
+        <tr class="tatr2" id="{$price.goods_id}">
+            <td class="firstCell"><!--{if !$price.code}--><input type="checkbox" class="checkitem" value="{$price.goods_id}" /><!--{/if}--></td>
+            <td id="{$price.goods_id}_sn">{$price.sku}</td>
+			<td id="{$price.goods_id}_name">{$price.goods_name}</td>
+			<td><input type="text" name="price" id="{$price.goods_id}_price" value="{$price.price}" />
+			<input type="hidden" type="text" id="{$price.goods_id}_oprice" value="{$price.price}" /></td>
+			<td><input type="text" name="shichang" id="{$price.goods_id}_shichang" value="{$price.shichang}" />
+			<input type="hidden" type="text" id="{$price.goods_id}_oshichang" value="{$price.shichang}" /></td>
+			<td>{$price.store_id}</td>
+			<td><input type="text" id='{$price.goods_id}_store' name="store" value="" />&nbsp;以英文逗号分隔</td>
+			<td><input type="text" id='{$price.goods_id}_person' /></td>
+			<td><a href="javascript:;" onclick="add(this,{$price.goods_id})">修改</a></td>
+			
+          
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="6">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+	</form>
+    <!--{if $prices}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            <!--<input class="formbtn batchButton" type="button" value="lang.update_order" name="id" presubmit="updateOrder(this);" />-->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

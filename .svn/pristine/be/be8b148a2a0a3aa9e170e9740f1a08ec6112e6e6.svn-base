@@ -1,0 +1,252 @@
+Sun, 07 Dec 2014 11:24:22 +0800	[256]MySQL Error[1146]: Table 'ecmall.ecm_acategory' doesn't exist
+MySQL Query:SELECT *,acategory.cate_id FROM ecm_acategory acategory WHERE 1 = 1 ORDER BY sort_order, cate_id
+Wrong File:  D:\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Sun, 07 Dec 2014 11:24:33 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ENGINE=MyISAM DEFAULT CHARSET=utf8' at line 8
+MySQL Query:CREATE TABLE ecm_acategory (
+  cate_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  cate_name varchar(100) NOT NULL DEFAULT '',
+  parent_id int(10) unsigned NOT NULL DEFAULT '0',
+  sort_order tinyint(3) unsigned NOT NULL DEFAULT '255',
+  `code` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (cate_id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
+Wrong File:  D:\ecmall\admin\app\db.app.php[507]	\eccore\model\mysql.php	286
+Sun, 07 Dec 2014 11:25:53 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ENGINE=MyISAM DEFAULT CHARSET=utf8' at line 8
+MySQL Query:CREATE TABLE ecm_acategory (
+  cate_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  cate_name varchar(100) NOT NULL DEFAULT '',
+  parent_id int(10) unsigned NOT NULL DEFAULT '0',
+  sort_order tinyint(3) unsigned NOT NULL DEFAULT '255',
+  `code` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (cate_id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
+Wrong File:  D:\ecmall\admin\app\db.app.php[507]	\eccore\model\mysql.php	286
+Sun, 07 Dec 2014 11:32:45 +0800	[256]MySQL Error[1146]: Table 'ecmall.ecm_acategory' doesn't exist
+MySQL Query:SELECT *,acategory.cate_id FROM ecm_acategory acategory WHERE 1 = 1 ORDER BY sort_order, cate_id
+Wrong File:  D:\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Sun, 07 Dec 2014 11:33:16 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ENGINE=MyISAM DEFAULT CHARSET=utf8' at line 8
+MySQL Query:CREATE TABLE ecm_acategory (
+  cate_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  cate_name varchar(100) NOT NULL DEFAULT '',
+  parent_id int(10) unsigned NOT NULL DEFAULT '0',
+  sort_order tinyint(3) unsigned NOT NULL DEFAULT '255',
+  `code` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (cate_id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
+Wrong File:  D:\ecmall\admin\app\db.app.php[507]	\eccore\model\mysql.php	286
+Mon, 08 Dec 2014 12:18:14 +0800	[2]mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	165
+Tue, 09 Dec 2014 19:18:11 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '55 where store_id=5' at line 1
+MySQL Query:update ecm_store set area_peisong=area_peisong+','55 where store_id=5
+Wrong File:  D:\PHPECMALL\ECMALL\app\mlselection.app.php[51]	\eccore\model\mysql.php	286
+Tue, 09 Dec 2014 19:19:49 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''55' where store_id=5' at line 1
+MySQL Query:update ecm_store set area_peisong=area_peisong+,'55' where store_id=5
+Wrong File:  D:\PHPECMALL\ECMALL\app\mlselection.app.php[51]	\eccore\model\mysql.php	286
+Tue, 09 Dec 2014 21:10:18 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where store_id=5' at line 1
+MySQL Query:select area_peisong where store_id=5
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 08:53:30 +0800	[256]MySQL Error[2013]: Lost connection to MySQL server during query
+MySQL Query:CREATE TABLE IF NOT EXISTS ecm_goods_prop (
+  		`pid` int(11) NOT NULL auto_increment,
+  		`name` varchar(50) NOT NULL,
+  		`status` int(1) NOT NULL,
+  		`sort_order` int(11) NOT NULL,
+  		PRIMARY KEY  (`pid`)
+	) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+Wrong File:  D:\PHPECMALL\ECMALL\includes\libraries\init.lib.php[72]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 09:30:25 +0800	[2]Wrong parameter count for split()	\admin\app\store.app.php	310
+Wed, 10 Dec 2014 10:04:20 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select region_name from ecm_region where region_id=
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 10:05:29 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select region_name from ecm_region where region_id=
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 10:08:05 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select region_name from ecm_region where region_id=
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 10:08:09 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select region_name from ecm_region where region_id=
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 10:08:40 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select region_name from ecm_region where region_id=
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 10:08:59 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select region_name from ecm_region where region_id=
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:07:05 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select cate_name from ecm_gcategory where cate_id=
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:14:58 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select cate_name from ecm_gcategory where cate_id=
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:18:06 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select cate_name from ecm_gcategory where cate_id=
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:31:06 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select cate_name from ecm_gcategory where cate_id=
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:52:10 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('yxw','166','2','1','1418112000','1420012799','33','1','2',',2,63')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:57:03 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418112000','1419407999','3','1','2','22')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:57:05 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418112000','1419407999','3','1','2','22')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:57:07 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418112000','1419407999','3','1','2','22')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:57:08 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418112000','1419407999','3','1','2','22')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:57:10 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418112000','1419407999','3','1','2','22')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:57:30 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418112000','1419407999','3','1','2','2')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:57:31 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418112000','1419407999','3','1','2','2')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:57:32 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418112000','1419407999','3','1','2','2')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:57:33 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418112000','1419407999','3','1','2','2')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:57:34 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418112000','1419407999','3','1','2','2')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:57:36 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418112000','1419407999','3','1','2','2')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 10 Dec 2014 21:59:10 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('fsf','10','2','1','1418112000','1420012799','2','1','2','2')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 08:51:00 +0800	[256]MySQL Error[1054]: Unknown column 'cate_noallow' in 'field list'
+MySQL Query:INSERT INTO ecm_coupon(coupon_name,coupon_value,store_id,use_times,start_time,end_time,min_amount,if_issue,stores_allow,cate_noallow) VALUES('ysfs','23','2','1','1418198400','1420012799','9','1','2','2')
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 15:43:12 +0800	[256]MySQL Error[1054]: Unknown column 'coupon_sn.coupon_sn' in 'field list'
+MySQL Query:SELECT coupon.*,coupon_sn.coupon_sn,coupon_sn.remain_times,coupon.coupon_id FROM ecm_coupon coupon WHERE store_id = 2 LIMIT 0,10
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 16:17:21 +0800	[256]MySQL Error[1054]: Unknown column 'coupon_sn.coupon_sn' in 'field list'
+MySQL Query:SELECT coupon.*,coupon_sn.coupon_sn,coupon_sn.remain_times,coupon.coupon_id FROM ecm_coupon coupon WHERE store_id = 2 LIMIT 0,10
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 16:22:40 +0800	[256]MySQL Error[1054]: Unknown column 'ecm_coupon.coupon_id' in 'where clause'
+MySQL Query:SELECT COUNT(*) as c FROM ecm_coupon coupon WHERE ecm_coupon.coupon_id=store_id = 2
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 17:23:16 +0800	[256]MySQL Error[1054]: Unknown column 'coupon_sn.coupon_sn' in 'field list'
+MySQL Query:SELECT coupon.*,coupon_sn.coupon_sn,coupon_sn.remain_times,coupon.coupon_id FROM ecm_coupon coupon WHERE store_id = 2 LIMIT 0,1
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 17:26:10 +0800	[256]MySQL Error[1054]: Unknown column 'coupon_sn.coupon_sn' in 'field list'
+MySQL Query:SELECT coupon.*,coupon_sn.coupon_sn,coupon_sn.remain_times,coupon.coupon_id FROM ecm_coupon coupon WHERE store_id = 2 LIMIT 0,1
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 17:27:37 +0800	[256]MySQL Error[1054]: Unknown column 'coupon_sn.coupon_sn' in 'field list'
+MySQL Query:SELECT coupon.*,coupon_sn.coupon_sn,coupon_sn.remain_times,coupon.coupon_id FROM ecm_coupon coupon WHERE store_id = 2
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 17:30:58 +0800	[256]MySQL Error[1054]: Unknown column 'coupon_sn.coupon_sn' in 'field list'
+MySQL Query:SELECT coupon.*,coupon_sn.coupon_sn,coupon_sn.remain_times,coupon.coupon_id FROM ecm_coupon coupon WHERE store_id = 2 LIMIT 0,1
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 17:34:35 +0800	[256]MySQL Error[1054]: Unknown column 'coupon_sn.coupon_sn' in 'field list'
+MySQL Query:SELECT coupon.*,coupon_sn.coupon_sn,coupon_sn.remain_times,coupon.coupon_id FROM ecm_coupon coupon WHERE store_id = 2 LIMIT 0,1
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 17:35:29 +0800	[256]MySQL Error[1054]: Unknown column 'coupon_sn.coupon_sn' in 'field list'
+MySQL Query:SELECT coupon.*,coupon_sn.coupon_sn,coupon_sn.remain_times,coupon.coupon_id FROM ecm_coupon coupon WHERE store_id = 2 LIMIT 0,1
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 18:14:07 +0800	[256]MySQL Error[1054]: Unknown column 'coupon_sn.coupon_sn' in 'field list'
+MySQL Query:SELECT coupon.*,coupon_sn.coupon_sn,coupon_sn.remain_times,coupon.coupon_id FROM ecm_coupon coupon WHERE store_id = 2 LIMIT 0,1
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Thu, 11 Dec 2014 18:14:54 +0800	[2]Division by zero	\includes\ecapp.base.php	753
+Thu, 11 Dec 2014 18:28:36 +0800	[2]mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	364
+Tue, 16 Dec 2014 09:19:54 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=15
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 09:19:57 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=15
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 09:20:01 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=15
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 11:11:52 +0800	[2]array_unique() [<a href='function.array-unique'>function.array-unique</a>]: The argument should be an array	\app\order.app.php	543
+Tue, 16 Dec 2014 11:18:20 +0800	[2]array_unique() [<a href='function.array-unique'>function.array-unique</a>]: The argument should be an array	\app\order.app.php	543
+Tue, 16 Dec 2014 11:18:36 +0800	[2]array_unique() [<a href='function.array-unique'>function.array-unique</a>]: The argument should be an array	\app\order.app.php	543
+Tue, 16 Dec 2014 11:20:07 +0800	[2]array_filter() [<a href='function.array-filter'>function.array-filter</a>]: The second argument, 'myfunction', should be a valid callback	\app\order.app.php	543
+Tue, 16 Dec 2014 11:20:48 +0800	[2]array_filter() [<a href='function.array-filter'>function.array-filter</a>]: The second argument, '', should be a valid callback	\app\order.app.php	543
+Tue, 16 Dec 2014 11:20:51 +0800	[2]array_filter() [<a href='function.array-filter'>function.array-filter</a>]: The second argument, '', should be a valid callback	\app\order.app.php	543
+Tue, 16 Dec 2014 11:23:43 +0800	[2]array_filter() [<a href='function.array-filter'>function.array-filter</a>]: The second argument, 'myfunction', should be a valid callback	\app\order.app.php	543
+Tue, 16 Dec 2014 11:24:24 +0800	[2]array_filter() [<a href='function.array-filter'>function.array-filter</a>]: The second argument, 'myfunction', should be a valid callback	\app\order.app.php	543
+Tue, 16 Dec 2014 11:24:25 +0800	[2]array_filter() [<a href='function.array-filter'>function.array-filter</a>]: The second argument, 'myfunction', should be a valid callback	\app\order.app.php	543
+Tue, 16 Dec 2014 11:36:19 +0800	[256]MySQL Error[1054]: Unknown column 'Array' in 'where clause'
+MySQL Query:select discount_id from ecm_discount_promotion where discount_id in (Array) order by weight_factor desc
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:25:02 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=101
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:26:30 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=97
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:26:58 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=97
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:27:06 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=97
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:27:06 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=97
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:27:06 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=97
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:27:07 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=97
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:27:07 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=97
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:27:08 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=97
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:27:11 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=97
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:27:15 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=101
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:28:04 +0800	[256]MySQL Error[1054]: Unknown column 'store_id' in 'where clause'
+MySQL Query:select kuaixun_state,kuaixun_id,kuaixun_price from  ecm_kuaixun_promotion where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('2',store_id) and  kuaixun_state in (2,3) and goods_id=101
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[589]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 12:52:52 +0800	[256]MySQL Error[1054]: Unknown column 'Array' in 'where clause'
+MySQL Query:select discount_id from ecm_discount_promotion where discount_id in (Array) order by weight_factor desc
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 13:09:50 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') order by weight_factor desc' at line 1
+MySQL Query:select discount_id from ecm_discount_promotion where discount_id in (1,) order by weight_factor desc
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 13:20:41 +0800	[256]MySQL Error[1146]: Table 'ecmall.ecm_promotion' doesn't exist
+MySQL Query:select * from ecm_promotion where store_id = 2 AND session_id='cb7dc47a8668d1854e448ca99dff25fd' and remains>0
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 13:21:57 +0800	[256]MySQL Error[1054]: Unknown column 'remains' in 'where clause'
+MySQL Query:select * from ecm_promotion_sale where store_id = 2 AND session_id='cb7dc47a8668d1854e448ca99dff25fd' and remains>0
+Wrong File:  D:\PHPECMALL\ECMALL\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 13:53:33 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_pr' at line 1
+MySQL Query:update ecm_cart set remains=remains-2 where  store_id = 2 AND session_id='cb7dc47a8668d1854e448ca99dff25fd' and goods_id=101;insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_price,sale_num,
+					user_id,session_id,sale_flag,store_id) values( 1 ,101 ,695072785132,测试商品,8.00,2,12,'cb7dc47a8668d1854e448ca99dff25fd',0,2)
+Wrong File:  D:\PHPECMALL\ECMALL\app\order.app.php[705]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 13:57:42 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_pr' at line 1
+MySQL Query:update ecm_cart set remains=remains-2 where  store_id = 2 AND session_id='cb7dc47a8668d1854e448ca99dff25fd' and goods_id=101;insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_price,sale_num,
+					user_id,session_id,sale_flag,store_id) values( 1 ,101 ,695072785132,测试商品,8.00,2,12,'cb7dc47a8668d1854e448ca99dff25fd',0,2)
+Wrong File:  D:\PHPECMALL\ECMALL\app\order.app.php[706]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 13:59:39 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_pr' at line 1
+MySQL Query:update ecm_cart set remains=remains-2 where  store_id = 2 AND session_id='cb7dc47a8668d1854e448ca99dff25fd' and goods_id=101;insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_price,sale_num,
+					user_id,session_id,sale_flag,store_id) values( 1 ,101 ,'695072785132','测试商品',8.00,2,12,'cb7dc47a8668d1854e448ca99dff25fd',0,2)
+Wrong File:  D:\PHPECMALL\ECMALL\app\order.app.php[706]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 13:59:43 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_pr' at line 1
+MySQL Query:update ecm_cart set remains=remains-2 where  store_id = 2 AND session_id='cb7dc47a8668d1854e448ca99dff25fd' and goods_id=101;insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_price,sale_num,
+					user_id,session_id,sale_flag,store_id) values( 1 ,101 ,'695072785132','测试商品',8.00,2,12,'cb7dc47a8668d1854e448ca99dff25fd',0,2)
+Wrong File:  D:\PHPECMALL\ECMALL\app\order.app.php[706]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 14:23:33 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_pr' at line 1
+MySQL Query:update ecm_cart set remains=remains-2 where  store_id = 2 AND session_id='cb7dc47a8668d1854e448ca99dff25fd' and goods_id=101;insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_price,sale_num,
+					user_id,session_id,sale_flag,store_id) values( 1 ,101 ,'695072785132','测试商品',8.00,2,12,'cb7dc47a8668d1854e448ca99dff25fd',0,2)
+Wrong File:  D:\PHPECMALL\ECMALL\app\order.app.php[689]	\eccore\model\mysql.php	286
+Tue, 16 Dec 2014 14:34:32 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_pr' at line 1
+MySQL Query:update ecm_cart set remains=remains-2 where  store_id = 2 AND session_id='cb7dc47a8668d1854e448ca99dff25fd' and goods_id=101;insert into ecm_promotion_sale(promotion_id,goods_id,goods_sn,goods_name,sale_price,sale_num,user_id,session_id,sale_flag,store_id) values( 1 ,101 ,'695072785132','测试商品',8.00,2,12,'cb7dc47a8668d1854e448ca99dff25fd',0,2)
+Wrong File:  D:\PHPECMALL\ECMALL\app\order.app.php[689]	\eccore\model\mysql.php	286

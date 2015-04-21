@@ -1,0 +1,97 @@
+{include file="header.html"}
+<script type="text/javascript" src="{res file=js/My97DatePicker/WdatePicker.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    // multi-select mall_gcategory
+    $('#gcategory').length>0 && gcategoryInit("gcategory");
+});
+//]]>
+</script>
+<div id="rightTop">
+  <p>促销管理</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=promote">添加档期</a></li>
+    <li><a class="btn1" href="index.php?app=promote&amp;act=list_schedule">档期列表</a></li>
+    <li><a class="btn1" href="index.php?app=promote&amp;act=list_kuaixun">快讯列表</a></li>
+    <li><a class="btn1" href="index.php?app=promote">折扣列表</a></li>
+  </ul>
+</div>
+
+<div class="mrightTop1 info">
+  <div class="fontl">
+    <form method="get">
+      <input type="hidden" name="app" value="promote" />
+      <input type="hidden" name="act" value="add_kuaixun_goods" />
+      <input type="hidden" name="kuaixun_state" value="确认" />
+      <input type="hidden" name="kuaixun_id" value="{$smarty.get.kuaixun_id}" />
+      <!--{if $smarty.get.closed}-->
+      <input type="hidden" name="closed" value="1" />
+      <!--{/if}--> 商品名称:
+      <input class="queryInput" type="text" name="goods_name" value="{$smarty.get.goods_name|escape}" />
+      {$lang.store_name}:
+      <input class="queryInput" type="text" name="store_name" value="{$smarty.get.store_name|escape}" />
+      <!--品牌:
+      <input class="queryInput" type="text" name="brand" value="{$smarty.get.brand|escape}" />-->
+      商品条码:
+      <input class="queryInput" type="text" name="goods_sn" value="{$smarty.get.goods_sn|escape}" />
+      <br />
+      <span style="position: relative; top: 5px;">
+      <div class="left">
+          商品分类:
+          <div id="gcategory" style="display:inline;">
+            <input type="hidden" name="cate_id" value="0" class="mls_id" />
+            <select class="querySelect">
+              <option>{$lang.select_pls}</option>
+              {html_options options=$gcategories}
+            </select>
+          </div>
+          <input type="submit" class="formbtn" value="{$lang.query}" />
+      </div>
+      <!--{if $smarty.get.cate_id or $query.goods_name or $query.store_name or $query.brand}-->
+      <a class="left formbtn1" href="index.php?app=promote&act=add_kuaixun_goods&kuaixun_state=确认&kuaixun_id={$smarty.get.kuaixun_id}<!--{if $query.closed}-->&amp;closed={$query.closed}<!--{/if}-->">{$lang.cancel_query}</a>
+      <!--{/if}-->
+      </span>
+    </form>
+  </div>
+  <div class="fontr">{include file=page.top.html}</div>
+</div>
+
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $goods_list}-->
+    <tr class="tatr1">
+      <td width="10%" class="firstCell">选择</td>
+      <td width="35%"><span ectype="order_by" fieldname="goods_name">商品名称</span></td>
+      <td width="15%"><span ectype="order_by" fieldname="goods_sn">商品编码</span></td>
+      <td width="10%"><span ectype="order_by" fieldname="price">商品价格</span></td>
+      <td width="20%"><span ectype="order_by" fieldname="cate_id">分类名称</span></td>
+      <td width="10%"><span ectype="order_by" fieldname="store_name">店铺名称</span></td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$goods_list item=goods}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.goods_id}"/></td>
+      <td><span>{$goods.goods_name|escape}</span></td>
+      <td>{$goods.sku|escape}</td>
+      <td>{$goods.price}</td>
+      <td>{$goods.cate_name|nl2br}</td>
+	  <td>{$goods.store_name|escape}</td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data info">
+      <td colspan="6">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $goods_list}-->
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">&nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="添加" name="id" uri="index.php?app=promote&act=add_goods_to_kuaixun&ret_page={$page_info.curr_page}&kuaixun_id={$kuaixun_id}&kuaixun_state=确认" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+   <!--{/if}-->
+  </div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}

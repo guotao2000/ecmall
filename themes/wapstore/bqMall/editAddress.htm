@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-编辑收货地址</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="template/css/com/com.css"/> 
+        <link type="text/css" rel="stylesheet" href="template/css/home/index.css"/>
+        <script src="js/jquery.js"></script>
+        <!-- 控制整体标签宽度的js -->
+        <script src="template/js/com/com.js"></script>
+        <!-- 控制整体标签宽度的js end -->
+        <!-- 控制图片缩放比例的js -->
+        <script src="template/js/com/template.js"></script>
+        <!-- 控制图片缩放比例的js end -->
+        <!--控制判断收货人信息是否填写正确的js开始-->
+        <script src="template/js/order/zepto.js"></script>
+        <!--控制判断收货人信息填写是否正确的js结束--->
+</head>
+<body>
+<div class="com-content">
+<!-- 头部区域开始 by-wei 2014.12.08  -->
+  <div class="com-header-area" id="js-com-header-area">
+          <a href="#" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">编辑收货地址</span>
+          <a href="default.htm" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+<!-- 头部区域结束 end -->
+<!-- 添加收货地址页面中心区域开始-->
+<div class="com-content-area" id="js-com-content-area" style=" margin:0px;">
+<!-- 确认订单信息页面内容区域开始-->
+<div class="page-role good-page">	
+  <link type="text/css" rel="stylesheet" href="template/css/good/index.css" />
+  <link type="text/css" rel="stylesheet" href="template/css/order/index.css" />
+  <link rel="stylesheet" type="text/css" href="template/css/order/order.css" >	
+  
+     <!-- 编辑收货地址页面内容区域开始-->
+     <div class="pxui-area">
+        <!--编辑收货地址区域开始-->
+        <form action="#" method="post" id="editAddressForm">
+		<input name="address.id" id="addresssType" value="0" type="hidden">
+		<input name="sid" id="sid" value="f6521388b636e7309bec232231be45aa" type="hidden">
+		<input name="address.zip" value="" type="hidden">
+        <input name="vtuanOrder" value="false" type="hidden">
+         <div class="new-ct shouhuo">
+            <div class="makeorder_shdz-title">
+              <p>填写收货人信息</p>
+            </div>
+            <div class="info-list">
+           <!--收货人姓名开始--->
+            <div class="info pd">
+        	 <div class="tbl-type">
+            	<span class="tbl-cell w80"><span>收货人姓名：</span></span>
+                <span class="tbl-cell"><span><input maxlength="20" class="new-input" name="address.name" id="address_name" style="width:100%;" type="text"></span></span>
+            </div>
+           </div>
+           <!--收货人姓名结束-->
+           <!---判断收货人姓名是否正确 开始-->
+            <div class="info pd" style="display:none" id="nameErrorMsg">
+        	  <div class="tbl-type">
+            	<span class="tbl-cell w80"><span style="color:red">收货人姓名不能为空</span></span>
+              </div>
+            </div>
+           <!---判断收货人姓名是否正确 结束-->
+           <!--收货人手机号开始--->
+            <div class="info pd">
+        	   <div class="tbl-type">
+            	<span class="tbl-cell w100"><span>收货人手机号：</span></span>
+                <span class="tbl-cell"><span><input maxlength="11" class="new-input" name="address.mobile" id="address_mobile"  type="text"></span></span>
+               </div>
+            </div>
+           <!---收货人手机号结束-->
+           <!--判断收货人手机号是否正确开始-->
+            <div class="info pd" id="mobileErrorMsgDiv" style="display:none">
+        	 <div class="tbl-type">
+            	<span class="tbl-cell w80"><span style="color:red" id="mobileErrorMsg"></span></span>
+             </div>
+           </div>
+           <!--判断收货人手机号是否正确结束-->
+           <!--选择所在城市开始-->
+		    <div class="info pd">
+        	  <div class="tbl-type">
+            	<span class="tbl-cell w50"><span>城&nbsp;&nbsp;&nbsp;&nbsp;市：</span></span>
+                <span class="tbl-cell">                	
+                    <span class="new-input-span">
+                        <span class="new-sel-box new-p-re">
+                          <select name="address.idProvince" id="address_province" class="new-select" style="width:200px;">
+                            <option selected="selected" id="option_add_1" value="1">济南</option>
+                            <option id="option_add_2" value="2">青岛</option>
+                            <option id="option_add_3" value="3">烟台</option>
+                            <option id="option_add_4" value="4">滨州</option>
+                            <option id="option_add_5" value="5">德州</option>
+                            <option id="option_add_6" value="6">淄博</option>
+                            <option id="option_add_6" value="7">莱芜</option>
+                            <option id="option_add_6" value="8">聊城</option>
+                            <option id="option_add_6" value="9">济宁</option>
+                           </select>
+                        </span>
+                    </span>
+                </span>
+             </div>
+           </div>
+           <!--选择所在城市结束--->
+           <!--选择所在市区开始-->
+		     <div class="info pd">
+        	  <div class="tbl-type">
+            	<span class="tbl-cell w50"><span>市&nbsp;&nbsp;&nbsp;&nbsp;区：</span></span>
+                <span class="tbl-cell">                	
+                    <span class="new-input-span">
+                        <span class="new-sel-box new-p-re">
+                          <select name="address.idProvince" id="address_province" class="new-select" style="width:200px;">
+                            <option selected="selected" id="option_add_1" value="10">高新区</option>
+                            <option id="option_add_2" value="11">历城区</option>
+                            <option id="option_add_3" value="12">历下区</option>
+                            <option id="option_add_4" value="13">市中区</option>
+                            <option id="option_add_5" value="14">天桥区</option>
+                            <option id="option_add_6" value="15">槐荫区</option>
+                           </select>
+                        </span>
+                    </span>
+                </span>
+             </div>
+           </div>
+           <!--选择所在市区结束--->
+           <!--选择小区开始--->
+            <div class="info pd">
+        	  <div class="tbl-type">
+            	<span class="tbl-cell w50"><span>小&nbsp;&nbsp;&nbsp;&nbsp;区：</span></span>
+                <span class="tbl-cell">
+                	<span class="new-input-span">
+                        <span class="new-sel-box new-p-re">
+                         <select name="address.idCity" id="address_city" class="new-select" style="width:200px;">
+                            <option selected="selected" id="option_add_72" value="16">新生活家园</option>
+                            <option id="option_add_2800" value="17">海信慧园</option>
+                            <option id="option_add_2801" value="18">贤文花园</option>
+                            <option id="option_add_2802" value="19">牛旺小区</option>
+                            <option id="option_add_2803" value="20">未来城</option>
+                            <option id="option_add_2804" value="21">力高国际</option>
+                            <option id="option_add_2805" value="22">盛世花城</option>
+                            <option id="option_add_2806" value="23">汇总国际</option>
+                          </select>
+                        </span>
+                    </span>
+                </span>
+              </div>
+           </div>
+           <!--选择小区结束--->
+           <!--详细地址区域开始-->
+            <div class="info border-b-none pd">
+        	  <div class="tbl-type">
+            	<span class="tbl-cell w70"><span>地址信息：</span></span>
+                <span class="tbl-cell"><span>
+                <textarea rows="2" style="height:auto;width:100%;" type="text" class="new-input" name="address.where" id="address_where"></textarea></span></span>
+               </div>
+           </div>
+           <!---详细地址区域结束-->
+         </div>
+         <!--收货地址详细检查区域开始--->
+		 <div class="info pd" style="display:none" id="addressErrorMsg">
+        	<div class="tbl-type">
+            	<span class="tbl-cell w80"><span style="color:red">地址信息不能为空</span></span>
+            </div>
+         </div>
+         <!-- 收货地址详细检测区域结束--->
+    <!--[D] 默认时加  new-abtn-default 把a标签换成span-->
+    <a href="make_order.htm" class="new-abtn-type mgn">保&nbsp;&nbsp;存</a>	
+</div>
+         </div>
+        <!--控制收货地址判断的js 函数开始--->
+        <script type="text/javascript" src="template/js/order/address.js"></script>
+        <script type="text/javascript">
+
+var submitEditAddressForm = function(){
+	spinerShow();
+	$("#editAddressForm").submit();
+	spinerHide();
+}
+
+$(document).ready(function(){
+		$("#editAddressForm").submit(validateSubmit);
+    	$("#address_province").change(citychange);
+    	$("#address_city").change(areachange);
+    	$("#address_area").change(townchange);
+    	$("#address_town").change(labelchange);
+		$("#address_name").blur(validateName);
+		$("#address_where").blur(validateWhere);
+		$("#address_mobile").blur(validateAddressMobile);
+	
+		var type=$("#addresssType").val();
+		if(type==0){
+			idprovince=1;
+			provinceData(idprovince);	
+		}else if(type>0||type==-1){
+		    getData(type,'','','','','','1','72','2799','0');
+		}
+		
+		if($("#parent1").text()!=""&&$("#parent1").text()!=null){
+			$("#backUrl").attr("href","javascript:backListener('child1','parent1')");
+		}
+});
+      </script>
+     <!--控制收货地址判断的js 函数结束--->
+       </form>
+       <!--编辑收货地址区域结束--->  
+     </div>
+     <!-- 编辑收货地址页面内容区域结束-->
+     <!-- 编辑收货地址页底部区域开始-->
+     <div class="com-footer-area" id="js-com-footer-area" style="margin:20px 0px 30px;">
+			<div class="com-footer-nav">
+				<a href="#">商家入驻</a><a href="#">帮助中心</a><a href="#">反馈建议</a>
+			</div>
+			<div class="com-footer">
+				<p>
+					<strong style="line-height:28px;">
+						© 2014-2015 Bei Quan By Wei<br />
+                        京ICP备14026542号-1
+                        
+					</strong>
+				</p>
+                <br /> 
+                <p style="border-bottom:none;">
+                <a href='/mobile/'>倍全商城 </a>
+                 - -有倍全的地方就有家！
+                </p>
+             </div>
+		</div>
+     <!-- 编辑收货地址页底部区域结束-->
+</div> 
+<!-- 编辑收货地址页面中心区域开始-->
+</div>
+</body>
+</html>

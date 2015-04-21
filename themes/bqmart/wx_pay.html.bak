@@ -1,0 +1,25 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <title>微信安全支付</title>
+     <script src="/themes/bqmart/js/jquery.js" language="javascript"></script>
+	<script type="text/javascript">
+
+	    $(document).ready(function () {
+			
+	       // $("#yxw").click(function(){return true;});
+			$("#yxw").trigger("click"); 
+			window.location.href="/bqwxpay/demo/js_api_call.php";
+	    });
+	</script>
+</head>
+<body>
+	<br /><br /><br /><br />
+	<div align="center">
+		<a href="/bqwxpay/demo/js_api_call.php" id="yxw" onclick="alert(1);" >加载中。。。。</a>
+	</div>
+	<div>
+	
+	</div>
+</body>
+</html>

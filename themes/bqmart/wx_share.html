@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-分享到微信</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/com/com.css}"/> 
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/home/index.css}"/>
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/cart/index.css}" />
+        <script src="{res file=bqmart/js/jquery.js}"></script>
+        <!-- 控制整体标签宽度的js -->
+        <script src="{res file=bqmart/template/js/com/com.js}"></script>
+        <!-- 控制整体标签宽度的js end -->
+        <!-- 控制图片缩放比例的js -->
+        <script src="{res file=bqmart/template/js/com/template.js}"></script>
+        <!-- 控制图片缩放比例的js end -->
+</head>
+<body>
+<div class="com-content">
+<!-- 头部区域开始 by-wei 2014.12.08  -->
+  <div class="com-header-area" id="js-com-header-area">
+          <a href="{url app=default}" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">分享到微信</span>
+          <a href="{url app=default}" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+<!-- 头部区域结束 end -->
+<!-- 分享成功页面中心区域开始-->
+<div class="com-content-area" id="js-com-content-area" style=" margin:0px;">
+   <!-- 分享成功页面内容区域开始-->
+   <div class="page-role cart_empty-page">
+      <div class="pxui-area">
+         <!--分享成功页面顶部区块开始-->
+           <div class="cart_empty-top">
+              <p>
+               <span class="cart_empty-topicon"></span>客官：分享到微信后有惊喜哦~~
+              </p>
+           </div>
+         <!--分享成功页面顶部区块结束--->  
+         <!--分享内容区域开始-->
+         <div style="display:block;" id="share_index">
+		
+         <div class="wx_share-info">
+		  <a href="{$result.url|escape}">
+            <h4>
+              {$result.title|escape}
+            </h4>
+            <p class="wx_share-time">{$result.add_time|date}</p>
+            <div class="wx_share-img">
+               <img src="{res file=bqmart/template/images/cart/weixin_share.jpg}" >
+            </div>
+            <div class="wx_share-jianjie">
+                <p>
+					{$result.content|escape:editor}
+                </p>
+            </div>
+		 </a>
+         </div>
+         <div class="wx_share-list">
+            <div id="mess_share">
+               <div id="share_1">
+                  <button class="button2" onclick="_system._guide(true)">
+                    <img src="{res file=bqmart/template/images/cart/icon_msg.png}">&nbsp;发送给朋友
+                  </button>
+                </div>
+                <div id="share_2">
+                  <button class="button2" onclick="_system._guide(true)">
+                     <img src="{res file=bqmart/template/images/cart/icon_timeline.png}">&nbsp;分享到朋友圈
+                  </button>
+                </div>
+                <div class="clr"></div>
+            </div>
+         </div>
+	     <script type="text/javascript">
+            var _system={
+                $:function(id){return document.getElementById(id);},
+           _client:function(){
+              return {w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight,bw:document.documentElement.clientWidth,bh:document.documentElement.clientHeight};
+           },
+           _scroll:function(){
+              return {x:document.documentElement.scrollLeft?document.documentElement.scrollLeft:document.body.scrollLeft,y:document.documentElement.scrollTop?document.documentElement.scrollTop:document.body.scrollTop};
+           },
+           _cover:function(show){
+              if(show){
+             this.$("cover").style.display="block";
+             this.$("cover").style.width=(this._client().bw>this._client().w?this._client().bw:this._client().w)+"px";
+             this.$("cover").style.height=(this._client().bh>this._client().h?this._client().bh:this._client().h)+"px";
+          }else{
+             this.$("cover").style.display="none";
+          }
+           },
+           _guide:function(click){
+              this._cover(true);
+              this.$("guide").style.display="block";
+              this.$("guide").style.top=(_system._scroll().y+5)+"px";
+              window.onresize=function(){_system._cover(true);_system.$("guide").style.top=(_system._scroll().y+5)+"px";};
+          if(click){_system.$("cover").onclick=function(){
+                 _system._cover();
+                 _system.$("guide").style.display="none";
+         _system.$("cover").onclick=null;
+         window.onresize=null;
+          };}
+           },
+           _zero:function(n){
+              return n<0?0:n;
+           }
+        }
+        </script>
+        <div id="cover"></div>
+        <div id="guide" style="top:0px;"><img src="{res file=bqmart/template/images/cart/guide1.png}"></div>
+        </div>
+         <!--分享内容区域结束-->
+        <!-- 分享成功后显示DIV开始--->
+        <div class="cart_empty-info" style="display:none;" id="share_success">
+		
+             <div class="login_success-img">
+                <img src="{res file=bqmart/template/images/cart/bq_login_success.png}" > </div>
+             <p>
+             亲，恭喜您已成功分享到微信~~
+             </p>
+             <div class="cart_empty-btn">
+                 <a type="button"  href="{url app=default}"  >去　逛　逛</a>
+             </div>
+             <div class="login_success-btn">
+                 <a type="button"  href="{url app=member}" style="background:#03C631; box-shadow: 0 1px 20px #8BF74D inset;"  >会员中心</a>
+             </div>
+
+        </div>
+        <!--分享成功后显示DIV结束-->        
+       </div>
+      </div>
+      <!-- 登录成功页面内容区域结束-->
+      <!-- 登录成功内容页底部区域开始-->
+      {include file='member.footer.html'}
+      <!-- 登录成功内容页底部区域结束-->
+
+</div> 
+<!-- 登录成功页面中心区域开始-->
+</div>
+{include file='store.menu.html'}
+</body>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  wx.config({
+	//debug: true,
+    appId: '{$signPackage.appId}',
+    timestamp: {$signPackage.timestamp},
+    nonceStr: '{$signPackage.nonceStr}',
+    signature: '{$signPackage.signature}',
+    jsApiList: [
+	  'onMenuShareTimeline',
+	  'onMenuShareAppMessage'
+    ]
+  });
+  wx.ready(function () {
+	//分享到朋友圈
+    wx.onMenuShareTimeline({
+        title: '{$result.title|escape}', // 分享标题
+        link: '{$result.url|escape}', // 分享链接
+        imgUrl: '{$result.picurl|escape}', // 分享图标
+        success: function () {
+            // 用户确认分享后执行的回调函数
+			$('#share_success').show();
+			$('#share_index').hide();
+        }
+    });
+
+	//分享给朋友
+	wx.onMenuShareAppMessage({
+		title: '{$result.title|escape}', // 分享标题
+		desc: '{$result.description|escape}', // 分享描述
+		link: '{$result.url|escape}', // 分享链接
+		imgUrl: '{$result.picurl|escape}', // 分享图标
+		type: 'link', // 分享类型,music、video或link，不填默认为link
+		dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+		success: function () { 
+			// 用户确认分享后执行的回调函数
+			$('#share_success').show();
+			$('#share_index').hide();
+		}
+	});
+
+  });
+</script>
+
+</html>

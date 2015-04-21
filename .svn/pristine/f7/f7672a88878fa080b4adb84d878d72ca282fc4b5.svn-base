@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <title>倍全商城-我的收藏</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+    <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+    <!--离线应用的另一个技巧-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <!--指定的iphone中safari顶端的状态条的样式-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <!--告诉设备忽略将页面中的数字识别为电话号码-->
+    <meta content="telephone=no" name="format-detection" />
+    <!--设置开始页面图片-->
+    <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+    <!--在设置书签的时候可以显示好看的图标-->
+    <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+    <link rel="stylesheet" type="text/css" href="{res file=bqmart/template/css/home/cplb.css}"  />	
+    <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/com/com.css}"/>
+    <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/user/index.css}" />
+    <script src="{res file=bqmart/js/jquery.js}"></script>
+    <!-- 控制整体标签宽度的js -->
+    <script src="{res file=bqmart/template/js/com/com.js}"></script>
+    <!-- 控制整体标签宽度的js end -->
+    <!-- 控制图片缩放比例的js -->
+    <script src="{res file=bqmart/template/js/com/template.js}"></script>
+    <!-- 控制图片缩放比例的js end -->
+    <!-- 控制抢购模块左右切换的js 开始-->
+    <script type="text/javascript" src="{res file=bqmart/template/js/home/swipe.js}" charset="utf-8"></script>
+    <!-- 控制抢购模块左右切换的js 结束-->
+    <!--控制产品列表加减数量的js开始 -->
+    <script type="text/javascript" src="{res file=bqmart/template/js/com/jquery.spinner.js}"></script>
+    <!--控制产品列表加减数量的js结束 -->
+    <!--控制导航Tab切换的js开始--->
+     <script src="{res file=bqmart/template/js/home/index.js}"></script>
+    <!--控制导Tab切换的js结束-->
+  </head>
+  <body>
+    <div class="com-content">
+       <!-- 头部区域开始 by-wei 2014.12.08  -->
+        <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">我的收藏</span>
+          <a href="{url app=default}" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+      <!-- 头部区域结束 end -->
+      <!--中间内容区域开始 by-wei 2014.12.08 --> 
+        <div class="com-content-area" id="js-com-content-area" style=" margin:12px 2px;">
+          <div class="page-role user_collection-page">
+           <div class="pxui-area">
+          <div class="pxui-tab pxui-tab-style pxui-tab-no-top">
+          <a href="{url app=my_favorite&type=goods}" {if $smarty.get.type eq 'goods'} class="selected" {/if}>收藏的商品</a>
+          <a href="{url app=my_favorite&type=store}" {if $smarty.get.type eq 'store'} class="selected" style="border-radius: 0 8px 8px 0;" {/if}>逛过的店铺</a>
+          </div>
+          <div class="bq_cplb_bg"  style=" margin-top:-4px;"></div>
+          <div class="pxui-shoes">
+          
+          <!--逛过的店铺列表开始-->
+             <div class="zxList">
+                <ul>
+                <!--{foreach from=$collect_store item=store name=v}-->
+                 <li class="clearfix">
+                    <a href="{url app=store&id=$store.store_id}" style=" border-right:none; float:none; margin-left:0px;"><img src="{$store.store_logo}"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="{url app=store&id=$store.store_id}" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">{$store.store_name|escape}</a></p>
+                      <span class="proPrice" style="display:block;">距离：2.0 Km</span>                 <span style="margin-left:20px; font-size:14px; display:block; margin-top:3px;">商品：{$store.goods_num|escape}+</span>
+                      <a href="{url app=store&id=$store.store_id}" class="guangguang" style="border-right:none;">去逛逛</a>
+                  </div>
+                 </li>
+                 <!--{foreachelse}-->
+                 <li>{$lang.no_records}</li>
+                 <!--{/foreach}-->	
+                 
+                </ul>
+              </div>
+          <!--逛过的店铺列表结束-->
+          <!--分页开始-->
+          <div class="page">
+      	  {include file=member.page.bottom.html}
+    	  </div>
+          <!--分页结束-->
+          </div>
+         
+          </div>
+
+          </div>
+		</div>
+       <!--中间内容区域结束 End-wei 2014.12.08 --> 
+       <!--底部区域开始 By Wei 2014.12.08-->
+       {include file='member.footer.html'}
+       <!--底部区域结束 End Wei 2014.12.08-->
+      
+</div>
+<!--底部浮动菜单开始-->
+ {include file='store.menu.html'}
+<!--底部浮动菜单结束-->
+</body>
+<!-- 控制产品列表加减数量的执行函数开始-->
+<script type="text/javascript">
+$('.spinnerExample').spinner({});
+</script>
+
+<!-- 控制产品列表加减数量的执行函数结束-->
+
+</html>

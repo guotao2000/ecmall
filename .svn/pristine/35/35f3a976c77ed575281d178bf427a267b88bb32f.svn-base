@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+	margin:0px;
+	padding:0px;
+	border:0px;}
+body{
+	font-size=62.5%;
+	width:100%;
+	height:100%;
+	min-width:100px;
+	font-family:"微软雅黑";
+	}
+.zq_main{
+	width:100%;
+	height:100%;
+
+	}
+/*图片*/
+.zq_top img{
+	width:100%;
+	height:50%;
+	}
+.zq_bottom{
+	width:100%;
+	height:50%;
+	margin-top:-5px;
+	background-color:#CA1947;
+	}
+.zq_span p{
+	
+	text-align:center;
+	color:#f09900;
+	font-size:1.3em;
+}
+.zq_input {
+	width:60%;
+	margin:20px auto;
+	}
+.zq_input input{
+	height:55px;	
+	margin-bottom:15px;
+	}
+.zq_input1{
+	border-radius:35px 35px 35px 35px;
+	width:100%;
+	background-color:#FFF;
+	
+	text-indent:25%;
+	font-size:20px;
+	color:#b4b4b4;
+	}
+.zq_input2{
+	width:100%;
+	background-color:#f09900;
+	text-align:center;
+	font-size:18px;
+	color:#fff;
+	border-radius:25px 25px 25px 25px;
+	font-weight:700;
+	
+	}
+.zq_input2:hover{
+	cursor:pointer;}

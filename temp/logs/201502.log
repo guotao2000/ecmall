@@ -1,0 +1,63 @@
+Thu, 05 Feb 2015 19:28:29 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select * from ecm_order where `status` in(13,21,20,30) and order_id=385 and seller_id=
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Thu, 05 Feb 2015 19:31:15 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select * from ecm_order where `status` in(13,21,20,30) and order_id=385 and seller_id=
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Thu, 05 Feb 2015 19:32:56 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select * from ecm_order where `status` in(13,21,20,30) and order_id=385 and seller_id=
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Fri, 06 Feb 2015 11:59:22 +0800	[256]MySQL Error[1065]: Query was empty
+MySQL Query:
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Fri, 06 Feb 2015 15:33:55 +0800	[256]MySQL Error[1054]: Unknown column 'a.sku' in 'where clause'
+MySQL Query:select a.price from ecm_promotion_goods a LEFT JOIN ecm_promotion b on a.p_id=b.p_id 
+where UNIX_TIMESTAMP() BETWEEN b.start_time and b.end_time and state=3 and a.sku=6919892111302 and a.store_id=42
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 10 Feb 2015 13:38:04 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where goods_id=106' at line 1
+MySQL Query:update ecm_goods set cuxiao_ids= where goods_id=106
+Wrong File:  D:\PHPECMALL\ecmall\admin\app\_ms_promotion.app.php[928]	\eccore\model\mysql.php	286
+Tue, 10 Feb 2015 13:40:22 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '3 where goods_id=106' at line 1
+MySQL Query:update ecm_goods set cuxiao_ids=,3 where goods_id=106
+Wrong File:  D:\PHPECMALL\ecmall\admin\app\_ms_promotion.app.php[881]	\eccore\model\mysql.php	286
+Tue, 10 Feb 2015 13:47:40 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where goods_id=106' at line 1
+MySQL Query:update ecm_goods set cuxiao_ids= where goods_id=106
+Wrong File:  D:\PHPECMALL\ecmall\admin\app\_ms_promotion.app.php[933]	\eccore\model\mysql.php	286
+Tue, 10 Feb 2015 13:48:08 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' '' where goods_id=106' at line 1
+MySQL Query:update ecm_goods set cuxiao_ids=' '' where goods_id=106
+Wrong File:  D:\PHPECMALL\ecmall\admin\app\_ms_promotion.app.php[933]	\eccore\model\mysql.php	286
+Tue, 10 Feb 2015 14:25:55 +0800	[2]require_once(/../extend/promotion.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory	\app\order.app.php	613
+Tue, 10 Feb 2015 14:27:15 +0800	[2]require_once(/extend/promotion.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory	\app\order.app.php	613
+Tue, 10 Feb 2015 14:33:03 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2) order by weight desc' at line 1
+MySQL Query:select p_id from ecm_promotion where p_id in ( ,2) order by weight desc
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 10 Feb 2015 14:44:32 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2) order by weight desc' at line 1
+MySQL Query:select p_id from ecm_promotion where p_id in ( ,2) order by weight desc
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 10 Feb 2015 15:46:25 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\xE2\x80\x98state\xE2\x80\x99=3 and (unix_timestamp() between  start_time and en' at line 1
+MySQL Query:select * from ecm_promotion where p_id=2 and ‘state’=3 and (unix_timestamp() between  start_time and end_time )
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 10 Feb 2015 15:49:26 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\xE2\x80\x98state\xE2\x80\x99=3 and (unix_timestamp() between  start_time and en' at line 1
+MySQL Query:select * from ecm_promotion where p_id=2 and ‘state’=3 and (unix_timestamp() between  start_time and end_time )
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 10 Feb 2015 15:50:25 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\xE2\x80\x98state\xE2\x80\x99=3 and (unix_timestamp() between  start_time and en' at line 1
+MySQL Query:select * from ecm_promotion where p_id=3 and ‘state’=3 and (unix_timestamp() between  start_time and end_time )
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 10 Feb 2015 15:51:02 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\xE2\x80\x98state\xE2\x80\x99=3 and (unix_timestamp() between  start_time and en' at line 1
+MySQL Query:select * from ecm_promotion where p_id=3 and ‘state’=3 and (unix_timestamp() between  start_time and end_time )
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Wed, 11 Feb 2015 09:46:56 +0800	[256]MySQL Error[1054]: Unknown column 'allow_cates' in 'field list'
+MySQL Query:INSERT INTO ecm_promotion(start_time,end_time,p_name,state,weight,xunhuan,operate_person,add_time,p_type,p_type_name,g_amount,allow_cates) VALUES('1423525017','1425080223','满赠促销','1','10',' 999 ','杨秀伟','1423590416','4','满赠','10','832,815,814,756,749,742,825,735,723,713,781,780,779,708,706,691,685,677,766,843,838,')
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\model.base.php[299]	\eccore\model\mysql.php	286
+Wed, 11 Feb 2015 14:05:51 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') or b.cate_id_2 in() or b.cate_id_3 in() or b.cate_id_4 in()' at line 1
+MySQL Query:SELECT a.* from ecm_cart a LEFT JOIN ecm_goods b on a.goods_id=b.goods_id where a.store_id = 42 AND a.session_id='d32b99c63d398d6d6eb0f4b054c0a2fd' and b.cate_id_1 in() or b.cate_id_2 in() or b.cate_id_3 in() or b.cate_id_4 in()
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Thu, 12 Feb 2015 14:54:19 +0800	[256]MySQL Error[1054]: Unknown column 'kuaixun_state' in 'where clause'
+MySQL Query:select state kuaixun_state,p_id kuaixun_id,price kuaixun_price from  ecm_kuaixun_promotion_v where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('42',store_id) and  kuaixun_state in (3) and goods_id=5533
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Thu, 12 Feb 2015 14:55:04 +0800	[256]MySQL Error[1054]: Unknown column 'kuaixun_state' in 'where clause'
+MySQL Query:select state kuaixun_state,p_id kuaixun_id,price kuaixun_price from  ecm_kuaixun_promotion_v where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('42',store_id) and  kuaixun_state in (3) and goods_id=5533
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Fri, 27 Feb 2015 22:31:00 +0800	[256]MySQL Error[1146]: Table 'ecmall.ecm_upload' doesn't exist
+MySQL Query:select count(id) from ecm_upload
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286

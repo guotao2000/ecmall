@@ -1,0 +1,138 @@
+{include file="header.html"}
+<script type="text/javascript">
+	function addTime(obj){
+		$.get('index.php',{app:'gift',act:'ajax_time',schedule_id:obj.value},
+			function(data){
+				$("#start_time_id").val(data.start_time);
+				$("#end_time_id").val(data.end_time);
+			},'json');
+			//alert(obj.value);
+		
+	}
+	
+	
+</script>
+
+<div id="rightTop">
+    <p>满赠满减管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=gift">{$lang.manage}</a></li>
+        <li><span>添加满赠满减</span></li>
+		 
+		<!--<li><a class="btn1" href="index.php?app=discount&amp;act=list_zhuhe">组合列表</a></li>-->
+            
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" id="file_form" autocomplete="off">
+        <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    促销档期名称:</th>
+                <td class="paddingT15 wordSpacing5">
+					<select id="schedule_name" name="schedule_name" onchange="addTime(this);">
+						<option>--选择档期名称--</option>
+						<!--{foreach from=$list item=vo}-->
+							<option { if $gift.start_time eq $vo.start_time} selected="selected" {/if} value="{$vo.schedule_id}">{$vo.schedule_name}</option>
+						<!--{/foreach}-->
+					</select>&nbsp;<span>请选择档期，时间自动填充</span>
+                    
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    促销开始时间:</th>
+                <td class="paddingT15 wordSpacing5">
+                	<input type="text" id="start_time_id" readonly="readonly" class="Wdate" style="width:255px" name="start_time" {if $gift.start_time} value="{$gift.start_time|date:Y-m-d H:i:s}" {/if} />
+      				<span class="grey"></span>
+                </td>
+            </tr>
+            <tr>
+                <th class="paddingT15">
+                    促销结束时间:</th>
+                <td class="paddingT15 wordSpacing5">
+                	<input type="text" id="end_time_id" readonly="readonly" class="Wdate" style="width:255px" name="end_time" {if $gift.end_time} value="{$gift.end_time|date:Y-m-d H:i:s}" {/if} />
+                	<span class="grey"></span>
+                </td>
+            </tr>   
+			<tr>
+                <th class="paddingT15">
+                    促销名称:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="text"  class="Wdate" style="width:255px" name="promotion_name" value="{$gift.promotion_name}" />
+                	<span class="grey"></span>
+                </td>
+            </tr>      
+			<tr>
+                <th class="paddingT15">
+                    促销状态:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <select name="status">
+						<option>--选择促销状态--</option>
+							<option { if $gift.status eq 2} selected="selected" {/if} value="2">启用</option>
+							<option { if $gift.status eq 1} selected="selected" {/if} value="1">未启用</option>
+					</select>
+                </td>
+            </tr> 
+   
+            <tr>
+                <th class="paddingT15">
+                    执行店铺:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="text"  class="Wdate" style="width:255px" name="store_id" value="{$gift.store_id}" />
+                	<span class="grey"></span>
+                </td>
+            </tr>       
+			
+			<tr>
+                <th class="paddingT15">
+                    额度:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="text"  class="Wdate" style="width:255px" name="edu" value="{ if $gift.edu} {$gift.edu} {/if}" />
+                	<span class="grey">消费要达到的额度，才开始赠送</span>
+                </td>
+            </tr> 
+			
+			<tr>
+                <th class="paddingT15">
+                    红包编码:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="text"  class="Wdate" style="width:255px" name="hubao_sn" value="{ if $gift.hubao_sn} {$gift.hubao_sn} {/if}" />
+                	<span class="grey"></span>
+                </td>
+            </tr>  
+			
+			<tr>
+                <th class="paddingT15">
+                    减额:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="text"  class="Wdate" style="width:255px" name="jiane" value="{ if $gift.jiane} {$gift.jiane}{/if}" />
+                	<span class="grey"></span>
+                </td>
+            </tr>  
+			
+			<tr>
+                <th class="paddingT15">
+                    操作人:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="text"  class="Wdate" style="width:255px" name="operate_person" value="{$gift.operate_person}" />
+                	<span class="grey"></span>
+                </td>
+            </tr>       
+	        <tr>
+	            <th></th>
+	            <td class="ptb20">
+	                <input class="formbtn" type="submit" name="Submit" value="保存" />
+	                <input class="formbtn" type="reset" name="Submit2" value="重置" />
+					<input class="formbtn" type="button" onclick="location.href='index.php?app=gift'" value="返回" />
+					<!--{if $gift}-->
+					<input class="formbtn" type="button" onclick="location.href='index.php?app=gift&amp;act=add_edit&amp;name={$gift.promotion_name}'" value="添加赠品" />
+					<!--{/if}-->
+	            </td>
+	        </tr>
+        </table>
+		<input type="hidden" name="id" value="{$gift.id}" />
+    </form>
+</div>
+{include file="footer.html"}

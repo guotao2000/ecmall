@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-商品分类列表页</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link rel="stylesheet" type="text/css" href="{res file=bqmart/template/css/home/cplb.css}"  />  
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/com/com.css}"/>
+          <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/list/style.css}" />
+        <script src="{res file=bqmart/js/jquery.js}" type="application/javascript"></script>
+        <script>
+    
+
+        $(document).ready(function(e) {
+        //alert(window.top.location.href);
+      top_url=window.top.location.href;
+      if(top_url.indexOf("price") > 0)
+      {
+        $(".pxui-tab>a").removeClass("selected");
+        $("#jiage").addClass("selected");
+      }
+      if(top_url.indexOf("hot=1") > 0)
+      {
+        $(".pxui-tab>a").removeClass("selected");
+        $("#xiaoliang").addClass("selected");
+      }
+      if(top_url.indexOf("hot=2") > 0)
+      {
+        $(".pxui-tab>a").removeClass("selected");
+        $("#zuixin").addClass("selected");
+      }
+      $('.spinnerExample').spinner({
+          value:0,
+          min:0,
+          
+        });
+        $('.spinnerExample').change(function(){
+          alert($('.spinnerExample').val());
+          
+          });
+      });
+        </script>
+        <!-- 控制整体标签宽度的js -->
+        <script src="{res file=bqmart/template/js/com/com.js}"></script>
+        <!-- 控制整体标签宽度的js end -->
+        <!-- 控制图片缩放比例的js -->
+        <script src="{res file=bqmart/template/js/com/template.js}"></script>
+        <!-- 控制图片缩放比例的js end -->
+        <!--控制产品列表加减数量的js开始 -->
+        <script type="text/javascript" src="{res file=bqmart/template/js/com/jquery.spinner.js}"></script>
+        <!--控制产品列表加减数量的js结束 -->
+        <script type="text/javascript" src="{lib file=search_goods.js}" charset="utf-8"></script>
+</head>
+<body>
+<div class="com-content">
+    <!-- 头部区域开始 by-wei 2014.12.08  -->
+      <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+      <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">商品列表</span>
+          <a href="{url app=default}" class="com-header-home "><del></del></a>
+      <div class="clear"></div>
+        </div>
+    <!-- 头部区域结束 end -->
+     <div class="com-content-area" id="js-com-content-area" style=" margin:0px;">
+      <!--content-->
+       <div class="page-role">
+        <!--搜索内容区域开始-->
+       <div  class="bq_cat-search" id="js-attrs-title" >
+        <div class="cat_seach-box">
+        <!--- 搜索开始 By-Wei 2014.12.08 -->
+          <div class="search" style="position:relative">
+          <span class="input-box">
+          <form action="" id="searchForm"  name="searchForm" method="get" >
+              <input type="text" name="keyword" id="keyword" class="new-input"  value="" placeholder="请输入关键词" style="background: none repeat scroll 0 0 #fff;border: 0 none;border-radius: 0;color: #bdbdbd;vertical-align: middle;width: 85%; padding:4px 0px;">
+              <input type="hidden" name="app" value="store" />
+              <input type="hidden" name="act" value="search" />
+              <input type="hidden" name="id" value="{$smarty.get.id}" />
+          </form> 
+          <a href="javascript:void(0)" onclick="$('#searchForm').submit();" class="btn-search"><span>search</span></a>
+          </span>
+          <div class="new-srch-lst" id="shelper" style="position: absolute; top: 2em; left: 3.28em; z-index: 10; width: 404.2px; display: none;"></div>
+          </div>
+        <!--  搜索结束-->
+        </div>
+       </div>
+       <!--搜索内容区域结束-->
+      <div class="pxui-tab" style="margin-bottom:10px;">
+            <a href="#"  class="selected"  id="tuijian" >推  荐</a>
+            <a href="javascript:sort_price();" id="jiage" >
+      价 格
+      <i class="arrow2-top gray"></i>
+      <i class="arrow2-bottom gray"></i>
+        </a>
+        <a href="javascript:sort_sale();" id="xiaoliang" >销 量</a>
+        <a href="javascript:sort_new();"  id="zuixin" >最 新</a>
+        </div>
+      <div class="pxui-area">
+           <!--产品列表区域开始-->
+         <div class="liebiao" id="js-goodlist">
+            <!-- 列表产品开始-->
+              <div class="zxList">
+               <ul>
+               <!--{foreach from=$goods_list item=goods name=fe_goods}-->
+                 <li class="clearfix">
+                   <a href="{url app=goods&id=$goods.goods_id}" style=" border-right:none; float:none; margin-left:0px;"><img src="{$goods.default_image}"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="{url app=goods&id=$goods.goods_id}" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">{$goods.goods_name|escape}</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：{$goods.price|price}</span>
+				      <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>
+						 {$goods.shichang|price}</del></span> 
+                      <span style="position:absolute; right:10px; bottom:18px;" gid="{$goods.spec_id}" sid="{$goods.store_id}"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+               <!--{foreachelse}-->
+            暂无此类商品
+             <!--{/foreach}-->
+               </ul>
+              </div>
+            <!--列表产品结束-->
+          </div>
+           <!---产品列表区域结束-->
+           <!--分页区域开始--->
+           <!--{if !$goods_list_order}-->{include file=page.bottom.html}<!--{/if}-->
+           <!---分页区域结束-->
+      </div>
+       </div>
+      <!--content-end-->
+   </div>
+      {include file='member.footer.html'}
+</div>
+</div>
+<!--底部浮动菜单开始-->
+ {include file='store.menu.html'}
+<!--底部浮动菜单结束-->
+
+</body>
+<!-- 控制产品列表加减数量的执行函数开始-->
+<script type="text/javascript">
+
+//按照价格排序
+function sort_price()
+{
+  top_url=window.top.location.href;
+
+  if(top_url.indexOf("price%20desc") > 0 )
+  {
+    window.top.location.href=changeURLPar(changeURLPar(top_url,'order','price asc'),'hot','0');
+  }else
+  {
+    window.top.location.href=changeURLPar(changeURLPar(top_url,'order','price desc'),'hot','0');
+  }
+  
+  
+}
+//按照销量排序
+function sort_sale()
+{
+  top_url=window.top.location.href;
+
+    window.top.location.href=changeURLPar(changeURLPar(top_url,'order','add_time desc'),'hot','1');
+
+  
+}
+
+//按照最新
+function sort_new()
+{
+  top_url=window.top.location.href;
+
+    window.top.location.href=changeURLPar(changeURLPar(top_url,'order','add_time desc'),'hot','2');
+
+  
+}
+function changeURLPar(destiny, par, par_value) 
+{ 
+var pattern = par+'=([^&]*)'; 
+var replaceText = par+'='+par_value; 
+if (destiny.match(pattern)) 
+{ 
+var tmp = '/\\'+par+'=[^&]*/'; 
+tmp = destiny.replace(eval(tmp), replaceText); 
+return (tmp); 
+} 
+else 
+{ 
+if (destiny.match('[\?]')) 
+{ 
+return destiny+'&'+ replaceText; 
+} 
+else 
+{ 
+return destiny+'?'+replaceText; 
+} 
+} 
+return destiny+'\n'+par+'\n'+par_value; 
+} 
+
+</script>
+
+<!-- 控制产品列表加减数量的执行函数结束-->
+
+</html>

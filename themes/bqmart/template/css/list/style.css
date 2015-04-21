@@ -1,0 +1,276 @@
+.style-page .pxui-tab-nav i, .style-page .pxui-list span {
+	background-image: url(../../images/home/index.gif@11.gif);
+	background-size: 260px 134px;
+}
+.style-page .pxui-tab-nav {
+	background: #fff;
+	padding: 10px 0;
+	line-height: 18px;
+	height: auto;
+	overflow: hidden;
+	-moz-box-shadow: 0px 2px 5px #e7e7e7;
+	-webkit-box-shadow: 0px 2px 5px #e7e7e7;
+	box-shadow: 0px 2px 5px #e7e7e7;
+}
+.style-page .pxui-tab-nav a.selected span {
+	position: absolute;
+	border-bottom: 2px solid #fd5744;
+	border-left: 1px solid transparent;
+	border-right: 1px solid transparent;
+	height: 0;
+	bottom: -10PX;
+	left: 50%;
+	margin-left: -45%;
+	width: 90%;
+}
+.style-page .pxui-tab-nav a {
+	height: auto;
+	position: relative;
+}
+.style-page .pxui-tab-nav a.selected {
+	background: #fff;
+	line-height: 18px;
+}
+.style-page .pxui-tab-nav i {
+	width: 24px;
+	height: 21px;
+	display: block;
+	margin: auto;
+	background-position: -62px 0;
+}
+.style-page .pxui-tab-nav a.selected:nth-child(1) i {
+	background-position: -33px 0;
+}
+.style-page .pxui-tab-nav a:nth-child(2) i {
+	background-position: -120px 0;
+}
+.style-page .pxui-tab-nav a.selected:nth-child(2) i {
+	background-position: -91px 0;
+}
+.style-page .pxui-tab-nav a:nth-child(3) i {
+	background-position: -149px 0;
+}
+.style-page .pxui-tab-nav a:nth-child(4) i {
+	background-position: -178px 0;
+}
+.style-page .pxui-list a {
+	height: 66px;
+	position: relative;
+}
+.style-page .pxui-list {
+	line-height: 50px;
+}
+.style-page .pxui-list b {
+	font-size: 16px;
+	display: inline-block;
+	margin-left: 62px;
+}
+.style-page .pxui-list p {
+	position: absolute;
+	margin-top: -45px;
+	margin-left: 76px;
+}
+.style-page .pxui-list p a {
+	display: inline;
+	border: 0;
+	padding: 0;
+}
+.style-page .pxui-list span {
+	position: absolute;
+	width: 48px;
+	height: 48px;
+	border-radius: 24px;
+	background-position: 0 -32px;
+	margin-top: 9px;
+}
+.style-page .pxui-list :nth-child(3) span {
+	background-position: -53px -32px;
+}
+.style-page .pxui-list :nth-child(5) span {
+	background-position: -212px -32px;
+}
+.style-page .pxui-list :nth-child(7) span {
+	background-position: -159px -32px;
+}
+.style-page .pxui-list :nth-child(9) span {
+	background-position: -106px -32px;
+}
+.style-page .pxui-list :nth-child(11) span {
+	background-position: -159px -85px;
+}
+/**分类页面样式开始 By Wei 2014.12.11**/
+.bq_cat-search{
+	height: auto;
+	}
+.cat_seach-box{
+
+	}
+.bq_cat-search .search{
+	-moz-box-shadow: inset 0px 1px 10px #888888;
+    -webkit-box-shadow: inset 1px 0px 10px #888888;
+    box-shadow: inset 0px 1px 10px #888888;
+	line-height:60px;
+	padding:15px 10px;
+	background:#EDEDED;
+	}
+.bq_cat-search .search .input-box{
+	background:#FFF;
+	}
+/***商品分类列表区域样式开始 By Wei 2014.12.11**/
+.bq_category-list ul{
+	background:#FFF;
+	}
+.bq_category-list ul li {
+	position:relative;
+	margin:10px 0px 5px;
+	border-top:1px solid #D3CFCA;
+	background:#FFF;
+	padding:2px 0px 0px;
+	}
+.good-page .bq_category-list span{
+	background:url(../../images/category/spyl_icon.png) 0px 0px no-repeat;
+	background-size:380px 380px;
+	}
+.good-page .bq_category-list span{
+	position:absolute;
+	top:10px;
+	left:6px;
+	width:65px;
+	height:65px;
+	border-radius:35px;
+	}
+
+.good-page .bq_category-list :nth-child(1) span {
+	background-position: -225px 0px;
+}
+.good-page .bq_category-list :nth-child(2) span {
+	background-position: -315px 0px;
+}
+.good-page .bq_category-list :nth-child(3) span {
+	background-position: -150px -81px;
+}
+.good-page .bq_category-list :nth-child(4) span {
+	background-position: -228px -79px;
+}
+.good-page .bq_category-list :nth-child(5) span {
+	background-position: -228px -163px;
+}
+.good-page .bq_category-list :nth-child(6) span {
+	background-position: -76px -235px;
+}
+.good-page .bq_category-list :nth-child(7) span {
+	background-position: 0px -231px;
+}
+.good-page .bq_category-list :nth-child(8) span {
+	background-position: -81px -310px;
+}
+.good-page .bq_category-list :nth-child(9) span {
+	background-position: 0px -78px;
+}
+.good-page .bq_category-list :nth-child(10) span {
+	background-position: -158px -240px;
+}
+.good-page .bq_category-list :nth-child(11) span {
+	background-position: -78px -80px;
+}
+.good-page .bq_category-list :nth-child(12) span {
+	background-position: -78px -5px;
+}
+.good-page .bq_category-list :nth-child(13) span {
+	background-position: -228px -163px;
+}
+.good-page .bq_category-list :nth-child(14) span {
+	background-position: -310px -79px;
+}
+.good-page .bq_category-list :nth-child(15) span {
+	background-position: -157px -310px;
+}
+.good-page .bq_category-list :nth-child(16) span {
+	background-position: -312px -160px;
+}
+.good-page .bq_category-list :nth-child(17) span {
+	background-position: 0px 0px;
+}
+.good-page .bq_category-list :nth-child(18) span {
+	background-position: -235px -313px;
+}
+.good-page .bq_category-list :nth-child(19) span {
+	background-position: -235px -240px;
+}
+.good-page .bq_category-list :nth-child(20) span {
+	background-position: -312px -240px;
+}
+.good-page .bq_category-list :nth-child(21) span {
+	background-position: -306px -313px;
+}
+.bq_category-list ul li div.category_name{
+	margin:3px 0px;
+	margin-left:80px;
+	border-left:1px solid #E1DFDA;
+	padding-left:20px;
+	font-size:16px;
+	font-family:微软雅黑;
+	line-height:58px;
+	color:#605E59;
+	width:53%;
+	height:60px;
+	overflow:hidden;
+	}
+.bq_category-list ul li div.category_name span{
+	color:#B9B9B4;
+	}
+.category_anjian{
+	position:absolute;
+	top:15px;
+	right:10px;
+	width:47px;
+	height:40px;
+	background-position: -106px -45px;
+	background-size: 200px 180px;
+	} 
+.category_anjian-hover{
+	position:absolute;
+	top:17px;
+	right:10px;
+	width:47px;
+	height:40px;
+	background-position: -106px -72px;
+	background-size: 200px 180px;
+	}
+.bq_category-list .pxui-list a {
+	height:auto;
+	border-top:none;
+	}
+.bq_category-list  .pxui-list .attrs{
+	margin:0px auto;
+	padding:0px;
+
+	}
+.bq_category-list  .pxui-list .attrs li{
+	border-top:none;
+	width:33%;
+	height:28px;
+	line-height:24px;
+	margin:0px auto;
+	text-align:center;
+	padding:5px 0px 10px;;
+	border-bottom:1px dashed #d3cfca;
+	overflow:hidden;
+	}
+.bq_category-list  .pxui-list .attrs li a{
+	font-size:14px;
+	border:none;
+	text-decoration:none;
+	line-height:24px;
+	padding:5px;
+	}
+.bq_category-list  .pxui-list .attrs li a:hover{
+	color:#F30;
+	}
+.bq_category-list .pxui-list-con{
+	padding:0px 5px;
+	background:#FFF;
+	border-top:1px dashed #d3cfca;
+	}
+/***商品分类列表区域样式结束 End Wei 2014.12.11**/
+/**分类页面样式结束 End Wei 2014.12.11**/

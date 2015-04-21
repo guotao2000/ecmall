@@ -1,0 +1,83 @@
+﻿{include file="header.html"}
+<div id="rightTop">
+    <p>红包管理</p>
+    <ul class="subnav">
+        <li><span>{$lang.manage}</span></li>
+        <li><a class="btn1" href="index.php?app=couponadmin&amp;act=add">{$lang.add}</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get" >
+            <div class="left">
+                <input type="hidden" name="app" value="couponadmin" />
+                <input type="hidden" name="act" value="index" />
+                红包编号:
+                <input class="queryInput" type="text" name="t_coupon_id" value="" />
+                 门店编号:
+                <input class="queryInput" type="text" name="t_store_id" value="" />
+                红包名称:
+                 <input class="queryInput" type="text" name="t_coupon_name" value="" />
+                <input type="submit" class="formbtn" value="{$lang.query}" />
+            </div>
+          
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+       
+        <tr class="tatr1">
+            <td align="left">红包编号</td>
+            <td>门店编号</td>
+            <td align="left">红包名称</td>
+            <td>金额</td>
+			<td align="left">使用次数</td>
+            <td>开始时间</td>
+            <td align="left">结束时间</td>
+            <td>限额</td>
+			<td align="left">是否启用</td>
+            <td>允许店铺列表</td>
+			<td align="left">限制分类</td>
+            <td>备注</td>
+           <td>操作</td>
+        </tr>
+      
+        <!--{foreach from=$confs item=conf}-->
+        <tr class="tatr2">
+            <td>{$conf.coupon_id}</td>
+            <td>{$conf.store_id}</td>
+            <td>{$conf.coupon_name|truncate:10:"---"}</td>
+             <td>{$conf.coupon_value}</td>
+			  <td>{$conf.use_times}</td>
+            <td>{$conf.start_time}</td>
+            <td>{$conf.end_time}</td>
+             <td>{$conf.min_amount}</td>
+			   <td>{$conf.if_issue}</td>
+            <td>{$conf.stores_allow}</td>
+            <td>{$conf.cate_noallow}</td>
+             <td>{$conf.remark}</td>
+            <td><a href="index.php?app=couponadmin&amp;act=edit&amp;id={$conf.coupon_id}">{$lang.edit}</a>|
+                
+                <a href="index.php?app=couponadmin&amp;act=drop&amp;id={$conf.coupon_id}');">{$lang.drop}</a></td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+  
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+
+    </div>
+    <div class="clear"></div>
+  
+</div>
+{include file="footer.html"}

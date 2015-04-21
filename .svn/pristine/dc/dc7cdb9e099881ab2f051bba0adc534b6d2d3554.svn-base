@@ -1,0 +1,37 @@
+Sun, 07 Dec 2014 11:24:22 +0800	[256]MySQL Error[1146]: Table 'ecmall.ecm_acategory' doesn't exist
+MySQL Query:SELECT *,acategory.cate_id FROM ecm_acategory acategory WHERE 1 = 1 ORDER BY sort_order, cate_id
+Wrong File:  D:\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Sun, 07 Dec 2014 11:24:33 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ENGINE=MyISAM DEFAULT CHARSET=utf8' at line 8
+MySQL Query:CREATE TABLE ecm_acategory (
+  cate_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  cate_name varchar(100) NOT NULL DEFAULT '',
+  parent_id int(10) unsigned NOT NULL DEFAULT '0',
+  sort_order tinyint(3) unsigned NOT NULL DEFAULT '255',
+  `code` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (cate_id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
+Wrong File:  D:\ecmall\admin\app\db.app.php[507]	\eccore\model\mysql.php	286
+Sun, 07 Dec 2014 11:25:53 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ENGINE=MyISAM DEFAULT CHARSET=utf8' at line 8
+MySQL Query:CREATE TABLE ecm_acategory (
+  cate_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  cate_name varchar(100) NOT NULL DEFAULT '',
+  parent_id int(10) unsigned NOT NULL DEFAULT '0',
+  sort_order tinyint(3) unsigned NOT NULL DEFAULT '255',
+  `code` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (cate_id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
+Wrong File:  D:\ecmall\admin\app\db.app.php[507]	\eccore\model\mysql.php	286
+Sun, 07 Dec 2014 11:32:45 +0800	[256]MySQL Error[1146]: Table 'ecmall.ecm_acategory' doesn't exist
+MySQL Query:SELECT *,acategory.cate_id FROM ecm_acategory acategory WHERE 1 = 1 ORDER BY sort_order, cate_id
+Wrong File:  D:\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Sun, 07 Dec 2014 11:33:16 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ENGINE=MyISAM DEFAULT CHARSET=utf8' at line 8
+MySQL Query:CREATE TABLE ecm_acategory (
+  cate_id int(10) unsigned NOT NULL AUTO_INCREMENT,
+  cate_name varchar(100) NOT NULL DEFAULT '',
+  parent_id int(10) unsigned NOT NULL DEFAULT '0',
+  sort_order tinyint(3) unsigned NOT NULL DEFAULT '255',
+  `code` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (cate_id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8
+Wrong File:  D:\ecmall\admin\app\db.app.php[507]	\eccore\model\mysql.php	286
+Mon, 08 Dec 2014 12:18:14 +0800	[2]mysql_fetch_assoc(): supplied argument is not a valid MySQL result resource	\eccore\model\mysql.php	165

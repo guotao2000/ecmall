@@ -1,0 +1,203 @@
+* {
+	-webkit-appearance: none;
+}
+a:visited, a {
+	text-decoration: none;
+	cursor: pointer;
+	color: #575757;
+}
+a.a, .a {
+	color: #2876D6;
+}
+input[type="checkbox"] {
+	-webkit-appearance: checkbox;
+}
+body, html, h1, h2, h3, h4, p, ul, li, form {
+	margin: 0;
+	padding: 0;
+	line-height: 28px;
+	list-style: none;
+}
+body, input, textarea, select {
+	font-size: 14px;
+	font-family: 微软雅黑, 雅黑;
+	color: #575757;
+}
+input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
+	-moz-transform: rotate(0deg) scale(1.00, 1.00) translate(0px, 1px) skew(0deg, 0deg);
+	-moz-transform-origin: 0% 0%;
+	-webkit-transform: rotate(0deg) scale(1.00, 1.00) translate(0px, 1px) skew(0deg, 0deg);
+	-webkit-transform-origin: 0% 0%;
+	-o-transform: rotate(0deg) scale(1.00, 1.00) translate(0px, 1px) skew(0deg, 0deg);
+	-o-transform-origin: 0% 0%;
+	transform: rotate(0deg) scale(1.00, 1.00) translate(0px, 1px) skew(0deg, 0deg);
+	transform-origin: 0% 0%;
+}
+textarea {
+	resize: none;
+	overflow: auto;
+}
+.com-content {
+	background: #F3F2F1;
+	margin: auto;
+	overflow: hidden;
+	position: relative;
+	box-shadow: 0 0 10px #000;
+	min-width: 320px;
+	max-width: 640px;
+}
+
+h4 {
+	font-size: 16px;
+}
+h3 {
+	font-size: 18px;
+}
+h2 {
+	font-size: 20px;
+}
+h1 {
+	font-size: 22px;
+}
+
+/*背景图片*/
+.com-header-logo, .shop_icon,.shop_anjian, .com-header-area input[type=submit], .com-header-area p a del, .com-footer i, .page-title a, .page-title i {
+	background-size: 179px 175px;
+	background-image: url(../../images/public/public.gif);
+}
+/*背景图片-end*/
+/*公共头部开始*/
+
+/*公共头部结束*/
+/*页面标题*/
+.page-title {
+	line-height: 55px;
+	font-size: 18px;
+	text-align: center;
+	background: #E40008;
+	border: 1px solid #ea3520;
+	color: #fff;
+	margin-bottom: 12px;
+	position: relative;
+	height: 60px;
+	overflow: hidden;
+}
+
+.page-title i.bq_logo {
+	display:block;
+	height:40px;
+	width:110px;
+	position:absolute;
+	top:3px;
+	background-position: 0px 0px;
+	background-size: 210px 200px;
+	margin:8px 15px 12px;
+	
+}
+
+.page-title i.shop_anniu{
+	display:inline-block;
+	height:30px;
+	width:37px;
+	position:absolute;
+	right:0px;
+	background-position:-40px -144px;
+	margin:12px 15px;
+	}
+
+.page-title i.retun {
+	display:block;
+	height:30px;
+	width:37px;
+	position:absolute;
+	top:3px;
+	background-position: -76px -45px;
+	margin:12px 15px;
+	
+}
+
+.page-title i.homebutom{
+	display:inline-block;
+	height:30px;
+	width:37px;
+	position:absolute;
+	right:0px;
+	background-position:0px -144px;
+	margin:12px 15px;
+	}
+/*页面标题-end*/
+
+/**底部浮动菜单开始 By Wei 2014.12.08**/
+.home-page .pxui-tab-nav {
+	background: #fff;
+	padding: 5px 0 10px;
+	line-height: 18px;
+	height: auto;
+	overflow: hidden;
+}
+.home-page .pxui-tab-nav a.selected span {
+	position: absolute;
+	border-bottom: 2px solid #fd5744;
+	border-left: 1px solid transparent;
+	border-right: 1px solid transparent;
+	height: 0;
+	bottom: -10PX;
+	left: 50%;
+	margin-left: -45%;
+	width: 90%;
+}
+.home-page .pxui-tab-nav a {
+	height: auto;
+	position: relative;
+	font-size: 16px;
+	font-family: 微软雅黑;
+}
+.home-page .pxui-tab-nav a.selected {
+	background: #fff;
+	line-height: 18px;
+}
+.home-page .pxui-tab-nav i {
+	width: 24px;
+	height: 21px;
+	display: block;
+	margin: auto;
+	background-position: -62px 0;
+	margin-bottom: 5px;
+}
+.home-page .pxui-tab-nav a.selected:nth-child(1) i {
+	background-position: -33px 0;
+}
+.home-page .pxui-tab-nav a:nth-child(2) i {
+	background-position: -120px 0;
+}
+.home-page .pxui-tab-nav a.selected:nth-child(2) i {
+	background-position: -91px 0;
+}
+.home-page .pxui-tab-nav a:nth-child(3) i {
+	background-position: -149px 0;
+}
+.home-page .pxui-tab-nav a:nth-child(4) i {
+	background-position: -178px 0;
+}
+.home-page .pxui-tab-nav a:nth-child(5) i {
+	background-position: -467px 0;
+}
+.home-page .pxui-tab-nav a.selected:nth-child(5) i {
+	background-position: -496px 0;
+}
+.bq_cart-manu_bg {
+	background: #E50505;
+	border-radius: 14px;
+	font-size: 12px;
+	font-weight: normal;
+	height: 14px;
+	line-height: 14px;
+	margin-left: 0;
+	padding: 0 3px;
+	position: absolute;
+	right: 15%;
+	text-align: center;
+	top: 2%;
+	color: #FFF;
+}
+/**底部浮动菜单结束 Eed Wei 2014.12.08**/

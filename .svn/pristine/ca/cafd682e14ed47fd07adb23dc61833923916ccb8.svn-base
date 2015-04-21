@@ -1,0 +1,413 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-确认订单信息页</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        
+        <meta content="telephone=no" name="format-detection" />
+        
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/com/com.css'; ?>"/> 
+        <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/home/index.css'; ?>"/>
+        <script src="<?php echo $this->res_base . "/" . 'bqmart/js/jquery.js'; ?>"></script>
+        
+        <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/com.js'; ?>"></script>
+        
+        
+        <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/template.js'; ?>"></script>
+        
+        
+        <script type="text/javascript" src="<?php echo $this->res_base . "/" . 'bqmart/template/js/cart/jquery.inputbox.js'; ?>"></script>
+        
+         <script type="text/javascript" src="<?php echo $this->lib_base . "/" . 'ecmall.js'; ?>" charset="utf-8"></script>
+</head>
+<body>
+<div class="com-content">
+
+  <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">确认订单信息</span>
+          <a href="<?php echo url('app=default'); ?>" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+
+
+  <div class="com-content-area" id="js-com-content-area" style=" margin:0px;">
+      
+         <div class="page-role good-page">
+         <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/good/index.css'; ?>" />
+         <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/order/index.css'; ?>" />
+       
+        <script>
+         /*是否下线*/
+         var isDown = false;
+        </script>
+        
+	<script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/jquery.touchslider.min.js'; ?>"></script>
+    <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/good/index.js'; ?>"></script>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".touchslider").touchSlider({mouseTouch: true, autoplay: true});
+ 
+       qidongd();
+
+    });
+
+    function qidongd() {
+
+       // alert(1);
+            that = $(".yxwspan").get(0);
+            $(that).children("input:first").attr("checked", true);
+           
+             shipid= $(that).children("input:first").val();
+	   $("#shipping_id").val(shipid);
+			 var totalcount=<?php echo $this->_var['goods_info']['amount']; ?>;
+		var url="/index.php?app=order&act=shipping&store_id=<?php echo $_GET['store_id']; ?>&shipping_id="+shipid;
+		 $.getJSON(url,'',function(data){
+				  if(data.done)
+				 {
+					 if(data.retval.result==0)
+					 {
+						 alert("此收货地址不在配送区域，请更换收货地址！！");
+					 }else
+					 {
+						//totalcount=totalcount-data.retval.amount;
+						//alert(totalcount);
+						 $("#gxzf").html(price_format(data.retval.total))
+						 $("#yunfei").html(price_format(data.retval.amount))
+						  $("#yfje").html(price_format(data.retval.total))
+						  $("#hongbao").html(price_format(data.retval.coupon))
+					 }
+					 
+				 }else
+				 {
+					 alert("此红包不符合使用条件！！");
+				 }
+		 });
+
+    }
+
+  
+</script>	
+<form method="post" id="order_form">
+    <div class="pxui-area">
+        <div class="bq_makeorder-box" id="js-attrs-title">
+           
+            <div class="makeorder_shdz-title" style="position: relative;">
+            <p>填写收货人信息</p>
+			<span class="makeorder_spqd-anniu"><a href="index.php?app=address&act=list_address&store_id=<?php echo $_GET['store_id']; ?>">修改地址</a></span> 
+           </div>
+           <?php if ($this->_var['address_info'] > 0): ?>
+           <div class="makeorder_shdz-info">
+		      <a href="index.php?app=address&act=list_address&store_id=<?php echo $_GET['store_id']; ?>">
+                <span class="text"><?php echo htmlspecialchars($this->_var['address_info']['consignee']); ?> 
+                   <span style="margin-left:5px;" class="phone-num">
+                     <?php echo $this->_var['address_info']['phone_mob']; ?>
+                   </span>
+                </span>
+                <span class="text2">
+                <?php echo htmlspecialchars($this->_var['address_info']['region_name']); ?>&nbsp;&nbsp;<?php echo htmlspecialchars($this->_var['address_info']['address']); ?>
+                </span>              </a>
+              <span class="bq_makeorder-icon"></span>
+            </div>
+           <?php else: ?>
+           
+           <div class="makeorder_shdz-add">
+		      <a class="makeorder_btn-addr" style="color:#e4393c;" href="index.php?app=address&act=add_address&store_id=<?php echo $_GET['store_id']; ?>">+添加收货地址</a>
+           </div>
+           
+           <?php endif; ?>
+             
+           
+            <div class="makeorder_psfs-title">
+            <p>请选择配送方式</p>
+           </div>
+           <div class="makeorder_psfs-info">
+              <div class="psfs_box">
+               <?php $_from = $this->_var['shipping_methods']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'shipping');if (count($_from)):
+    foreach ($_from AS $this->_var['shipping']):
+?>
+    
+                <span class="text yxwspan" style="margin-top:5px;" onclick=" payclick(this)">
+                    <input type="radio" name="shipping" class="psfs_btn"  value="<?php echo $this->_var['shipping']['shipping_id']; ?>" />
+                   <span style="margin-left:20px;" class="phone-num">
+                     <?php echo $this->_var['shipping']['shipping_name']; ?>
+                    </span>
+                    <span class="makeorder_yfsm" style="display:none;"><b>配送区域：</b> <?php echo $this->_var['shipping']['cod_regions']; ?></span>
+                </span>
+                   <?php endforeach; else: ?>
+                   <span class="text" style="margin-top:5px;"><span style="margin-left:20px;" class="phone-num">
+                   抱歉，您所填写的收货地址不在配送区域！！ </span>  </span>
+              <?php endif; unset($_from); ?><?php $this->pop_vars();; ?>
+              
+              </div>
+            </div>
+            
+           <script language="javascript">
+               function payclick(that) {
+                   // alert($(that).html());
+                   $(that).children("input:first").attr("checked", true);
+                   $(that).children("input:first").get(0).click();
+               }
+           </script>
+           
+           <div class="makeorder_spqd-title">
+            <p>本次所购商品清单</p>
+            <!-- <span class="makeorder_spqd-anniu"><a href="index.php?app=store&id=<?php echo $_GET['store_id']; ?>">去 凑 单</a></span> -->
+           </div>
+           <div class="makeorder_spqd-info">
+              <div class="bq_goods_cx pxui-list" data-model="radio">
+              <a style="border-top:none;"> 
+              <i class="goods_sx_icon"></i>
+                <div class="goods_spqd-number">
+                   共计 <b><?php echo $this->_var['totalcount']; ?></b> 件商品
+                 </div>
+               <span class="makeorder_chakan">点击查看</span>
+               <i class="goods_anjian"></i></a>
+               <div class="pxui-list-con" style="display:none;">
+                 <ul>
+                   <?php $_from = $this->_var['goods_info']['items']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'goods');if (count($_from)):
+    foreach ($_from AS $this->_var['goods']):
+?>
+                   <li>
+                       <span class="makeorder_goods-list">
+                       <a href="<?php echo url('app=goods&id=' . $this->_var['goods']['goods_id']. ''); ?>"><?php echo htmlspecialchars($this->_var['goods']['goods_name']); ?></a> &nbsp;&nbsp;单价：<?php echo price_format($this->_var['goods']['price']); ?>&nbsp;&nbsp;&nbsp;&nbsp;数量：<?php echo $this->_var['goods']['quantity']; ?>件&nbsp;&nbsp;&nbsp;&nbsp;小计：<strong><?php echo price_format($this->_var['goods']['subtotal']); ?></strong></span>
+                   </li>
+                   <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?>
+                 </ul>
+                  
+               </div>  
+         </div>   
+           </div>
+           
+           
+           <div class="makeorder_spqd-title">
+            <p>是否使用红包？</p>
+           </div>
+           <div class="makeorder_spqd-info">
+              <div class="bq_goods_cx pxui-list" data-model="radio"><a style="border-top:none;"> 
+              <i class="goods_hb_icon"></i>
+                <div class="goods_spqd-number">
+                   您有 <?php echo $this->_var['coupon_count']; ?> 个红包
+                 </div>
+               <span class="makeorder_chakan" id="coupon_yxw" val="">立即使用</span>
+               <i class="goods_anjian"></i></a>
+               <div class="pxui-list-con makeorder_hb-box" style="display:none; height:auto; padding-left:5px 5px 5px 10px;">
+				  <div class="nav" id="nav">
+	                  <p class="set">请选择您本次要使用的红包</p>
+	                  <ul class="new">
+                        <?php $_from = $this->_var['coupon_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'coupon');if (count($_from)):
+    foreach ($_from AS $this->_var['coupon']):
+?> 
+		                  <li val="<?php echo $this->_var['coupon']['coupon_sn']; ?>"><?php echo $this->_var['coupon']['coupon_name']; ?>--满<?php echo $this->_var['coupon']['min_amount']; ?>可使用<?php echo $this->_var['coupon']['coupon_value']; ?></li>
+		               
+                          <?php endforeach; else: ?>
+                          <li>暂无可用红包</li>
+                         <?php endif; unset($_from); ?><?php $this->pop_vars();; ?>
+	                  </ul>
+                   </div>
+               </div>  
+         </div>   
+           </div>
+           
+           
+           <div class="make_order-moneybox">
+             <span class="order_money-ht"></span>
+             <div  class="order_money-info">
+             	<div class="order_money-left">
+                   <dl>
+                       <dt>商品金额：</dt>
+                        <span class="order_total_view price"><?php echo price_format($this->_var['goods_info']['amount']); ?></span>
+                   </dl>
+                   <dl>
+                   <dt>- 红&#12288;包：</dt>
+                   <span class="order_total_view price" id="hongbao">￥0.0</span>
+                   </dl>
+                   <dl>
+                  <!--  <dt>- 积&#12288;分：</dt>
+                   <span class="order_total_view price">￥0.0</span>
+                   </dl>-->
+                   <dl>
+                    <dt>+ 运&#12288;费：</dt>
+                    <span class="order_total_view price" id="yunfei">￥0.0</span>
+                    </dl>
+                </div>
+                <div class="order_money-left right">
+                   <span style="font-size:16px;">共需支付<br>
+                   <span class="order_amount_view price" id="gxzf"><?php echo price_format($this->_var['goods_info']['amount']); ?></span>
+				   <span style="font-size:12px; font-weight:100; line-height: 18px;display: block;">代收快递免运费</span>
+				   </span>
+                </div>
+             </div>
+             <span class="make_order-bgborder"><span class="make_order-bgicon"></span></span>
+             <div class="make_order-submit">
+                 <input type="submit"  class="make_order-sbbtn" style="border:none;" value="提交订单">
+             </div>
+           </div>
+                      
+         </div>
+         
+         <div class="fixed-add-to-cart" id="js-fixed-add-to-cart" style="z-index:9999">
+            <div style=" text-align:right; position:relative;">
+             <a href="index.php?app=store&id=<?php echo $_GET['store_id']; ?>"><input type="button" class="pxui-light-button addtocart" style="background:#FFF; border-color:#D9D6D1; color:#63625D;" value="继续购物"/></a>&nbsp;&nbsp;
+             <input type="submit" class="pxui-light-button addtocart" style="background:#FA2929;" value="提交订单"/>
+             <p class="make_order-money">应付金额:<span id="yfje"><?php echo price_format($this->_var['goods_info']['amount']); ?></span></p>
+            </div>
+        </div>
+         
+    </div>
+    <input type="hidden" id="addressid" value="<?php echo $this->_var['address_info']['addr_id']; ?>" name="addressid"/>
+     <input type="hidden" id="coupon_sn" value="" name="coupon_sn"/>
+     <input type="hidden" id="shipping_id" value="" name="shipping_id"/>
+    </form>
+</div>
+      
+      <?php echo $this->fetch('member.footer.html'); ?>
+
+</div> 
+
+</div>
+
+</body>
+
+<script type="text/javascript">
+
+$(function(){
+
+	$('div[name="city"]').inputbox({
+		height:24,
+		width:100
+	});
+	
+	$('.cbt').inputbox();
+	
+	$('[name="rbt"], [name="rbt2"]').inputbox();
+
+});
+</script>
+
+
+<script type="text/javascript">
+$(function(){
+
+	$(".nav p").click(function(){
+		var ul=$(".new");
+		if(ul.css("display")=="none"){
+			ul.slideDown();
+		}else{
+			ul.slideUp();
+		}
+	});
+	
+	$(".set").click(function(){
+		var _name = $(this).attr("name");
+		if( $("[name="+_name+"]").length > 1 ){
+			$("[name="+_name+"]").removeClass("select");
+			$(this).addClass("select");
+		} else {
+			if( $(this).hasClass("select") ){
+				$(this).removeClass("select");
+			} else {
+				$(this).addClass("select");
+			}
+		}
+	});
+	$("input[name='shipping']").click(function(e) {
+       shipid= $(this).val();
+	   $("#shipping_id").val(shipid);
+			 var totalcount=<?php echo $this->_var['goods_info']['amount']; ?>;
+		var url="/index.php?app=order&act=shipping&store_id=<?php echo $_GET['store_id']; ?>&shipping_id="+shipid;
+		 $.getJSON(url,'',function(data){
+				  if(data.done)
+				 {
+					 if(data.retval.result==0)
+					 {
+						 alert("此配送方式不符合使用条件！！");
+					 }else
+					 {
+						//totalcount=totalcount-data.retval.amount;
+						//alert(totalcount);
+						 $("#gxzf").html(price_format(data.retval.total))
+						 $("#yunfei").html(price_format(data.retval.amount))
+						  $("#yfje").html(price_format(data.retval.total))
+						  $("#hongbao").html(price_format(data.retval.coupon))
+					 }
+					 
+				 }else
+				 {
+					 alert("此配送方式不符合使用条件！！");
+				 }
+		 });
+    });
+	function  jiaqian(){
+		 var couponid=$("#coupon_yxw").attr("val");
+		 if(couponid.length==0)
+		 {
+			 if($(".nav li").length==0)
+			 {
+				 alert("没有可以使用的红包！");
+			 }else{
+				 alert("请选择红包！");
+				 }
+			 
+		 }else{
+			 var totalcount=<?php echo $this->_var['goods_info']['amount']; ?>;
+		var url="/index.php?app=order&act=coupon&store_id=<?php echo $_GET['store_id']; ?>&coupon_id="+couponid;
+		 $.getJSON(url,'',function(data){
+				 if(data.done)
+				 {
+					 if(data.retval.result==0)
+					 {
+                     if(data.retval.status=3){
+						 alert(data.msg);}
+                         else{
+                         alert("此红包不符合使用限制条件");
+                         }
+					 }else
+					 {
+						//totalcount=totalcount-data.retval.amount;
+						//alert(totalcount);
+						 $("#gxzf").html(price_format(data.retval.total))
+						 $("#hongbao").html(price_format(data.retval.amount))
+						  $("#yfje").html(price_format(data.retval.total))
+						   $("#yunfei").html(price_format(data.retval.shipping))
+						   $("#coupon_sn").val(data.retval.coupon_sn);
+					 }
+					 
+				 }else
+				 {
+					 alert("此红包不符合使用条件！！");
+				 }
+				 
+				 
+				 });
+		 }
+		 
+		 }
+	$(".nav li").click(function(){
+		var li=$(this).text();
+		   $("#coupon_yxw").attr("val",$(this).attr("val"));
+           jiaqian();
+		$(".nav p").html(li);
+		$(".new").hide();
+		/*$(".set").css({background:'none'});*/
+		$("p").removeClass("select") ;   
+	});
+})
+</script>
+
+
+</html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>新生活家园</title>
+ <meta content="width=device-width,user-scalable=no" name="viewport">
+<link href="/themes/bqmart/style/zq_goods.css" type="text/css" rel="stylesheet"/>
+<link href="/themes/bqmart/style/zq_change_location.css" type="text/css" rel="stylesheet"/>
+<link href="/themes/bqmart/style/zq_details.css" type="text/css" rel="stylesheet"/>
+<script src="/themes/bqmart/js/zq_jquery.min.js" type="text/javascript"></script>
+<script src="/themes/bqmart/js/jquery.lazyload.min.js" type="text/javascript"></script>
+<script src="/themes/bqmart/js/CommonPerson.js" type="text/javascript"></script>
+<script src="/themes/bqmart/js/tools.js" type="text/javascript"></script>
+ <script type="text/javascript" src="/includes/libraries/javascript/ecmall.js" charset="utf-8"></script>
+<script src="/themes/bqmart/js/zq_index.js" type="text/javascript"></script>
+<script src="/themes/bqmart/js/zq_requestAnimationFrame.js" type="text/javascript"></script>
+<script src="/themes/bqmart/js/zq_fly.js" type="text/javascript"></script>
+
+
+<style type="text/css">
+body {
+    font-family: "微软雅黑";
+}
+/*全屏背景遮罩层*/
+.loadingPage_bg1 {
+	background:none repeat scroll 0 0 #000;
+	height:100%;
+	left:0; /*:rgba(0,0,0,0.5);*/
+	opacity:0.7;
+	filter:alpha(opacity=70);
+	width:100%;
+	position:absolute;
+	top:0px;
+	z-index:110;
+}
+/*局部背景遮罩*/
+.loadingPage_bg {
+	background:none repeat scroll 0 0 #fff;
+	height:100%;
+	left:0; /*:rgba(0,0,0,0.5);*/
+	opacity:1;
+	filter:alpha(opacity=100);
+	width:100%;
+	z-index:110;
+}
+
+#loadingPage {
+	display:block;
+	font-weight:bold;
+	font-size:12px;
+	color:#595959;
+	height:28px;
+	left:50%;
+	line-height:27px;
+	margin-left:-74px;
+	margin-top:-14px;
+	padding:10px 10px 10px 50px;
+	position:absolute;
+	text-align:left;
+	top:50%;
+	width:148px;
+	z-index:111;
+	background:url(/themes/bqmart/images/loading.gif) no-repeat scroll 12px center #FFFFFF;
+	border:2px solid #86A5AD;
+}
+</style>
+
+ 
+</head>
+
+<body style="overflow: hidden">
+	<div id="index" style="display:block;">
+    	 <!--头部-->
+        <div class="head">
+            
+            <div id="ps">
+                <p class="head_name"><a href="/index.php?app=default&act=cover" style="color: black; text-decoration:none;">{$qufujin}附近&nbsp;&nbsp;▼</a></p>
+            </div>
+            <a href="/index.php?app=member"><img src="/themes/bqmart/images/pc.png" width="30" height="30"></a>
+        </div>
+        <!--中间-->
+        <div id="contenter">
+        	<!--左边-->
+           <div class="cont_l">
+             
+                <!--左侧导航栏-->
+                <div id="nav">
+                    <ul class="expmenu">
+                        <li>
+                            <div class="header bqsh">
+                                <span >倍全生活</span>
+                               
+                                
+                            </div>
+
+                        </li>
+                         <li>
+                            <div class="header">
+                                <span>特色服务</span>
+                                <span class="arrow down"></span>
+                            </div>
+                            <ul class="menu"  style="display:block;">
+							    
+                                <li id="cate_a" value="洗衣干洗"><div class="menu2">
+                                    <a href="javascript:void(0)"><span class="point fr"></span>洗衣干洗<span class="point fl"></span></a>
+                                    </div>
+							    </li>
+								<li id="cate_b" value="酒急送"><div class="menu2">
+                                    <a href="javascript:void(0)"><span class="point fr"></span>酒急送<span class="point fl"></span></a>
+                                    </div>
+							    </li>
+								 <li id="cate_c" value="蛋糕鲜花"><div class="menu2">
+                                    <a href="javascript:void(0)"><span class="point fr"></span>蛋糕鲜花<span class="point fl"></span></a>
+                                    </div>
+							    </li>
+								<li id="cate_e" value="收发快递"><div class="menu2">
+                                    <a href="javascript:void(0)"><span class="point fr"></span>收发快递<span class="point fl"></span></a>
+                                    </div>
+							    </li>
+								<li id="cate_f" value="家政服务"><div class="menu2">
+                                    <a href="javascript:void(0)"><span class="point fr"></span>家政服务<span class="point fl"></span></a>
+                                    </div>
+							    </li>
+								<li id="cate_g" value="特产礼品"><div class="menu2">
+                                    <a href="javascript:void(0)"><span class="point fr"></span>特产礼品<span class="point fl"></span></a>
+                                    </div>
+							    </li>
+								<li id="cate_h" value="缴费充值"><div class="menu2">
+                                    <a href="javascript:void(0)"><span class="point fr"></span>缴费充值<span class="point fl"></span></a>
+                                    </div>
+							    </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="header">
+                                <span>20分钟送达</span>
+                                <span class="arrow down"></span>
+                            </div>
+                            <ul class="menu"  style="display:block;">
+							    {foreach key=key item=item from=$cates}
+                                <li id="cate_{$item.cate_id_1}" value="{$item.cate_id_1}"><div class="menu2">
+                                    <a href="javascript:void(0)"><span class="point fr"></span>{$item.cate_name}<span class="point fl"></span></a>
+                                    </div>
+							    </li>
+								 {/foreach}
+
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+         <!--右边-->
+            <div class="cont_r" style="display:block;" >
+            	<div id="01" style="display:block;margin-right: 0;">
+			
+                </div>
+				<!--end cont_r-->
+				<div id="wangshang" value="cate_a" style="display:block;">
+				<div class="xinshuju" style="display:none;"><span>向上移动查看</span>
+				<span class="xinfenlei"></span>
+				<img src="/themes/bqmart/images/loading.gif" />
+				</div>
+				</div>
+            </div>
+
+        
+    	    <div class="footer">
+            <div class="f_show">
+                <div class="f_gwc">
+                    <img src="/themes/bqmart/images/gwc2.png" width="30px">
+                </div>
+                <i id="end"></i>
+                <div id="f_num">{$count}</div>
+            </div>
+            <div class="f_t1">
+                <p>共<span id="amount">{$amount|price}</span>元 </p>
+                <p>满￥{$shipping}，免运费</p>
+            </div>
+            <div  class="f_t2">
+                <div class="money_no">差￥<span id="peisong">20</span>可配送</div>
+                <div class="money_yes">选好了</div>
+            </div>
+            <div class="f_bg"></div>
+        <!--end footer-->
+        </div>
+        </div>
+    </div>
+	<div id="details"  style=" display:none;position:absolute;
+	z-index:1000;">
+    	<!--半透明的背景-->
+    	<div class="detail_bg"></div>
+       <div class="d_all">
+       			
+                <!--图片确定分享-->
+                <div class="d_info">
+                    <!--图片确定分享-->
+                    <div class="d_pic">
+                   	  <!--图标，不是商品图片-->
+               	    	<div class="detail_pic">                       
+                        </div>
+                        <span>确定</span>                      
+                    </div>                  
+                    <!--名称价格数量-->
+                    <div class="detail_price" value="">
+                    	<div class="detail_name" style="padding-left: 23px;border-bottom: 1px solid #ddd;font-size: 16px;height: 20px;padding-bottom: 5px;padding-top: 5px;"></div>
+                        <div class="price" style="padding-left: 23px;">￥<span></span></div>
+                        <div class="detail_op">
+                        	<span class="op1">-</span>
+                            <span class="s_num">0</span>
+                            <span class="op2">+</span>
+                        </div>
+                    </div>	
+                </div>
+                <!--商品规格-->
+                <div class="detail_guige">
+                	<ul>
+                    	<li style="border-bottom:#ddd solid thin;">品牌&nbsp;&nbsp;&nbsp;&nbsp;：<span class="pinpai">千禧</span></li>
+                        <li>产品类别：<span class="guige">350g</span></li>
+                    </ul>
+                </div>
+                <!--快递广告-->
+                <div class="detalis_ad" style="display:block;margin-top:30px;padding-top:30px; 
+	background-color:#ECEDF1;margin-top:10px;border-top:#BBBBBB solid thin;">
+	         <img src="/themes/bqmart/images/bqkd.png" alt="倍全快递，随时随递">
+                </div>
+            </div> 
+    </div>
+	   <!--鲜蜂生活-->
+   <div class="bqad"  style="display:none;">
+		<div class="show">
+			<a href="javascript:void(0)"><img  class="img" src="/themes/bqmart/images/1.jpg" height="100px;"/></a>
+		</div>
+		<div class="show">
+			 <a href="javascript:void(0)"><img  class="img" src="/themes/bqmart/images/201503181438239455.jpg" height="100px;"/></a>
+		</div>
+		<div class="show">
+			 <a href="javascript:void(0)"><img  class="img" src="/themes/bqmart/images/201503182001234975.jpg" height="100px;"/></a>
+		</div>
+	</div>
+            
+        	
+	
+	<input type="hidden" id="hd_store_id" value="{$store.store_id}" />
+	<input type="hidden" id="hd_sumtouch" value="0" />
+	<div id="allmap" style="display:none;"></div>
+	</div>
+	   
+	
+<script>
+		function bqsh()
+		{
+		  var content=$(".bqad").html();
+		  $(".cont_r #01").html(content);
+		   $("#01").parent().scrollTop(0);
+		   $("#wangshang").attr("value",'cate_a');
+		   $("ul.expmenu li").find("span").removeClass('selected');
+		}
+var inttouch=0;
+$(document).ready(function(){
+       var div = document.getElementById('01');//touchmove
+	    div.addEventListener('touchstart',function(event){
+		 
+		if($("#wangshang").offset().top<$(window).height()&&$("#hd_sumtouch").val()==0)
+		{
+		    val=$("#wangshang").attr("value");
+            $(".xinshuju").html('<span>向上移动查看</span>'+
+				'<span class="xinfenlei">'+$("#"+val).text()+'</span>'+
+				'<img src="/themes/bqmart/images/loading.gif" />');
+			$(".xinshuju").show();
+			inttouch=1;
+        }
+		
+		},false);
+       div.addEventListener('touchmove',handler, false);
+       div.addEventListener('touchend', myTouchEnd, false);
+		bqsh();
+		$(".bqsh").on("click",bqsh);
+        peisong({$amount});
+		$(".detail_name").width($(window).width()-41);
+		
+
+});
+
+var timerId;
+function handler(event) {
+		if($("#wangshang").offset().top<($(window).height()-10)&&$("#hd_sumtouch").val()==0)
+		{
+			val=$("#wangshang").attr("value");
+			//$(".xinfenlei").html($("#"+val).text()+'的数据');
+			$(".xinshuju").html('<span>松手查看</span>'+
+				'<span class="xinfenlei">'+$("#"+val).text()+'</span>'+
+				'<img src="/themes/bqmart/images/loading.gif" />');
+			$(".xinshuju").show();
+			
+			window.clearInterval(timerId);  
+		   timerId = window.setTimeout(myTouchEnd, 1000);  
+		   
+		}
+  
+}
+
+function myTouchEnd(){ 
+   if(inttouch==1)
+   { 
+    if($("#wangshang").offset().top<$(window).height()&&$("#hd_sumtouch").val()==0)
+		{
+		    
+		    $sid={$smarty.get.id};
+		    val=$("#wangshang").attr("value");
+			$("#hd_sumtouch").val("1");
+		    $("#"+val).click();
+		    $("#01").parent().scrollTop(0);
+			inttouch=0;
+		}
+	     $(".xinshuju").hide(); 
+	}
+} 
+
+</script>
+	</body>
+</html>

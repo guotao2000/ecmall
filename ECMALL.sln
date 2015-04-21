@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{1863889A-00DF-4350-BA39-669CA949CB81}") = "ECMALL", "ECMALL.phpproj", "{5174F250-9257-4A6D-8A95-4BC60ECC74A5}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ECMALL.phpproj
+		SccLocalPath1 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Local|PHP 5.3 = Local|PHP 5.3
+		Production|PHP 5.3 = Production|PHP 5.3
+		Staging|PHP 5.3 = Staging|PHP 5.3
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5174F250-9257-4A6D-8A95-4BC60ECC74A5}.Local|PHP 5.3.ActiveCfg = Local|PHP 5.3
+		{5174F250-9257-4A6D-8A95-4BC60ECC74A5}.Local|PHP 5.3.Deploy.0 = Local|PHP 5.3
+		{5174F250-9257-4A6D-8A95-4BC60ECC74A5}.Production|PHP 5.3.ActiveCfg = Production|PHP 5.3
+		{5174F250-9257-4A6D-8A95-4BC60ECC74A5}.Production|PHP 5.3.Deploy.0 = Production|PHP 5.3
+		{5174F250-9257-4A6D-8A95-4BC60ECC74A5}.Staging|PHP 5.3.ActiveCfg = Staging|PHP 5.3
+		{5174F250-9257-4A6D-8A95-4BC60ECC74A5}.Staging|PHP 5.3.Deploy.0 = Staging|PHP 5.3
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

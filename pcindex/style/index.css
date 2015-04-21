@@ -1,0 +1,32 @@
+﻿@charset "utf-8";
+body {
+	color: #525252;
+	background-color: #fff!important;
+	margin:0px;
+	padding:0px;
+}
+a {
+	color: #525252;
+}
+.home {
+	background-color: #fff;
+	max-width: 1200px;
+	margin: 0 auto 1%;
+	overflow: hidden;
+}
+.flexslider {
+	background: #fff;
+	position: relative;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	zoom: 1;
+}
+.flexslider img {
+	display: block;
+	border: 0;
+	clear: both;
+	padding: 0;
+	margin: 0;
+}

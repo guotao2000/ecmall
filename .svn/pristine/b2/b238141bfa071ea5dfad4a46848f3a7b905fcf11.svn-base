@@ -1,0 +1,416 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-商品详情页</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/com/com.css}"/> 
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/home/index.css}"/>
+        <script src="{res file=bqmart/js/jquery.js}"></script>
+        <!-- 控制整体标签宽度的js -->
+        <script src="{res file=bqmart/template/js/com/com.js}"></script>
+        <!-- 控制整体标签宽度的js end -->
+        <!-- 控制图片缩放比例的js -->
+        <script src="{res file=bqmart/template/js/com/template.js}"></script>
+        <!-- 控制图片缩放比例的js end -->
+        <!-- 控制抢购模块左右切换的js 开始-->
+        <script type="text/javascript" src="{res file=bqmart/template/js/home/swipe.js}" charset="utf-8"></script>
+        <!-- 控制抢购模块左右切换的js 结束-->
+        <!--控制产品列表加减数量的js开始 -->
+        <script type="text/javascript" src="{res file=bqmart/template/js/com/jquery.spinner.js}"></script>
+    <!--控制产品列表加减数量的js结束 -->
+    </head>
+    <body>
+<!-- js   begin -->
+<script type="text/javascript" src="{lib file=goodsinfo.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var REAL_SITE_URL = "{$real_site_url}";
+var PRICE_FORMAT = '{$price_format}';
+/* buy */
+function buy()
+{
+    if (goodsspec.getSpec() == null)
+    {
+        alert(lang.select_specs);
+        return;
+    }
+    var spec_id = goodsspec.getSpec().id;
+
+    var quantity = $("#quantity").val();
+    if (quantity == '')
+    {
+        alert(lang.input_quantity);
+        return;
+    }
+    if (parseInt(quantity) < 1)
+    {
+        alert(lang.invalid_quantity);
+        return;
+    }
+
+    var store_id = {$goods.store_id|escape};
+   
+    //add_to_cart(spec_id, quantity);
+    add_to_cart(spec_id, quantity, store_id);
+}
+
+/* add cart */
+/*function add_to_cart(spec_id, quantity)
+{	
+    var url = '{$site_url}/index.php?app=cart&act=add';
+ 
+    $.getJSON(url, {'spec_id':spec_id, 'quantity':quantity}, function(data){
+        if (data.done)
+        {
+            $('.bold_num').text(data.retval.cart.kinds);
+            $('.bold_mly').html(price_format(data.retval.cart.amount));
+           $(".msg").slideDown().delay(5000).slideUp();
+           // $('.msg').slideDown('slow');
+           // setTimeout(slideUp_fn, 5000);
+        }
+        else
+        { 
+            alert(data.msg);
+        }
+    });
+}*/
+
+function add_to_cart(spec_id, quantity, store_id)
+{	
+    var url = '/index.php?app=cart&act=to_shop&spec_id='+spec_id+'&quantity='+quantity+'&store_id='+store_id;
+            //alert(url);
+
+			$.getJSON(url, '', function(data){
+				if (data.done)
+				{
+					window.location.href='index.php?app=cart';
+				}
+				else
+				{ 
+					alert(data.msg);
+				}
+			});
+}
+
+function to_shop()
+{
+	
+	 if (goodsspec.getSpec() == null)
+    {
+        alert(lang.select_specs);
+        return;
+    }
+	
+    var spec_id = goodsspec.getSpec().id;
+
+    var quantity = $("#quantity").val();
+	
+    if (quantity == '')
+    {
+        alert(lang.input_quantity);
+        return;
+    }
+    
+    if (parseInt(quantity) < 1)
+    {
+        alert(lang.invalid_quantity);
+        return;
+    }
+    
+    var store_id = {$goods.store_id|escape};
+    
+    add_to_shop(spec_id, quantity, store_id);
+    //add_to_shop(spec_id, quantity);
+    
+}
+
+function add_to_shop(spec_id, quantity,store_id)
+		{	
+			var url = '/index.php?app=cart&act=to_shop&spec_id='+spec_id+'&quantity='+quantity+'&store_id='+store_id;
+            //alert(url);
+
+			$.getJSON(url, '', function(data){
+				if (data.done)
+				{
+					window.location.href='index.php?app=cart';
+				}
+				else
+				{ 
+					alert(data.msg);
+				}
+			});
+		}
+
+
+var specs = new Array();
+<!--{foreach from=$goods._specs item=spec}-->
+specs.push(new spec({$spec.spec_id}, '{$spec.spec_1|escape}', '{$spec.spec_2|escape}', {$spec.price}, {$spec.stock}));
+<!--{/foreach}-->
+var specQty = {$goods.spec_qty};
+var defSpec = {$goods.default_spec|escape};
+var goodsspec = new goodsspec(specs, specQty, defSpec);
+//]]>
+</script>
+<!-- js   end -->
+    <div class="com-content">
+       <!-- 头部区域开始 by-wei 2014.12.08  -->
+        <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">商品详情页</span>
+          <a href="{url app=default}" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+      <!-- 头部区域结束 end -->
+      <!-- 详情页内容区域开始-->
+      <div class="com-content-area" id="js-com-content-area" style=" margin-top:0px;">
+         <div class="page-role good-page">
+         <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/good/index.css}" />
+       <!-- 控制底部“加入购物车&&立即购买浮动条的js ”-->
+        <script>
+         /*是否下线*/
+         var isDown = false;
+        </script>
+        <!-- 控制底部“加入购物车&&立即购买浮动条的js END ”-->
+	<script src="{res file=bqmart/template/js/com/jquery.touchslider.min.js}"></script>
+    <script src="{res file=bqmart/template/js/good/index.js}"></script>
+<script>
+jQuery(function($) {
+	$(".touchslider").touchSlider({mouseTouch: true, autoplay: true});
+});
+</script>	
+
+    <div class="pxui-area">
+        
+		<div class="touchslider" id="js-attrs-title">
+		   <div class="touchslider-viewport" style="height:240px;overflow:hidden">
+            <div>
+            <!--{foreach from=$goods._images item=goods_image name=fe_goods_image}-->
+	            <div class="touchslider-item">
+                   <a><span class="img320">
+                         <img src="{$site_url}/{$goods_image.thumbnail}"/>
+                       </span>
+                    </a>
+                 </div>
+			<!--{/foreach}-->
+				</div>
+             </div>
+            <div class="bq_xq_good-title">
+                 <h1>{$goods.goods_name|escape} </h1>
+                 <a href="javascript:collect_goods({$goods.goods_id});" class="com-sc-manu"></a>
+		         <dfn></dfn>
+                 <a href="javascript:collect_goods({$goods.goods_id});" class="bq_xq_sc">收藏</a>
+                 
+            </div>
+            <!-- 左右切换按键开始-->
+				<a class="touchslider-prev"></a>
+                <a class="touchslider-next"></a>
+            <!-- 左右切换按键结束-->
+		</div>	
+        <ul class="goodinfo" id="js-goodinfo">
+            <li>
+                <div style="width:60%; margin-right:0px; margin-left:10px;">
+                <b name="detail_mao" id="detail_mao" style="font-size:16px;">倍全价:</b>
+                <p><strong class="pxui-color-red" style="font-size:18px;">{if $promotion}{$promotion.kuaixun_price}{else}{$goods._specs.0.price|price}{/if}</strong></p>
+                <!-- <b>市场价：</b><p><del class="pxui-color-gray">299.00</del></p> -->
+                </div>
+                <span style="display:inline-block; width:75px; padding-top:15px;"  gid="{$goods._specs.0.spec_id}"   sid="{$goods.store_id}">
+                	<input type="text" class="spinnerExample" id="quantity" />
+                </span>
+            </li>
+            <!-- <li>
+              <div style="margin-left:10px;">
+                <b>口&nbsp;&nbsp;&nbsp;味 :</b>
+                <p>
+                     <a href="#" title="白/浅粉" class="bq_cp_shuxing selected">酸甜</a>
+                     <a href="#" title="浅蓝/浅红" class="bq_cp_shuxing" style="background:#A7C22C; color:#FFF; border:none;">甘苦</a>
+                     <a href="#" title="深粉/蓝" class="bq_cp_shuxing" style="background:#9345B3; color:#FFF; border:none;">香辣</a>
+                 </p>
+              </div>
+            </li> -->
+            <li>
+              <div style="margin-left:10px;">
+                <b>销&nbsp;&nbsp;&nbsp;量 :</b>
+                <p>
+                   <span>{$sales_info}{$comments}</span> 
+                 </p> 
+               </div>
+            </li>
+            <li>
+              <div style="margin-left:10px;">
+                <b>所在地 :</b>
+                <p>
+                   <span>{$store.region_name|escape}</span> 
+                 </p> 
+               </div>
+            </li>
+            <!--{if $shipping}-->
+            <li>
+              <div style="margin-left:10px;">
+                <b>运&nbsp;&nbsp;&nbsp;费 :</b>
+                <p>
+                   <!--{foreach from=$shipping item=shippings }-->
+                   <span>{$shippings.shipping_name}：¥{$shippings.first_price}</span> 
+                   <!--{/foreach}-->
+                 </p> 
+               </div>
+            </li>
+            <!-- {/if} -->
+                        
+         </ul>
+         <!-- 立即购买&&加入购物车开始-->
+         <div style="margin:0 5px; height:60px;">
+         <input type="button" onclick="to_shop()" class="pxui-light-button addtocart" style="margin:10px 0px; width:48%; float:left; background:#EC0000;border:none;" value="立即购买"/>
+         <input type="button" onclick="buy()" class="pxui-light-button addtocart" style="margin:10px 0px; width:48%; float:right; background:#4DC90F; border:none;" value="加入购物车"/>
+         </div>
+         <!-- 点击添加购物车  隐藏开始 -->
+         <div class="msg" style="display:none;">
+            	<p><b></b>购物车内共有<span class="bold_num"></span>种商品 共计 <span class="bold_mly" style="color:#8D0303;"></span>！</p>
+                <a href="{url app=cart}" class="white_btn">查看购物车</a>
+                <a  onclick="$('.msg').css({'display':'none'});" class="white_btn">继续购物</a>
+         </div>
+         <!-- 点击添加购物车  隐藏结束 -->
+         <!-- 立即购买&&加入购物车结束-->
+         <div  style="height:15px; background:#EDEBE9; clear:both;"></div>
+         <!-- 促销优惠按钮区域开始-->
+         <div class="bq_goods_cx pxui-list" data-model="radio"><a>
+              <i class="goods_cx_icon"></i>
+                <div class="goods_cx_name">
+                   优惠促销
+                 </div>
+              <i class="goods_anjian"></i></a>
+               <div class="pxui-list-con" style="display:none;">
+                   {if $promotion}
+                   {$promotion.start_time|date:complete}  到 {$promotion.end_time|date:complete}<br/>
+                   <strong>·</strong> 秒杀活动，原价<b>{$promotion.price|price}元</b>，现价<b>{$promotion.kuaixun_price|price}元</b>
+                   {else}
+                   该商品暂时没有参与促销活动
+                   {/if}
+               </div>  
+               <div style="clear:both;height:4px;margin: 0;padding: 0px; width:100%;"></div>
+         </div>
+         <!-- 促销按钮区域结束-->
+         <!-- 查看图文按钮区域开始-->
+         <div class="bq_goods_tw"><a href="index.php?app=goods&amp;spec_id={$goods._specs.0.spec_id}&amp;act=tuwen">
+              <i class="goods_tw_icon"></i>
+                <div class="goods_tw_name">
+                   图文详情
+                </div>
+              <i class="goods_anjian"></i></a>
+              
+         </div>
+         <!-- 查看图文按钮区域结束-->
+         <!-- 查看商品属性按钮区域开始-->
+         <div class="bq_goods_sx pxui-list" data-model="radio"><a>
+              <i class="goods_sx_icon"></i>
+                <div class="goods_sx_name">
+                   商品属性
+                 </div>
+              <i class="goods_anjian"></i></a>
+              <div class="pxui-list-con" style="display:none;">
+                  <ul class="attrs">
+                     <!--{if $goods.spec_qty gt 0}-->
+                     	<li>{$goods.spec_name_1|escape}: {$goods._specs.0.spec_1|escape} </li>
+                     <!-- {/if} -->
+                     <!--{if $goods.spec_qty gt 1}-->
+                     	<li>{$goods.spec_name_2|escape}: {$goods._specs.0.spec_2|escape} </li>
+                     <!-- {/if} -->
+                     
+                  </ul>
+               </div>  
+               <div style="clear:both;height:4px;margin: 0;padding: 0px; width:100%;"></div>
+         </div>
+         <!-- 查看商品属性按钮区域结束-->
+         
+         <!-- 抢购模块开始  By Wei 2012.12.09-->
+      	<!-- 抢购产品循环列表开始 
+	    <div class="content-box">
+		   <div class="content-box-category" style="padding:5px 0px 5px 25px;; background:#EDEBE9;">
+			<span><strong>猜你喜欢.....</strong></span>
+		    </div>
+		    <div class="content-box-list" id="slider-id">
+				<ul>
+                    {foreach from=$rgoods item=interest_items}
+					<div class="slider-item">
+                    	{foreach from=$interest_items item=interest_item}
+						<li>
+							<div style="width:99%;">
+							   <a href="index.php?app=goods&id={$interest_item.goods_id|escape}" class="product-image-link"><img src="{$interest_item.default_image|escape}" /></a>
+						    </div>
+							<div style="width:99%; overflow: hidden; position:relative;">
+							    <a href="" class="product-title-link">{$interest_item.goods_name|escape}</a>
+							    <p>折扣价：{$interest_item.price|price}</p>
+                                <a href="index.php?app=goods&id={$interest_item.goods_id|escape}" class="bq_qianggou_anniu" style=" color:#FFF;">抢购</a>
+							</div>
+						</li>	
+						{/foreach}
+					</div>
+                    {/foreach}
+				</ul>	
+		</div>
+            <div class="bq_zuoyou_mnue">
+               <span class="bq_qg_prev"></span>
+               <span class="bq_qg_next"></span>
+             </div>
+		</div>-->
+	<!-- 抢购产品循环列表结束
+    <script type="text/javascript">
+	window.mySwipe = new Swipe(document.getElementById('slider-id'), {
+	startSlide: 0,
+	speed: 400,
+	auto: 3000,
+	continuous: true,
+	disableScroll: false,
+	stopPropagation: false,
+	callback: function(index, elem) {},
+	transitionEnd: function(index, elem) {}
+	});           
+    </script>
+      
+       抢购模块结束  Eed Wei 2012.12.09-->			
+        <div class="fixed-add-to-cart" id="js-fixed-add-to-cart" style="z-index:999;">
+            <div>
+             <a href="javascript:buy();"><input type="button" class="pxui-light-button addtocart" style="background:#FFF; border-color:#D9D6D1; color:#63625D;" value="加入购物车"/></a>&nbsp;&nbsp;&nbsp;&nbsp;
+             <a href="javascript:buy();"><input type="button" class="pxui-light-button addtocart" style="background:#F50000;" value="立即结算"/></a>
+            </div>
+        </div>
+    </div>
+</div>
+		</div>
+        
+      <!-- 详情页内容区域结束-->
+      <!-- 详情页底部区域开始-->
+      {include file='member.footer.html'}
+      <!-- 详情页底部区域结束-->
+
+</div>
+</body>
+<!-- 控制产品列表加减数量的执行函数开始-->
+<script type="text/javascript">
+$('.spinnerExample').spinner({
+	value:1,
+	min:1
+});
+</script>
+
+<!-- 控制产品列表加减数量的执行函数结束-->
+
+</html>

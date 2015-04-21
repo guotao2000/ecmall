@@ -1,0 +1,453 @@
+<?php
+class BqdsApp extends MallbaseApp
+{
+	function index()
+	{
+		$store_id = isset($_GET['store_id']) ? intval($_GET['store_id']) : 0;
+		if($store_id>0)
+		{
+			$sql_count="select sum(quantity) from ecm_cart where store_id=".$store_id." and session_id='" . SESS_ID ."'";
+		}else{
+		$sql_count="select sum(quantity) from ecm_cart where session_id='" . SESS_ID ."'";
+		}
+		
+		$db=&db();
+		$totalcount=$db->getOne($sql_count);
+		if(empty($totalcount))
+		{
+			$this->json_result(array('totalcount'=>0,'sql'=>$sql_count),"获取成功！");
+		}
+		else{
+			$this->json_result(array('totalcount'=>$totalcount,'sql'=>$sql_count),"获取成功！");
+		}
+	}
+	
+	
+	//杨秀伟20141223支付
+	function gopay_yxw()
+	{
+		$payment_id =   isset($_REQUEST['payment_id']) ? intval($_REQUEST['payment_id']) : 0;
+        if (!$payment_id)
+        {
+            $this->show_warning("请设置支付方式！");
+
+            return;
+        }
+		
+		switch($payment_id)
+		{
+			case 5:
+			  $this->wxzf();//微信支付
+			  break;  
+			case 6:
+			   if(confirm_src()) {
+				$this->zfbwap();//支付宝
+			   }else {
+			       $this->zfb();
+			   }
+			  break;
+			default:
+			  $this->hdfk();//货到付款
+			  break;
+		}
+
+		
+	}
+	    //支付宝wap支付
+		function zfbwap()
+		{
+		header("Content-type:text/html;charset=utf-8");
+		require_once($_SERVER['DOCUMENT_ROOT']. "/bqalipaywap/alipay.config.php");
+		require_once($_SERVER['DOCUMENT_ROOT']. "/bqalipaywap/lib/alipay_submit.class.php");
+
+     
+		/**************************调用授权接口alipay.wap.trade.create.direct获取授权码token**************************/
+		
+		//返回格式
+		$format = "xml";
+		//必填，不需要修改
+
+		//返回格式
+		$v = "2.0";
+		//必填，不需要修改
+
+		//请求号
+		$req_id = date('Ymdhis');
+		//必填，须保证每次请求都是唯一
+
+		//**req_data详细信息**
+
+		//服务器异步通知页面路径
+		$notify_url = "http://".$_SERVER['HTTP_HOST']."/bqalipaywap/notify_url.php";//url重写index.php?app=bqaliwap&act=notify
+		//需http://格式的完整路径，不允许加?id=123这类自定义参数
+
+		///页面跳转同步通知页面路径
+		$call_back_url = "http://".$_SERVER['HTTP_HOST']."/bqalipaywap/call_back_url.php";//index.php?app=bqaliwap";
+		//需http://格式的完整路径，不允许加?id=123这类自定义参数
+
+		//操作中断返回地址
+		$merchant_url = "http://".$_SERVER['HTTP_HOST']."/index.php";
+		//用户付款中途退出返回商户的地址。需http://格式的完整路径，不允许加?id=123这类自定义参数
+
+
+
+
+
+		//卖家支付宝帐户
+		$seller_email = "bqmart@163.com";
+		//必填
+
+		//商户订单号
+		$out_trade_no = $_REQUEST['trade_sn'];//商户网站订单系统中唯一订单号，必填
+		
+		
+		if(empty($out_trade_no))
+		{
+			
+			echo "友情提示，非法输入交易编号";
+			exit();
+		}
+		$db=&db();
+		$sql_trade="select * from ecm_order where order_sn=".$out_trade_no;
+		
+		$row_order=$db->getRow($sql_trade);
+		if(!count($row_order))
+		{
+			echo "友情提示，非法输入，没有数据展示";
+			exit();
+		}
+		
+
+		//订单名称
+		$subject = "倍全商城-订单编号：".$out_trade_no;
+		//必填
+
+		//付款金额
+		$total_fee = $row_order['order_amount'];
+
+		//请求业务参数详细
+		$req_data = '<direct_trade_create_req><notify_url>' . $notify_url . '</notify_url><call_back_url>' . $call_back_url . '</call_back_url><seller_account_name>' . $seller_email . '</seller_account_name><out_trade_no>' . $out_trade_no . '</out_trade_no><subject>' . $subject . '</subject><total_fee>' . $total_fee . '</total_fee><merchant_url>' . $merchant_url . '</merchant_url></direct_trade_create_req>';
+		//必填
+
+		/************************************************************/
+
+		//构造要请求的参数数组，无需改动
+		$para_token = array(
+			"service" => "alipay.wap.trade.create.direct",
+			"partner" => trim($alipay_config['partner']),
+			"sec_id" => trim($alipay_config['sign_type']),
+			"format"	=> $format,
+			"v"	=> $v,
+			"req_id"	=> $req_id,
+			"req_data"	=> $req_data,
+			"_input_charset"	=> trim(strtolower($alipay_config['input_charset']))
+			);
+
+		//建立请求
+		$alipaySubmit = new AlipaySubmit($alipay_config);
+		$html_text = $alipaySubmit->buildRequestHttp($para_token);
+
+		//URLDECODE返回的信息
+		$html_text = urldecode($html_text);
+
+		//解析远程模拟提交后返回的信息
+		$para_html_text = $alipaySubmit->parseResponse($html_text);
+
+		//获取request_token
+		$request_token = $para_html_text['request_token'];
+
+
+		/**************************根据授权码token调用交易接口alipay.wap.auth.authAndExecute**************************/
+
+		//业务详细
+		$req_data = '<auth_and_execute_req><request_token>' . $request_token . '</request_token></auth_and_execute_req>';
+		//必填
+
+		//构造要请求的参数数组，无需改动
+		$parameter = array(
+			"service" => "alipay.wap.auth.authAndExecute",
+			"partner" => trim($alipay_config['partner']),
+			"sec_id" => trim($alipay_config['sign_type']),
+			"format"	=> $format,
+			"v"	=> $v,
+			"req_id"	=> $req_id,
+			"req_data"	=> $req_data,
+			"_input_charset"	=> trim(strtolower($alipay_config['input_charset']))
+			);
+
+		//建立请求
+		$alipaySubmit = new AlipaySubmit($alipay_config);
+		$html_text = $alipaySubmit->buildRequestForm($parameter, 'get', '确认');
+		echo $html_text;
+		}
+		
+
+		
+	    //1、微信支付  payment_id=5
+		function wxzf()
+		{
+			
+		$int_sn=isset($_REQUEST['trade_sn'])?$_REQUEST['trade_sn']:0;//商户网站订单系统中唯一订单号，必填
+		
+		$sql="select * from ecm_order where order_sn=".$int_sn;
+	
+		$db=&db();
+		$rows=$db->getAll($sql);
+	
+		if(count($rows)<1)
+		{
+			
+			echo "友情提示，非法输入交易编号";
+			exit();
+		}
+		
+		
+		$keys=array_keys($rows);
+		$ikey=$keys[0];
+		$row_order=$rows[$ikey];
+	
+		if(isset($_SESSION['order_sn']))
+		{		unset($_SESSION['order_sn']);}
+		
+		$_SESSION['order_sn']=  $row_order['order_sn'];
+		//$this->assign('order_sn',$row_order['order_sn']);
+		setcookie('order_sn',$row_order['order_sn']);
+		//header('Location:/bqwxpay/demo/js_api_call.php');
+		$this->display('wx_pay.html');
+		}
+		
+		//2、支付宝支付 payment_id=6
+		function zfb()
+		{
+			header("Content-type:text/html;charset=utf-8");
+			require_once("bqalipay/alipay.config.php");
+			require_once("bqalipay/lib/alipay_submit.class.php");
+			
+			/**************************请求参数**************************/
+			
+					//支付类型
+					$payment_type = "1";
+					//必填，不能修改
+					//服务器异步通知页面路径
+					$notify_url = "http://wap.bqmart.cn/index.php?app=bqds&act=notify_url";
+					//需http://格式的完整路径，不能加?id=123这类自定义参数        //页面跳转同步通知页面路径
+					$return_url = "http://wap.bqmart.cn/index.php?app=bqds&act=return_url";
+					//需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/        //卖家支付宝帐户
+					$seller_email ="bqmart@163.com";
+					//必填        //商户订单号
+					$out_trade_no = $_REQUEST['trade_sn'];
+					
+					
+					if(empty($out_trade_no))
+					{
+						
+						echo "友情提示，非法输入交易编号";
+						exit();
+					}
+					$db=&db();
+					$sql_trade="select * from ecm_order where order_sn=".$out_trade_no;
+				
+					$row_order=$db->getRow($sql_trade);
+					if(!count($row_order))
+					{
+						echo "友情提示，非法输入，没有数据展示";
+						exit();
+					}
+					//商户网站订单系统中唯一订单号，必填        //订单名称
+					$subject = "倍全商城-订单编号：".$out_trade_no;
+					//必填        //付款金额
+					$total_fee = $row_order['order_amount'];
+					//必填        //订单描述        $body = $_POST['WIDbody'];
+					//商品展示地址
+					$show_url = "http://wap.bqmart.cn/index.php?app=buyer_order&act=index&type=all";
+					//需以http://开头的完整路径，例如：http://www.商户网址.com/myorder.html        //防钓鱼时间戳
+					$anti_phishing_key = "";
+					//若要使用请调用类文件submit中的query_timestamp函数        //客户端的IP地址
+					$exter_invoke_ip = "";
+					//非局域网的外网IP地址，如：221.0.0.1
+			
+			
+			/************************************************************/
+			
+			//构造要请求的参数数组，无需改动
+			$parameter = array(
+					"service" => "create_direct_pay_by_user",
+					"partner" => trim($alipay_config['partner']),
+					"payment_type"	=> $payment_type,
+					"notify_url"	=> $notify_url,
+					"return_url"	=> $return_url,
+					"seller_email"	=> $seller_email,
+					"out_trade_no"	=> $out_trade_no,
+					"subject"	=> $subject,
+					"total_fee"	=> $total_fee,
+					"body"	=> $body,
+					"show_url"	=> $show_url,
+					"anti_phishing_key"	=> $anti_phishing_key,
+					"exter_invoke_ip"	=> $exter_invoke_ip,
+					"_input_charset"	=> trim(strtolower($alipay_config['input_charset']))
+			);
+			
+			//建立请求
+			$alipaySubmit = new AlipaySubmit($alipay_config);
+			$html_text = $alipaySubmit->buildRequestForm($parameter,"get", "确认");
+			echo $html_text;
+			
+		}
+		
+		//3、货到付款   payment_id=7
+		function hdfk()
+		{
+			$out_trade_no = $_REQUEST['trade_sn'];
+			if(empty($out_trade_no))
+				{
+					
+					echo "友情提示，非法输入交易编号";
+					exit();
+				}
+				$db=&db();
+				$sql_trade="select * from ecm_order where order_sn=".$out_trade_no;
+			
+				$row_order=$db->getRow($sql_trade);
+				if(!count($row_order))
+				{
+					echo "友情提示，非法输入，没有数据展示";
+					exit();
+				}
+		 
+			$sql_update="update ecm_order set payment_id=7,payment_name='货到付款',out_trade_sn='',`status`=12 where order_sn='".$out_trade_no."'";
+			$db->query($sql_update);
+			$sql_sel="select order_id from ecm_order where order_sn='".$out_trade_no."'";
+			$order_id=$db->getOne($sql_sel);
+			//header('Location:index.php?app=buyer_order&act=index&type=all');
+			header('Location:index.php?app=cashier&act=jiesheng&order_id='.$order_id);
+			//header('Location:index.php?app=share');
+		}
+		//为支付宝提供同步访问返回处理
+		function return_url()
+		{
+		    header("Content-type:text/html;charset=utf-8");
+			require_once("bqalipay/alipay.config.php");
+            require_once("bqalipay/lib/alipay_notify.class.php");
+			//计算得出通知验证结果
+			$alipayNotify = new AlipayNotify($alipay_config);
+			$verify_result = $alipayNotify->verifyReturn();
+			if($verify_result) {//验证成功
+				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				//请在这里加上商户的业务逻辑程序代码
+				
+				//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
+				//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表
+			
+				//商户订单号
+			
+				$out_trade_no = $_GET['out_trade_no'];
+			
+				//支付宝交易号
+			
+				$trade_no = $_GET['trade_no'];
+			
+				//交易状态
+				$trade_status = $_GET['trade_status'];
+			
+			
+				if($_GET['trade_status'] == 'TRADE_FINISHED' || $_GET['trade_status'] == 'TRADE_SUCCESS') {
+					//判断该笔订单是否在商户网站中已经做过处理
+						//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+						//如果有做过处理，不执行商户的业务程序
+						$db=&db();
+						$sql_update="update ecm_order set payment_id=6,payment_name='支付宝即时到账',out_trade_sn='".$trade_no."',pay_time=unix_timestamp(),`status`=20 where order_sn='".$out_trade_no."'";
+						$db->query($sql_update);
+						$sql_sel="select order_id from ecm_order where order_sn='".$out_trade_no."'";
+						$order_id=$db->getOne($sql_sel);
+						header('Location:index.php?app=buyer_order&act=index&type=all');
+				}
+				else {
+				  echo "trade_status=".$_GET['trade_status'];
+				  echo "验证成功<br />";
+				}
+					
+				
+			
+				//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+				
+				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			}
+			else {
+				//验证失败
+				//如要调试，请看alipay_notify.php页面的verifyReturn函数
+				echo "验证失败";
+			}
+		}
+		//为支付宝提供异步访问返回处理
+		function notify_url()
+		{
+			header("Content-type:text/html;charset=utf-8");
+			require_once("bqalipay/alipay.config.php");
+			require_once("bqalipay/lib/alipay_notify.class.php");
+			
+			//计算得出通知验证结果
+			$alipayNotify = new AlipayNotify($alipay_config);
+			$verify_result = $alipayNotify->verifyNotify();
+			
+			if($verify_result) {//验证成功
+				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				//请在这里加上商户的业务逻辑程序代
+			
+				
+				//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
+				
+				//获取支付宝的通知返回参数，可参考技术文档中服务器异步通知参数列表
+				
+				//商户订单号
+			
+				$out_trade_no = $_POST['out_trade_no'];
+			
+				//支付宝交易号
+			
+				$trade_no = $_POST['trade_no'];
+			
+				//交易状态
+				$trade_status = $_POST['trade_status'];
+			
+			
+				if($_POST['trade_status'] == 'TRADE_FINISHED'||$_POST['trade_status'] == 'TRADE_SUCCESS') {
+					//判断该笔订单是否在商户网站中已经做过处理
+						//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+						//如果有做过处理，不执行商户的业务程序
+					/*$db=&db();
+						$sql_update="update ecm_order set payment_id=6,payment_name='支付宝即时到账',out_trade_sn='".$trade_no."',pay_time=unix_timestamp(),`status`=20 where order_sn='".$out_trade_no."'";
+						$db->query($sql_update);
+						$sql_sel="select order_id from ecm_order where order_sn='".$out_trade_no."'";
+						$order_id=$db->getOne($sql_sel);*/	
+						//header('Location:/index.php?app=buyer_order&act=index&type=all' . $order_id);
+					//注意：
+					//该种交易状态只在两种情况下出现
+					//1、开通了普通即时到账，买家付款成功后。
+					//2、开通了高级即时到账，从该笔交易成功时间算起，过了签约时的可退款时限（如：三个月以内可退款、一年以内可退款等）后。
+			
+					//调试用，写文本函数记录程序运行情况是否正常
+					//logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
+				}
+			
+			
+				//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+					
+				echo "success";		//请不要修改或删除
+				
+				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			}
+			else {
+				//验证失败
+				echo "fail";
+			
+				//调试用，写文本函数记录程序运行情况是否正常
+				//logResult("这里写入想要调试的代码变量值，或其他运行的结果记录");
+			}
+			
+		}
+	
+}
+
+
+
+?>

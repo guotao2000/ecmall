@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-收货地址列表</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/com/com.css}"/> 
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/home/index.css}"/>
+        <script src="{res file=bqmart/js/jquery.js}"></script>
+        <!-- 控制整体标签宽度的js -->
+        <script src="{res file=bqmart/template/js/com/com.js}"></script>
+        <!-- 控制整体标签宽度的js end -->
+        <!-- 控制图片缩放比例的js -->
+        <script src="{res file=bqmart/template/js/com/template.js}"></script>
+        <!-- 控制图片缩放比例的js end -->
+</head>
+<body>
+<div class="com-content">
+<!-- 头部区域开始 by-wei 2014.12.08  -->
+  <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">收货地址列表</span>
+          <a href="{url app=default}" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+<!-- 头部区域结束 end -->
+<!-- 添加收货地址页面中心区域开始-->
+<div class="com-content-area" id="js-com-content-area" style=" margin:0px;">
+<!-- 确认订单信息页面内容区域开始-->
+  <div class="page-role good-page">
+  <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/good/index.css}" />
+  <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/order/index.css}" />	
+     <!-- 添加收货地址页面内容区域开始-->
+     <div class="pxui-area">
+        <!--添加收货地址区域开始-->
+         <div class="bq_makeorder-box" id="js-attrs-title">
+            <!---如果用户第一次购物，显示下面IDV--->
+            <div class="makeorder_shdz-add" style="border-bottom:none;" >
+		      <a class="makeorder_btn-addr" style="color:#e4393c;" href="index.php?app=address&act=add_address&store_id={$store_id}">+添加收货地址</a>
+            </div>
+            <!---如果用户第一次购物添加地址按钮 end--->
+            <!--选择地址区域开始-->
+            {foreach from=$address item=addr}
+            <div class="bq_adders-select">
+                <span  class="bq_adders-ht"></span>
+            	<div class="bq_adders-info">
+                	<div class="bq_adders-name">
+                        <p>{$addr.consignee|escape} <span>&nbsp; {$addr.phone_mob|escape}</span></p>
+                        <p>{$addr.region_name|escape}&nbsp;{$addr.address|escape}</p>
+                    </div>
+                    <div class="bq_addersbg-border"></div>
+                    <div class="bq_adders-btn">
+                    	<span class="adders-tbl-type">
+                           <span class="tbl-cell">
+                            <a style="width:100%" class="btn-chk" href="index.php?app=address&act=enable_address&store_id={$store_id}&addr_id={$addr.addr_id|escape}"><span {if $addr.enable eq 1}  {/if}></span><b style="padding:3px 6px; background:#f33837;color: #fff;cursor: pointer;text-align: center;text-shadow: 1px 1px 1px #c64e13; font-weight:normal;">送到这里去</b></a>
+                           </span>
+                           <span class="tbl-cell text-right">
+                            	<a class="btn-update" href="index.php?app=address&act=edit_address&store_id={$store_id}&addr_id={$addr.addr_id|escape}"><span></span>修改</a>
+    					 <a class="btn-del" href="index.php?app=address&act=del_address&store_id={$store_id}&addr_id={$addr.addr_id|escape}"><span></span>删除</a>
+                         <a style="display:none" href="#"></a>
+    					   </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {foreachelse}
+            暂时没有地址
+            {/foreach}
+            <!--选择地址区域结束--> 
+         </div>
+        <!--添加收货地址区域结束--->  
+     </div>
+     <!-- 添加收货地址页面内容区域结束-->
+</div></div>
+     {include file='member.footer.html'}
+</div>
+
+{include file='store.menu.html'}
+</body>
+</html>

@@ -1,0 +1,69 @@
+<?php echo $this->fetch('header.html'); ?>
+<div id="rightTop">
+    <p>文件管理</p>
+    <ul class="subnav">
+        <li><span>管理</span></li>
+        <li><a class="btn1" href="index.php?app=file&amp;act=add">新增</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="file" />
+                <input type="hidden" name="act" value="index" />
+                文件名称:
+                <input class="queryInput" type="text" name="filename" />
+                <input type="submit" class="formbtn" value="查询" />
+            </div>
+        </form>
+    </div>
+    <div class="fontr">
+        <?php echo $this->fetch('page.top.html'); ?>
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <?php if ($this->_var['uploads']): ?>
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td align="left">文件名</td>
+            <!--<td>上传路径</td>-->
+            <td align="left">上传日期</td>
+            <td>操作</td>
+          
+        </tr>
+        <?php endif; ?>
+        <?php $_from = $this->_var['uploads']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'upload');if (count($_from)):
+    foreach ($_from AS $this->_var['upload']):
+?>
+        <tr class="tatr2">
+            <td class="firstCell"><?php if (! $this->_var['upload']['code']): ?><input type="checkbox" class="checkitem" value="<?php echo $this->_var['upload']['id']; ?>"/><?php endif; ?></td>
+            <td><?php echo $this->_var['upload']['filename']; ?></td>
+            <!--<td><?php echo $this->_var['upload']['uploadPath']; ?></td>-->
+            <td><?php echo local_date("Y-m-d",$this->_var['upload']['time']); ?></td>
+            <td><a href="index.php?app=file&amp;act=edit&amp;id=<?php echo $this->_var['upload']['id']; ?>">编辑</a>｜<a href="index.php?app=file&amp;act=drop&amp;id=<?php echo $this->_var['upload']['id']; ?>">删除</a></td>
+          
+        </tr>
+        <?php endforeach; else: ?>
+        <tr class="no_data">
+            <td colspan="7">没有符合条件的记录</td>
+        </tr>
+        <?php endif; unset($_from); ?><?php $this->pop_vars();; ?>
+    </table>
+    <?php if ($this->_var['uploads']): ?>
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            <?php echo $this->fetch('page.bottom.html'); ?>
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="删除" name="id" uri="index.php?app=file&act=drop" presubmit="confirm('您确定要删除它吗？');" />
+            &nbsp;&nbsp;
+            <!--<input class="formbtn batchButton" type="button" value="lang.update_order" name="id" presubmit="updateOrder(this);" />-->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <?php endif; ?>
+</div>
+<?php echo $this->fetch('footer.html'); ?>

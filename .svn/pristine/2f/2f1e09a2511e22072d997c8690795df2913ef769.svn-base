@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-编辑个人资料</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/com/com.css}"/> 
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/home/index.css}"/>
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/order/index.css}" />
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/user/index.css}" />
+        <script src="{res file=bqmart/js/jquery.js}"></script>
+        <!-- 控制整体标签宽度的js -->
+        <script src="{res file=bqmart/template/js/com/com.js}"></script>
+        <!-- 控制整体标签宽度的js end -->
+        <!-- 控制图片缩放比例的js -->
+        <script src="{res file=bqmart/template/js/com/template.js}"></script>
+        <!-- 控制图片缩放比例的js end -->
+        <!-- 控制猜你喜欢模块左右切换的js 开始-->
+        <script type="text/javascript" src="{res file=bqmart/template/js/home/swipe.js}" charset="utf-8"></script>
+        <!-- 控制猜你喜欢模块左右切换的js 结束-->
+        <!--控制性别单选按钮的js 开始-->
+        <script type="text/javascript" src="{res file=bqmart/template/js/cart/jquery.inputbox.js}"></script>
+        <!--控制性别单选按钮的js 结束-->
+    </head>
+    <body>
+    <div class="com-content">
+       <!-- 头部区域开始 by-wei 2014.12.08  -->
+        <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">编辑个人资料</span>
+          <a href="{url app=default}" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+      <!-- 头部区域结束 end -->
+      <!-- 会员中心内容区域开始-->
+<div class="com-content-area" id="js-com-content-area" style=" margin:0px;">
+   <div class="page-role good-page">
+     <div class="pxui-area">
+        <div  style="height:15px; background:#EDEBE9; clear:both;"></div>
+        <!-- 会员中心区域结束-->
+        <form method="post" action="index.php?app=member&act=change_profile" id="form_profile">
+        <div class="user_edtiadate-nicheng">
+          <p><span>用户名 ：</span>{if $user.from_weixin eq 1}{$user.wx_nickname}{else}{$user.user_name|escape}{/if}</p>
+        </div>
+        <div class="user_edtiadate-nicheng">
+          <p><span>手机号：</span><input name="phone_mob" type="text" style="border-width:1px; height:18px;" value="{$user.phone_mob|escape}" id="phone_mob"></p>
+        </div>
+        <div class="user_edtiadate-nicheng">
+          <p><span>真实姓名 ：</span><input name="real_name" type="text" style="border-width:1px; height:18px;" value="{$user.real_name|escape}" id="real_name"></p>
+        </div>
+        <div class="user_edtiadate-xingbie">
+          <p><span>性别 ：</span>
+              <input type="radio" name="gender" value="0" {if $user.gender eq 0} checked {/if} /> 保密
+              <input type="radio" name="gender" value="1" {if $user.gender eq 1} checked {/if} /> 男
+              <input type="radio" name="gender"  value="2" {if $user.gender eq 2} checked {/if} /> 女
+          </p>
+        </div>
+        <div class="user_edtiadate-nicheng">
+          <p><span>生日 ：</span><input name="birthday" type="text" style="border-width:1px; height:18px;" value="{$user.birthday}" id="birthday" placeholder="格式：2014-12-12"></p>
+        </div>
+        <div class="user_edtiadate-nicheng">
+          <p><span>QQ ：</span><input name="im_qq" type="text" style="border-width:1px; height:18px;" value="{$user.im_qq}" id="im_qq"></p>
+        </div>
+        <div class="user_edtiadate" style="text-align:center;">
+          <input type="hidden" name="user_id" value="{$user.user_id|escape}" />
+          <input type="submit" name="submit1" style=" background: #f71f1f;border-radius: 6px;color: #fff;font-family: 微软雅黑;font-size: 16px;padding: 8px 30%;text-align: center; border:none;" value="保 存" />
+        </div>
+        </form>
+        <!-- WAP通栏横条BD_1开始 By Wei 2014.12.08-->
+        <div class="bq_bkad">
+           <div class="bq_bk_slide">
+             <a href="#"><img src="themes/bqmart/images/bq_tonglan_ad_1.jpg"  width="100%" ></a>
+            </div>
+        </div>
+        <!-- WAP通栏横条BD_1结束-->
+        
+    <!-- 猜你喜欢模块开始  By Wei 2012.12.09-->
+    <!-- 猜你喜欢产品循环列表开始
+	    <div class="content-box">
+		   <div class="content-box-category" style="padding:10px 0px 5px 25px;; background:#EDEBE9;">
+			<span><strong>猜你喜欢.....</strong></span>
+		    </div>
+		    <div class="content-box-list" id="slider-id">
+				<ul>
+					{foreach from=$rgoods item=goods}
+					<div class="slider-item">
+                        {foreach from=$goods item=good}
+						<li>
+							<div style="width:99%;">
+							   <a href="index.php?app=goods&id={$good.goods_id|escape}" class="product-image-link"><img src="{$good.default_image}" /></a>
+						    </div>
+							<div style="width:99%; overflow: hidden; position:relative;">
+							    <a href="" class="product-title-link">{$good.goods_name|escape}</a>
+							    <p>售价：{$good.price|price}</p>
+                                <a href="{url app=goods&id=$good.goods_id}" class="bq_qianggou_anniu" style=" color:#FFF;">抢购</a>
+							</div>
+						</li>	
+				           {/foreach}
+					</div>
+	                 {/foreach}
+				</ul>	
+		</div>
+            <div class="bq_zuoyou_mnue">
+               <span class="bq_qg_prev"></span>
+               <span class="bq_qg_next"></span>
+             </div>
+		</div>
+	猜你喜欢产品循环列表结束
+       <script type="text/javascript">
+           window.mySwipe = new Swipe(document.getElementById('slider-id'), {
+               startSlide: 0,
+               speed: 400,
+               auto: 3000,
+               continuous: true,
+               disableScroll: false,
+               stopPropagation: false,
+               callback: function (index, elem) { },
+               transitionEnd: function (index, elem) { }
+           });           
+       </script>
+   猜你喜欢模块结束  Eed Wei 2012.12.09-->			
+         
+    </div>
+</div>
+		</div>
+        
+      <!-- 会员中心内容区域结束-->
+      <!-- 会员中心底部区域开始-->
+      {include file='member.footer.html'}
+      <!-- 会员中心底部区域结束-->
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        //提交验证
+        $('#form_profile').submit(function () {
+            var phone_mob = $('#phone_mob').val();
+            phone_mob = $.trim(phone_mob);
+            var real_name = $('#real_name').val();
+            real_name = $.trim(real_name);
+            var birthday = $('#birthday').val();
+            birthday = $.trim(birthday);
+            regBirth = /^\d{4}-\d{1,2}-\d{1,2}/;
+            var im_qq = $('#im_qq').val();
+            im_qq = $.trim(im_qq);
+            regQQ = /[1-9][0-9]{4,}/;
+            //验证邮箱
+            if (phone_mob.length == 0) {
+                alert('手机号不能为空！');
+                return false;
+            } else {
+                if (!checkMobile(phone_mob)) {
+                    alert('手机号码格式不正确！');
+                    return false;
+                }
+            }
+            //验证真实姓名
+            if (real_name.length == 0) {
+                alert('真实姓名不能为空！');
+                return false;
+            }
+            //验证生日
+            if (birthday.length == 0) {
+                alert('生日不能为空！');
+                return false;
+            } else {
+                if (!regBirth.test(birthday)) {
+                    alert('日期格式不正确！');
+                    return false;
+                }
+            }
+            //验证QQ
+            if (im_qq.length == 0) {
+                alert('QQ不能为空！');
+                return false;
+            } else {
+                if (!regQQ.test(im_qq)) {
+                    alert('QQ号码格式不正确！');
+                    return false;
+                }
+            }
+
+            return true;
+
+
+        });
+    });
+
+    //验证手机号函数
+    function checkMobile(tel) {
+        var reg = /^[1][3-9]\d{9}$/;
+        if (reg.test(tel)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+		
+        </script>
+
+<!--底部浮动菜单开始-->
+ {include file='store.menu.html'}
+<!--底部浮动菜单结束-->
+</body>
+<!--控制性别单选按钮的js执行函数 开始-->
+<script type="text/javascript">
+    $(function () {
+
+        $('div[name="city"]').inputbox({
+            height: 24,
+            width: 100
+        });
+
+        $('.cbt').inputbox();
+
+        $('[name="rbt"], [name="rbt2"]').inputbox();
+
+    });
+</script>
+<!--控制性别单选按钮的js执行函数 结束-->
+</html>

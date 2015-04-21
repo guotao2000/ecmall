@@ -1,0 +1,383 @@
+<!doctype html>
+<html>
+  <head>
+    <title>倍全商城-订单列表页</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+    <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+    <!--离线应用的另一个技巧-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <!--指定的iphone中safari顶端的状态条的样式-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <!--告诉设备忽略将页面中的数字识别为电话号码-->
+    <meta content="telephone=no" name="format-detection" />
+    <!--设置开始页面图片-->
+    <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+    <!--在设置书签的时候可以显示好看的图标-->
+    <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+    <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/com/com.css}"/>
+    <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/home/index.css}"/>
+    <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/good/index.css}" />
+   <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/user/index.css}" />
+    <script src="{res file=bqmart/js/jquery.js}"></script>
+    <!-- 控制整体标签宽度的js -->
+    <script src="{res file=bqmart/template/js/com/com.js}"></script>
+    <!-- 控制整体标签宽度的js end -->
+    <!-- 控制图片缩放比例的js -->
+    <script src="{res file=bqmart/template/js/com/template.js}"></script>
+    <!-- 控制图片缩放比例的js end -->
+    <!-- 控制猜你喜欢模块左右切换的js 开始-->
+    <script type="text/javascript" src="{res file=bqmart/template/js/home/swipe.js}" charset="utf-8"></script>
+    <!-- 控制猜你喜欢模块左右切换的js 结束-->
+    <!--控制订单导航Tab切换的js开始-->
+    <script src="{res file=bqmart/template/js/home/index.js}"></script>
+    <!--控制订单导航Tab切换的js结束--->
+    <script type="text/javascript" src="index.php?act=jslang"></script>
+    <style type="text/css">
+            /*退换货弹出层的样式开始 BY wei 2015.01.30*/
+            .mydiv {
+            background-color: #666666;
+            text-align: center;
+            line-height: 40px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index:999999;
+            width: 298px;
+            height: 145px;
+            left:50%;/*FF IE7*/
+            top: 50%;/*FF IE7*/
+			border-radius:5px;
+            
+            margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */
+            margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/
+            
+            margin-top:0px;
+            
+            position:fixed!important;/*FF IE7*/
+            position:absolute;/*IE6*/
+            
+            _top:       expression(eval(document.compatMode &&
+                        document.compatMode=='CSS1Compat') ?
+                        documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+                        document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+            
+            }
+            .mydiv p{
+				padding:12px 0px 0px;
+				color:#FFF;
+				font-size:16px;
+				font-family:微软雅黑;
+				}
+			.mydiv .kefu_dianhua{
+				text-align:center;
+				padding:0px 10px;
+				height:50px;
+				line-height:50px;
+				margin-bottom:10px;
+					}
+            .mydiv .kefu_dianhua span{
+				display:inline-block;
+				width:45px;
+				height:40px;
+				background:url(themes/bqmart/images/ddchaxun_icon.png) center no-repeat;
+				background-size:35px 30px;
+				padding:2px;
+				vertical-align:middle;
+				}
+			.mydiv .kefu_dianhua a{
+				font-size:20px;
+				color:#00FA12;
+				font-weight:bold;
+				}
+			.mydiv .guanbi_btn{
+				display:block;
+				color:#FFF;
+				height:30px;
+				width:40%;
+				margin:0 auto;
+				line-height:27px;
+				font-size:14px;
+				background:#F52121;
+				border-radius:6px;
+				}
+            .bg {
+            background-color: #ccc;
+            width: 100%;
+            height: 100%;
+            left:0;
+            top:0;/*FF IE7*/
+            filter:alpha(opacity=50);/*IE*/
+            opacity:0.5;/*FF*/
+            z-index:1;
+            
+            position:fixed!important;/*FF IE7*/
+            position:absolute;/*IE6*/
+            
+            _top:       expression(eval(document.compatMode &&
+                        document.compatMode=='CSS1Compat') ?
+                        documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+                        document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+            
+            }
+            /*退换货弹出层的样式结束 End  Wei 2015.01.30*/
+            
+        </style>
+	    <script type="text/javascript">
+		    //控制退换货弹出层的js函数开始 
+            function showDiv(){
+            document.getElementById('popDiv').style.display='block';
+            document.getElementById('bg').style.display='block';
+            }
+            
+            function closeDiv(){
+            document.getElementById('popDiv').style.display='none';
+            document.getElementById('bg').style.display='none';
+            }
+            //控制退换货弹出层的js函数结束
+       </script>
+  </head>
+  <body>
+    <div class="com-content">
+       <!-- 头部区域开始 by-wei 2014.12.08  -->
+        <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">订单列表</span>
+          <a href="{url app=default}" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+      <!-- 头部区域结束 end -->
+	  <!--退货货提示弹出层开始-->
+      <div id="popDiv" class="mydiv" style="display:none;">
+         <p>客官，退换货请拨打客服!</p>
+         <div class="kefu_dianhua">
+            <span></span><a href="wtai://wp/mc;400-070-0707">400-070-0707</a>
+         </div>
+       <a href="javascript:closeDiv()" class="guanbi_btn">关闭窗口</a>
+       </div>
+       <div id="bg" class="bg" style="display:none;"></div>
+      <!--退货货提示弹出层结束-->
+      <!--中间内容区域开始 by-wei 2014.12.08 --> 
+        <div class="com-content-area" id="js-com-content-area">
+          <div class="page-role user_order-page">
+          
+          <div class="pxui-area">
+           <!--订单列表导航区块开始-->
+         <div  style="height:10px; background:#EDEBE9; clear:both;"></div>
+           <div class="pxui-tab pxui-tab-style pxui-tab-no-top">
+          <a href="{url app=buyer_order&act=index&type=all}" {if $type eq all} class="selected" {/if}>全部</a>
+          <a href="{url app=buyer_order&act=index&type=pending}" {if $type eq pending} class="selected" {/if}>待付款</a>
+          <a href="{url app=buyer_order&act=index&type=accepted}" {if $type eq accepted} class="selected" {/if} >待发货</a>
+          <a href="{url app=buyer_order&act=index&type=shipped}" {if $type eq shipped} class="selected" {/if} >待收货</a>
+          <a href="{url app=buyer_order&act=index&type=finished}" {if $type eq finished} class="selected" {/if} >已完成</a>
+          </div>
+         <!--订单列表导航区块结束-->
+         <div class="bq_cplb_bg" style="margin-top:-4px;"></div>
+          <div class="pxui-shoes">
+          <!--待付款订单列表开始-->
+          <!--{foreach from=$orders item=order}-->
+          <div class="user_orderlist-show" style="margin-bottom:15px;">
+            <div class="order_showlist-title">
+               <span class="order_shop-icon"></span>
+               <p class="order_shop-name">{$order.seller_name|escape}
+               </p>
+               <p class="order_shop-number" style="height:30px;overflow: hidden; color:#3152F2;">订单号：{$order.order_sn|escape}</p>
+            </div>
+            <div class="user_orderlist-info" >
+              <ul>
+              <!--{foreach from=$order.order_goods item=goods}-->
+                 <li>
+                    <a href="{url app=goods&id=$goods.goods_id}" style=" border-right:none; float:none; margin-left:0px;">
+                     <img src="{$goods.goods_image}">
+                    </a>
+                   <div class="orderlist_Pre-info">
+                     <p class="orderlist_Pre-name" style=" max-height:40px;">
+                        <a href="{url app=goods&id=$goods.goods_id}" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;padding-top:0px;" >{$goods.goods_name|escape}</a>
+                     </p>
+                     <span class="orderlist_Pre-price">价格：&nbsp;&nbsp;{$goods.price|price}</span>
+                     <span class="orderlist_Pre-number">数量：&nbsp;&nbsp;X&nbsp;&nbsp;{$goods.quantity}</span>
+                   </div>
+                 </li>
+               <!--{/foreach}-->  
+              </ul>
+            </div>
+            <div class="order_list-btn" style="border-bottom:1px #b2b2b2 dashed; padding-bottom:10px; margin-top:10px;">
+            	<b>&nbsp;&nbsp;订单状态：<font style="color:#b20005;">
+                
+                        {if $order.status eq 11}等待买家付款{/if}
+                        {if $order.status eq 12}等待买家收货付款{/if}
+                        {if $order.status eq 13}买家已付款{/if}
+                        {if $order.status eq 20}等待卖家发货{/if}
+                        {if $order.status eq 21}货到付款已发货{/if}
+                        {if $order.status eq 30}卖家已发货{/if}
+                        {if $order.status eq 40}交易完成{/if}
+                        {if $order.status eq 0}交易关闭{/if} 
+                        {if $order.status eq 51}退货申请中{/if}
+                        {if $order.status eq 52}退货审核中{/if}
+                        {if $order.status eq 53}退货失败{/if}
+                        {if $order.status eq 54}退货成功{/if} 
+
+                </font></b>
+            </div>
+            <div class="order_list-btn">
+              {if $order.status eq 11}
+              <a href="{url app=cashier&order_id=$order.order_id}" style="margin-left:0px; float:none;">去支付</a>
+              {/if}
+              {if $order.status eq 13 || $order.status eq 30}
+              <a href="javascript:confirm_order({$order.order_id})"  style="margin-left:0px; float:none;">确认收货</a>
+              {/if}
+              {if $order.status eq 11 || $order.status eq 12 || $order.status eq 10}
+              <a href="javascript:cancel_order({$order.order_id});"  style="margin-left:0px; float:none;">取消</a>
+              {/if}
+              <a href="{url app=buyer_order&act=view&order_id=$order.order_id}" style=" margin-left:0px; float:none; ">查看订单</a>
+			  {if $order.status eq 13 || $order.status eq 21 || $order.status eq 30}
+			  <a href="javascript:void(0)" style="margin-left:0px; float:none;" onclick="javascript:showDiv()" >退换货</a>
+			  {/if}
+              <!--<a href="#" style=" margin-left:0px; float:none; {if $order.status neq ORDER_FINISHED}display:none;{/if}" >再次购买</a>-->
+                <!-- {if $order.status eq 13 || $order.status eq 21 || $order.status eq 30}
+              <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'" style=" margin-left:0px; float:none;" >退换货</a>
+              {/if}
+              <div>
+              <div id="light" class="white_content" >
+                <p style=" font-size:16px;">客官，想退换货请先致电客服：</p> 
+                 <p style=" font-size:28px; padding:10px 0px; color:#F00;"> {$order.store_info.tel}</p> 
+                 <p style=" font-size:14px;">注：根据规定生鲜产品不允许退换货</p> 
+                <a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" style=" height:20px; width:30px; float:none; position:absolute; top:0px; right:-10px; min-width:0px; padding:3px 10px 6px; ">关闭</a></div> 
+        <div id="fade" class="black_overlay"></div>  -->
+            </div>
+            
+            <!--取消订单隐藏区域开始-->
+            <div class="order_list-btn" style="display:none; text-align:left;" id="order_{$order.order_id}">
+            	<form method="post" id="order_form_{$order.order_id}">
+                	<p><input type="radio" checked name="cancel_reason_{$order.order_id}" value="{$lang.cancel_reason1}" onClick="change_radio_r({$order.order_id})" /><label>{$lang.cancel_reason1}</label></p>
+                    <p><input type="radio" name="cancel_reason_{$order.order_id}" value="{$lang.cancel_reason2}" onClick="change_radio_r({$order.order_id})" /><label>{$lang.cancel_reason2}</label></p>
+                    <p><input type="radio" name="cancel_reason_{$order.order_id}" value="{$lang.cancel_reason3}" onClick="change_radio_r({$order.order_id})" /><label>{$lang.cancel_reason3}</label></p>
+                    <p><input type="radio" name="cancel_reason_{$order.order_id}" value="{$lang.other_reason}" onClick="change_radio({$order.order_id})" /><label>{$lang.other_reason}</label></p>
+                    <p id="other_reason_{$order.order_id}" style="display:none;"><textarea class="text" style="width:200px;" name="remark_{$order.order_id}"></textarea></p>
+                    <p><input type="button" name="btn_{$order.order_id}" id="btn_{$order.order_id}" value="{$lang.confirm}" onClick="javascript:if(confirm('{$lang.cancel_order_confirm}')){post_data({$order.order_id});}" />&nbsp;&nbsp;<input type="button" name="btn_reset_{$order.order_id}" id="btn_reset_{$order.order_id}" value="取消" onClick="reset_data({$order.order_id})" /></p>
+                </form>
+            </div>
+            <!--取消订单隐藏区域结束-->
+            
+            <!--确认订单隐藏区域开始-->
+            <div class="order_list-btn" style="display:none; text-align:left;" id="confirm_order_{$order.order_id}">
+            <form id="confirm_form_{$order.order_id}" style="padding:0px 10px; border-top:1px solid #ccc; ">
+            <p style="color:#1695e6;padding:5px 0px; font-size:16px;">{$lang.confirm_order_confirm}</p>
+            <p>{$lang.order_sn}:&nbsp;&nbsp;<span style="color:#1695e6;">{$order.order_sn}</span></p>
+            <p>{$lang.notice}:&nbsp;&nbsp;{$lang.confirm_order_notice}</p>
+            <p style="text-align: center; margin-top:5px; border-top: 1px dashed #ccc; padding-top:10px;"><input type="button" value="{$lang.confirm}" onClick="javascript:if(confirm('您确定要确认吗？')) confirm_yes({$order.order_id});" style="padding: 5px 20px; border-radius: 6px; border:none;background:#ec0000;color: #fff;" />&nbsp;&nbsp;<input type="button" onClick="confirm_cancel({$order.order_id})" value="{$lang.cancel}"style="padding: 5px 20px; border-radius: 6px;" /></p>
+        	</form>
+            </div>
+            <!--确认订单隐藏区域结束-->
+         
+         </div>
+         <!--{foreachelse}-->
+         <div class="null" style="display:none; margin-top:120px;">
+         	<p><img src="/themes/mall/default/styles/wxmall/images/order_null.png" /></p>
+            <p>你没有订单信息~</p>
+            <p><a href="javascript:history.back(-1);" class="white_btn">去购物</a></p>
+         </div>
+         <!--{/foreach}-->
+         <!--待付款订单列表结束-->
+          </div>
+          <div class="page">
+          	<!--分页区域开始--->
+           <!--{if !$goods_list_order}-->{include file=page.bottom.html}<!--{/if}-->
+           <!---分页区域结束-->
+          </div>
+          </div>
+          </div>
+		</div>
+       <!--中间内容区域结束 End-wei 2014.12.08 --> 
+		<script type="text/javascript">
+
+		    //取消订单操作
+		    function cancel_order(order_id) {
+		        $('#order_' + order_id).slideDown('slow');
+		    }
+
+		    //取消操作
+		    function reset_data(order_id) {
+		        $('#order_' + order_id).slideUp('slow');
+		    }
+
+		    //单击显示其他原因
+		    function change_radio(order_id) {
+		        $('#other_reason_' + order_id).show();
+		    }
+
+		    //单击隐藏其他原因
+		    function change_radio_r(order_id) {
+		        $('#other_reason_' + order_id).hide();
+		    }
+
+		    //异步提交表单
+		    function post_data(order_id) {
+		        var reason = '';
+		        var len = document.getElementsByName("cancel_reason_" + order_id).length;
+
+		        //获取选中单选按钮
+		        for (var i = 0; i < len; i++) {
+		            if (document.getElementsByName("cancel_reason_" + order_id).item(i).checked) {
+		                reason = document.getElementsByName("cancel_reason_" + order_id).item(i).value;
+		            }
+		        }
+
+		        //获取其他原因输入内容
+		        var remark = (document.getElementsByName("remark_" + order_id).item(0).value).length == 0 ? 'null_data' : (document.getElementsByName("remark_" + order_id).item(0).value);
+
+		        //异步操作开始
+		        var url = "index.php?app=buyer_order&act=cancel_order_new&order_id=" + order_id + "&reason=" + reason + "&remark=" + remark;
+		        $.getJSON(url, '', function (data) {
+		            if (data.done) {
+		                alert('操作成功！');
+		                $('#order_' + order_id).slideUp('slow');
+		                location.reload();
+		            } else {
+		                alert(data.msg);
+		            }
+		        });
+
+
+		    }
+
+		    //以下为确认收货操作部分
+
+		    function confirm_order(order_id) {
+		        $('#confirm_order_' + order_id).slideDown('slow');
+		    }
+
+		    function confirm_cancel(order_id) {
+		        $('#confirm_order_' + order_id).slideUp('slow');
+		    }
+
+		    //确认操作
+		    function confirm_yes(order_id) {
+		        //异步操作开始
+		        var url = "index.php?app=buyer_order&act=confirm_order_new&order_id=" + order_id;
+		        $.getJSON(url, '', function (data) {
+		            if (data.done) {
+		                alert('操作成功！');
+		                $('#confirm_order_' + order_id).slideUp('slow');
+		                location.reload();
+		            } else {
+		                alert(data.msg);
+		            }
+		        });
+		    }
+			
+  		</script>
+       <!--底部区域开始 By Wei 2014.12.08-->
+       {include file='member.footer.html'}
+       <!--底部区域结束 End Wei 2014.12.08-->
+      
+</div>
+<!--底部浮动菜单开始-->
+{include file='store.menu.html'}
+<!--底部浮动菜单结束-->
+</body>
+</html>

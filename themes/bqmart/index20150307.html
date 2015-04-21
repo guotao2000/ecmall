@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-选择店铺</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->      
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/style/com/com.css}"/>
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/style/shop/shop.css}"/>
+        <!-- 控制整体标签宽度的js -->
+   		<script src="{res file=bqmart/template/js/com/com.js}"></script>
+        <!-- 控制整体标签宽度的js end -->
+        <!-- 控制图片缩放比例的js -->
+        <script src="{res file=bqmart/template/js/com/template.js}"></script>
+        <!-- 控制图片缩放比例的js end -->
+    </head>
+<body>
+    <div class="com-content">
+        <!-- 顶部区域开始 -->
+    	<div class="page-title">
+           <!--<a href="{url app=default}"><i class="retun"> </i></a>-->
+            请选择配送店铺
+           <a href="{url app=default}"><i class="homebutom"></i></a>
+		</div>
+        <!-- 顶部区域结束 -->
+        <!-- 店铺列表区域开始 -->
+        <div class="shoplist">
+            <h3>
+                离我最近的店铺
+            </h3>
+            <ul>
+				{foreach from=$stores item=store}
+					<li> <a href="index.php?app=store&act=redirect&id={$store.store_id}">
+						<i class="shop_icon"></i>
+						<div class="shop_name">
+							{$store.store_name|escape}<br />
+							距离约：<span>{$store.juli} Km</span>
+						</div>
+						<i class="shop_anjian"></i></a>
+                	</li>
+				{foreachelse}
+				<li>
+					暂无店铺
+				</li>
+				{/foreach}
+            </ul>
+        </div>
+        <!-- 店铺列表区域结束 -->
+     
+      </div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+body, h1, h2, h3, h4, h5, h6, hr, menu, p, blockquote, ol, ul, dl, dd, td, th, figure, pre, button, input, textarea {
+    margin: 0;
+    padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: 500;
+}
+address, cite, dfn, em, var {
+    font-style: normal;
+}
+code, kbd, pre, samp, tt {
+    font-family: "Courier New",Courier,monospace;
+}
+button, input, select, textarea {
+    font-size: 100%;
+}
+fieldset, img {
+    border: 0 none;
+}
+ol, ul {
+    list-style: none outside none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+a, a:hover {
+    text-decoration: none;
+}
+a {
+    color: #525252;
+}
+
+fieldset, img {
+    border: 0 none;
+}
+.clearfix:after {
+    clear: both;
+    content: "...";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.liebiao{
+	width:100%;
+	margin:0 auto;
+	
+	}
+	
+.liebiao .zxTitle {
+    border-bottom: 1px solid #b2b2b2;
+    height: 38px;
+}
+
+.liebiao i {
+    background-color: #e0483d;
+    display: inline-block;
+    float: left;
+    height: 24px;
+    margin: 8px 10px auto 19px;
+    width: 6px;
+}
+
+.liebiao .zxTitle p {
+    display: inline-block;
+    float: left;
+    font-size: 16px;
+    line-height: 38px;
+}
+.liebiao .zxList {
+    width: 100%;
+}
+
+.zxList li {
+    border-bottom: 1px solid #b2b2b2;
+    height: auto;
+    left: 0;
+    overflow: hidden;
+    padding: 10px 0px;
+    position: relative;
+    top: 0;
+    width: 100%;
+}
+
+
+.zxList li .pointer {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.zxList li img {
+    display: inline-block;
+    float: left;
+    height: auto;
+    margin:5px 10px 0 5px;
+    width: 29%;
+	border:1px solid #DAD7D2;
+	padding:5px;
+}
+
+.zxList li .zxProInfo {
+    margin-left: 30%;
+    width: 60%;
+}
+
+.zxProInfo .proName {
+    color: #2c2c2c;
+    max-height: 42px;
+    overflow: hidden;
+	margin-left: 20px;
+	font-size:14px;
+}
+
+.zxProInfo .proSlogan {
+    color: #777;
+    margin-bottom: 10px;
+	margin-left: 20px;
+    max-height: 21px;
+    overflow: hidden;
+	font-size:14px;
+}
+
+.zxProInfo .proPrice {
+    color: #e0483d;
+    font-size: 15px;
+	margin-left: 20px;
+    font-weight: bold;
+}
+.zxProInfo .proPrice span {
+    color: #a4a4a4;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: line-through;
+}
+
+.zxList li .addCart {
+    background: url("../images/buy.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    bottom: 5px;
+    display: block;
+    height: 29px;
+    position: absolute;
+    right: 10px;
+    width: 81px;
+    z-index: 9;
+}

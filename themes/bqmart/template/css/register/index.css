@@ -1,0 +1,239 @@
+@charset "utf-8";
+/***
+用户注册页面样式开始
+By Wei
+2014.12.19
+****/
+
+.bq_register-box {
+	-moz-box-shadow: inset 0px 1px 30px #CDCDCD;
+	-webkit-box-shadow: inset 1px 0px 30px #CDCDCD;
+	box-shadow: inset 0px 1px 30px #CDCDCD;
+	background: #F5F5F5;
+}
+.bq_register {
+	margin: 10px auto;
+	padding: 0px 20px;
+}
+.user_register-shouji{
+	position:relative;
+	}
+
+.user_register-shouji span ,.user_register-yzmbtn span ,.user_register-dl span{
+	display: inline-block;
+    font-family: 微软雅黑;
+    font-size: 16px;
+    margin-right: 10px;
+    text-align: right;
+    width: 30%;
+	}
+
+	
+.user_register-yzmbtn .yzm_btn{
+	background: #F5F5F5;
+	border:1px solid #CCC;
+	cursor:pointer;
+	border-radius:8px;
+	margin:0 8px;
+	color:#8E8383;
+	-moz-box-shadow: inset 0px 1px 10px #E0E0E0;
+	-webkit-box-shadow: inset 1px 0px 10px #E0E0E0;
+	box-shadow: inset 0px 1px 10px #E0E0E0;
+	padding-top:5px;
+	position:relative;
+	}
+.user_register-yzmbtn  .daojishi{
+	position:absolute;
+	width:20px;
+	height:35px;
+	line-height:35px;
+	}
+.user_register-tishi{
+	text-align:center;
+	padding-left:18%;
+	padding-right:20px;
+	color:#EC0000;
+	}
+.user_register-shouji input{
+	border-width:1px;
+	height:20px;
+	width:40%;
+	}
+.user_register-tijiao{
+	margin:20px auto;
+	}
+
+.user_register-tijiao button {
+	display:block;
+	margin:0 auto;
+	padding:3% 14%;
+	font-size:16px;
+	font-family:微软雅黑;
+	cursor:pointer;
+	background:#EC0000;
+	border:none;
+	border-radius:8px;
+	color:#FFF;
+	-moz-box-shadow: inset 0px 1px 20px #ED7676;
+	-webkit-box-shadow: inset 1px 0px 20px #ED7676;
+	box-shadow: inset 0px 1px 20px #ED7676;
+	
+	}
+.user_register-dl a{
+	display:inline-block;
+	width:43%;
+	text-align:right;
+	padding:10px 0px;
+	font-size:14px;
+	color:#00F;
+	}
+.user_register-dl i{
+	color:#666;
+	}
+
+/***用户注册页面样式结束***/
+
+/**用户找回密码页面样式开始**/
+.bq_retrieve_pssword {
+	margin: 30px auto;
+	}
+.retrieve_pssword-shouji{
+	text-align:center;
+	height:50px;
+	}
+
+.pssword_shouji-l{
+	width:55%;
+	float:left;
+	text-align:right;
+	}
+.pssword_shouji-l input{
+	border-width:1px;
+	margin-right:0px;
+	padding-right:0px;
+	}
+.bq_retrieve_pssword span{
+	display:block;
+	width:35%;
+	float:left;
+	text-align:left;
+	}
+.bq_retrieve_pssword  .yzm_btn{
+	background: #F5F5F5;
+	border:1px solid #CCC;
+	cursor:pointer;
+	border-radius:8px;
+	color:#8E8383;
+	-moz-box-shadow: inset 0px 1px 10px #E0E0E0;
+	-webkit-box-shadow: inset 1px 0px 10px #E0E0E0;
+	box-shadow: inset 0px 1px 10px #E0E0E0;
+	padding-top:5px;
+	}
+.retrieve_pssword-text{
+	text-align:center;
+	height:40px;
+	line-height:40px;
+	}
+.bq_retrieve_text span{
+	display:block;
+	width:35%;
+	float:left;
+	text-align:left;
+	}
+
+.pssword_text-l{
+	width:55%;
+	float:left;
+	text-align:right;
+
+	}
+.pssword_text-l p{
+	margin-right:70px;
+	height:40px;
+	line-height:40px;
+	}
+.retrieve_pssword-yzm{
+	text-align:center;
+	height:50px;
+	}
+
+.bq_retrieve_yzm span{
+	display:block;
+	width:35%;
+	float:left;
+	text-align:left;
+	}
+.pssword_yzm-l{
+	width:55%;
+	float:left;
+	text-align:right;
+	}
+.pssword_yzm-l input{
+	border-width:1px;
+	margin-right:0px;
+	padding-right:0px;
+	}
+.retrieve_pssword-tijiao{
+	margin:20px 60px 30px;
+	}
+.retrieve_pssword-tijiao a{
+	display:block;
+	margin:0 auto;
+	padding:8px;
+	font-size:16px;
+	font-family:微软雅黑;
+	cursor:pointer;
+	background:#EC0000;
+	border:none;
+	border-radius:10px;
+	color:#FFF;
+	-moz-box-shadow: inset 0px 1px 20px #ED7676;
+	-webkit-box-shadow: inset 1px 0px 20px #ED7676;
+	box-shadow: inset 0px 1px 20px #ED7676;
+	text-align:center;
+	}
+
+/**用户找回密码页面样式结束**/
+
+/***设置新密码页面样式开始***/
+
+.change_password {
+	margin: 30px auto;
+    padding: 0 20px;
+	}
+.change_password-text{
+	position:relative;
+	}
+.change_password-text span {
+	display: inline-block;
+    font-family: 微软雅黑;
+    font-size: 16px;
+    margin-right: 10px;
+    text-align: right;
+    width: 30%;
+	}
+.change_password-text input{
+	border-width:1px;
+	height:20px;
+	width:40%;
+	}
+.change_password-tijiao {
+	margin:20px auto;
+	}
+.change_password-tijiao button {
+	display:block;
+	margin:0 auto;
+	padding:2% 20%;
+	font-size:16px;
+	font-family:微软雅黑;
+	cursor:pointer;
+	background:#EC0000;
+	border:none;
+	border-radius:8px;
+	color:#FFF;
+	-moz-box-shadow: inset 0px 1px 20px #ED7676;
+	-webkit-box-shadow: inset 1px 0px 20px #ED7676;
+	box-shadow: inset 0px 1px 20px #ED7676;
+	
+	}
+/***设置新密码样式结束***/

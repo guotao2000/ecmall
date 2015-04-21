@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-购买成功页面</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/com/com.css}"/> 
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/home/index.css}"/>
+        <script src="{res file=bqmart/js/jquery.js}"></script>
+        <!-- 控制整体标签宽度的js -->
+        <script src="{res file=bqmart/template/js/com/com.js}"></script>
+        <!-- 控制整体标签宽度的js end -->
+        <!-- 控制图片缩放比例的js -->
+        <script src="{res file=bqmart/template/js/com/template.js}"></script>
+        <!-- 控制图片缩放比例的js end -->
+        <!--控制支付方式选择的js 开始-->
+        <script type="text/javascript" src="{res file=bqmart/template/js/cart/jquery.inputbox.js}"></script>
+        <!--控制支付方式选择的js 结束-->
+		<script type="text/javascript" >
+		function yxwgopay()
+		{
+
+		   if($("input[name='payment_id']:checked").val().length>0)
+		   {
+		     $('#goto_pay').submit();
+		   }else{
+		   alert('请选择一种支付方式');
+		   return false;
+		   }
+		}
+		</script>
+		<style>
+	
+.cart_empty-btn {
+    margin: 0 33%;
+    padding: 20px 0;
+}	
+.cart_empty-btn a {
+    background: none repeat scroll 0 0 #ec0000;
+    border: medium none;
+    border-radius: 8px;
+    box-shadow: 0 1px 20px #ed7676 inset;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-family: 微软雅黑;
+    font-size: 16px;
+    margin: 0 auto;
+    padding: 3% 14%;
+    text-align: center;
+}
+		</style>
+		<style type="text/css">
+body{padding:0px;margin:0px;font-size:12px;overflow:hidden;}
+#container div{padding:10px;position:absolute;border:0px dotted brown;width:0px;cursor:pointer;}
+.text{padding:10px;color:#ccc;}
+
+</style>
+</head>
+<body>
+
+<div class="com-content">
+<!--begin-->
+<div id="container">
+<div><img src="/themes/bqmart/images/jinbi.png" width="80px" height="60px"/></div>
+<div><img src="/themes/bqmart/images/jinbi.png" width="80px" height="60px"/></div>
+<div><img src="/themes/bqmart/images/jinbi.png" width="80px" height="60px"/></div>
+<div><img src="/themes/bqmart/images/jinbi.png" width="80px" height="60px"/></div>
+<div><img src="/themes/bqmart/images/jinbi.png" width="80px" height="60px"/></div>
+<div><img src="/themes/bqmart/images/jinbi.png" width="80px" height="60px"/></div>
+<div><img src="/themes/bqmart/images/jinbi.png" width="80px" height="60px"/></div>
+<div><img src="/themes/bqmart/images/jinbi.png" width="80px" height="60px"/></div>
+<div><img src="/themes/bqmart/images/jinbi.png" width="80px" height="60px"/></div>
+</div>
+<!--end-->
+<!-- 头部区域开始 by-wei 2014.12.08  -->
+  <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">购买成功</span>
+          <a href="{url app=default}" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+<!-- 头部区域结束 end -->
+<!-- 确认订单信息页面中心区域开始-->
+  <div class="com-content-area" id="js-com-content-area" style=" margin:0px;">
+      <!-- 确认订单信息页面内容区域开始-->
+      <form action="index.php?app=bqds&act=gopay_yxw&order_id={$order.order_id}" method="POST" id="goto_pay">
+         <div class="page-role good-page">
+         <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/good/index.css}" />
+         <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/order/index.css}" />
+
+    <div class="pxui-area">
+        <div class="bq_payorder-box" id="js-attrs-title">
+           <!--收货地址区域开始-->
+            <!--收货地址区域开始-->
+           <div class="payorder_ok-title">
+              <p>
+               <span class="payorden_ok-icon"></span>亲，刚刚省了<span style="color:red;">{$sum_price|price}</span>银子！棒棒哒！~~
+              </p>
+           </div>
+           <div class="payorder-info">
+		      <p>市场价值：<span>{$sum_shichang|price}</span></p>
+              <p>实付金额：<span>{$order_amount|price}</span></p>
+              <p>点击右上角“…”去向小伙伴们嘚瑟一下吧~<span></span></p>
+              <div>
+              </div>
+           </div>
+           <!--收货地址区域结束--->  
+           <!-- 金额结束区域开始--->
+             <div class="cart_empty-btn" style="text-align:center;">
+                 <a   class="weining" type="button"  style=" " href="/index.php?app=buyer_order&act=index&type=all">查看订单</a>
+             </div>
+           <!---金额结算区域结束-->           
+         </div>
+    </div>
+</div>
+<input type="hidden" value="{$order.order_sn}" name="trade_sn"/>
+</form>
+      <!-- 确认订单信息页面内容区域结束-->
+         {include file='member.footer.html'}
+
+</div> 
+<!-- 确认订单信息页面中心区域开始-->
+</div>
+<!--底部浮动菜单开始-->
+ {include file='store.menu.html'}
+<!--底部浮动菜单结束-->
+</body>
+<script type="text/javascript">
+/*
+*code by 锋迷全球
+*2011/5/24
+*/
+$(function()
+{
+$('div','#container').clone().prependTo('#container');//克隆一遍增加数据
+$('div','#container').mousemove(function(e)
+{
+var ex = e.clientX;//鼠标x坐标
+var ey = e.clientY;
+$(this).css({"left":(ex-20) +"px","top":(ey-20) +"px"});
+});
+range();
+ intv=setInterval(drop,400);
+});
+//排列
+function range()
+{
+var num = 1;
+$('div','#container').each(function(i)
+{
+var ww = $(window).width();//窗口宽度
+var wh = $(window).height();
+var ol = $(this).offset().left;//距左边像素
+var ot = -20;//$(this).offset().top;//从头部以上开始
+i++;
+if(i%22==0) num=1; //22个一排
+$(this).css({"left":(ol+ num*20) +"px","top":(ot + Math.ceil(i/2)*10)+"px"});//距左距离保持，距上距离变化
+num ++;
+});
+}
+var i=0;
+//降落
+function drop()
+{
+$('div','#container').each(function(i)
+{
+var wh = $(window).height();
+var ol = $(this).offset().left;
+var ot = $(this).offset().top;
+var rnd = Math.round(Math.random()*100);
+var rnd2 = Math.round(Math.random()*50);
+//i = i == 0 ? 0.5 : i;
+$(this).css({"top":(ot+rnd+rnd2) +"px"});//降落的速度
+if(ot>=wh)//如果掉到窗口以下
+{
+//$(this).css({"top":wh-20 +"px"});//停在当前位置不让继续从上往下掉
+$(this).css({"top":-5*rnd +"px"});//从顶部以上开始
+}
+});
+i++;
+if(i>6){
+intv=window.clearInterval(intv);
+$("#container").hide();
+}
+}
+</script>
+<!--控制支付方式选择单选按钮的js执行函数 开始-->
+<script type="text/javascript" language="javascript">
+
+    function payclick(that) {
+        // alert($(that).html());
+        $(that).children("input:first").attr("checked", true);
+    }
+    function qidongd() {
+
+        // alert(1);
+        that = $(".yxwspan").get(0);
+        $(that).children("input:first").attr("checked", true);
+    }
+    $(function () {
+
+        $('div[name="city"]').inputbox({
+            height: 24,
+            width: 100
+        });
+
+        $('.cbt').inputbox();
+
+        $('[name="rbt"], [name="rbt2"]').inputbox();
+        if ($(".yxwspan").size() > 0) {
+            qidongd();
+        }
+
+    });
+      
+</script>
+<!--控制支付方式选择的单选按钮的js执行函数 结束-->
+</html>

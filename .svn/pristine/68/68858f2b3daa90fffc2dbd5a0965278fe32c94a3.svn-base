@@ -1,0 +1,61 @@
+{include file="header.html"}
+
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    
+});
+//]]>
+</script>
+
+<div id="rightTop">
+  <p>微信公众平台管理（支持添加多个公众号）</p>
+  <ul class="subnav">
+    <li><span>添加微信公众号</span></li>
+    <li><a class="btn1" href="index.php?app=setting&amp;act=base_information">{$lang.base_information}</a></li>
+    <li><a class="btn1" href="index.php?app=setting&amp;act=email_setting">{$lang.email_setting}</a></li>
+    <li><a class="btn1" href="index.php?app=setting&amp;act=captcha_setting">{$lang.captcha_setting}</a></li>
+    <li><a class="btn1" href="index.php?app=setting&amp;act=store_setting">{$lang.store_setting}</a></li>
+    <li><a class="btn1" href="index.php?app=setting&amp;act=credit_setting">{$lang.credit_setting}</a></li>
+    <li><a class="btn1" href="index.php?app=setting&amp;act=subdomain_setting">{$lang.subdomain_setting}</a></li>
+  </ul>
+</div>
+<div class="info">
+  <form method="post" enctype="multipart/form-data">
+    <table class="infoTable">
+      <tr>
+        <th class="paddingT15"><label for="weixin_account"> 微信公众账号:</label></th>
+        <td class="paddingT15 wordSpacing5">
+          <input id="weixin_account" type="text" name="weixin_account" class="infoTableInput"/>
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"><label for="weixin_url"> 接口配置URL:</label></th>
+        <td class="paddingT15 wordSpacing5">
+          <input id="weixin_url" type="text" name="weixin_url" class="infoTableInput"/>
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"><label for="weixin_token"> 接口配置Token:</label></th>
+        <td class="paddingT15 wordSpacing5">
+          <input id="weixin_token" type="text" name="weixin_token" class="infoTableInput"/>
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"><label for="weixin_appid"> 微信AppId：</label></th>
+        <td class="paddingT15 wordSpacing5">
+          <input id="weixin_appid" type="text" name="weixin_appid" class="infoTableInput"/>
+          <span class="grey">（选填，自定义菜单时用到）</span>
+        </td>
+      </tr>
+      <tr>
+        <th class="paddingT15"><label for="weixin_appsecret"> 微信AppSecret：</label></th>
+        <td class="paddingT15 wordSpacing5">
+          <input id="weixin_appsecret" type="text" name="weixin_appsecret" class="infoTableInput"/>
+          <span class="grey">（选填，自定义菜单时用到）</span>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,92 @@
+{include file="header.html"}
+<div id="rightTop">
+  <p>微信公众平台管理（支持添加多个公众号）</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=weixin_config">添加公众号</a></li>
+    <li><a class="btn1" href="index.php?app=weixin_config&amp;act=wx_list">公众号列表</a></li>
+	<li><a class="btn1" href="index.php?app=weixin_message&amp;wx_id={$smarty.get.wx_id}">新增图文</a></li>
+  </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="weixin_message" />
+                <input type="hidden" name="act" value="wxtw_list" />
+				<input type="hidden" name="wx_id" value="{$smarty.get.wx_id}" />
+				 标题:
+                <input class="queryInput" type="text" name="title" value="{$query.title|escape}" style="width:400px;" />
+                <input type="submit" class="formbtn" value="查询" />
+            </div>
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $wxtws}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td>编号</td>
+			<td>封面图片</td>
+            <td>标题</td>
+            <td>自动回复类型</td>
+            <!-- <td>图文类型</td> -->
+			<!-- <td>是否默认</td> -->
+            <td>显示</td>
+            <td>指定二维码参数值</td>
+			<td>关键词</td>
+			<td>自定义链接</td>
+			<td>添加时间</td>
+			<td>修改时间</td>
+            <td>操作</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$wxtws item=wxtw}-->
+        <tr class="tatr2">
+            <td class="firstCell">
+            <input type="checkbox" class="checkitem" value="{$wxtw.wxtw_id}"/>
+            </td>
+            <td>{$wxtw.wxtw_id|escape}</td>
+            <td>{if $wxtw.picurl}<img src="{$wxtw.picurl|escape}" width="80px" height="80px" />{else}暂无图片{/if}</td>
+			<td>{$wxtw.title|escape}</td>
+            <td>{if $wxtw.is_subscribe eq 0}关注时自动回复{else}普通自动回复{/if}</td>
+            <!-- <td>{if $wxtw.tw_type eq 0}单图文{else}多图文{/if}</td> -->
+			<!-- <td>{if $wxtw.is_default eq 0}否{else}是{/if}</td> -->
+            <td>{if $wxtw.is_pub eq 0}否{else}是{/if}</td>
+            <td>{$wxtw.allow_uin|escape}</td>
+			<td>{$wxtw.keywords|escape}</td>
+			<td>{$wxtw.url|escape}</td>
+			<td>{$wxtw.add_time|date:complete}</td>
+			<td>{if $wxtw.update_time}{$wxtw.update_time|date:complete}{else}{/if}</td>
+            <td>
+				<!-- <a href="index.php?app=weixin_message&amp;act=view&amp;wx_id={$wxtw.wx_id}&amp;wxtw_id={$wxtw.wxtw_id}" target="_blank">预览</a>
+                | -->
+            	<a href="index.php?app=weixin_message&amp;act=edit&amp;wx_id={$wxtw.wx_id}&amp;wxtw_id={$wxtw.wxtw_id}">{$lang.edit}</a>
+                |
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=weixin_message&amp;act=drop&amp;id={$wxtw.wxtw_id}');">{$lang.drop}</a>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="11">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $wxtws}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=weixin_message&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+            &nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

@@ -1,0 +1,57 @@
+{include file="header.html"}
+<script type="text/javascript" src="{res file=js/My97DatePicker/WdatePicker.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+$(function(){
+    // multi-select mall_gcategory
+    $('#gcategory').length>0 && gcategoryInit("gcategory");
+});
+//]]>
+</script>
+<div id="rightTop">
+  <p>促销管理</p>
+  <ul class="subnav">
+    <li><a class="btn1" href="index.php?app=promote">添加档期</a></li>
+    <li><a class="btn1" href="index.php?app=promote&amp;act=list_schedule">档期列表</a></li>
+    <li><a class="btn1" href="index.php?app=promote&amp;act=list_kuaixun">快讯列表</a></li>
+    <li><a class="btn1" href="index.php?app=promote">折扣列表</a></li>
+  </ul>
+</div>
+<div class="tdare">
+  <table width="100%" cellspacing="0" class="dataTable">
+    <!--{if $goods_list}-->
+    <tr class="tatr1">
+      <td width="10%" class="firstCell">选择</td>
+      <td width="40%"><span ectype="order_by" fieldname="goods_name">商品名称</span></td>
+      <td width="10%"><span ectype="order_by" fieldname="store_name">店铺名称</span></td>
+      <td width="10%"><span ectype="order_by" fieldname="brand">品牌名称</span></td>
+      <td width="20%"><span ectype="order_by" fieldname="cate_id">分类名称</span></td>
+      <td width="10%"><span ectype="order_by" fieldname="views">浏览数</span></td>
+    </tr>
+    <!--{/if}-->
+    <!--{foreach from=$goods_list item=goods}-->
+    <tr class="tatr2">
+      <td class="firstCell"><input type="checkbox" class="checkitem" value="{$goods.goods_id}"/></td>
+      <td><span>{$goods.goods_name|escape}</span></td>
+      <td>{$goods.store_name|escape}</td>
+      <td>{$goods.brand|escape}</td>
+      <td>{$goods.cate_name|nl2br}</td>
+	  <td>{$goods.views|default:0}</td>
+    </tr>
+    <!--{foreachelse}-->
+    <tr class="no_data info">
+      <td colspan="6">{$lang.no_data}</td>
+    </tr>
+    <!--{/foreach}-->
+  </table>
+  <!--{if $goods_list}-->
+  <div id="dataFuncs">
+    <div id="batchAction" class="left paddingT15">&nbsp;&nbsp;
+      <input class="formbtn batchButton" type="button" value="添加" name="id" uri="index.php?app=promote&act=add_goods_to_kuaixun&ret_page={$page_info.curr_page}&kuaixun_id={$kuaixun_id}&kuaixun_state=确认" />
+    </div>
+    <div class="pageLinks">{include file=page.bottom.html}</div>
+   <!--{/if}-->
+  </div>
+  <div class="clear"></div>
+</div>
+{include file="footer.html"}

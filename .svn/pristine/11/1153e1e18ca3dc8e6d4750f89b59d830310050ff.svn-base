@@ -1,0 +1,117 @@
+<?php
+
+/**
+ *    商品详情控制器
+ *
+ *    @author    Hyber
+ *    @usage    none
+ */
+class ShowApp extends BackendApp
+{
+    var $_show_mod;
+	
+    function __construct()
+    {
+		$this->ShowApp();
+    }
+
+	function ShowApp()
+    {
+        parent::BackendApp();
+
+		$this->_show_mod =& m('show');
+    }
+
+    /**
+     *    价格批量管理
+     *
+     *    @author    Hyber
+     *    @return    void
+     */
+    function index()
+	{
+		$db=&db();
+		$page   =   $this->_get_page(10);   //获取分页信息
+			
+		$condition[]=" 1=1 ";
+		if(strlen($_GET['title']) && strlen($_GET['goods_sn'])>0){
+			$condition[]=" a.goods_name like '%".trim($_GET['title'])."%' and b.sku like '%".trim($_GET['goods_sn'])."%'";
+		}elseif(strlen($_GET['title'])>0){
+			$condition[]=" a.goods_name like '%".trim($_GET['title'])."%'";
+		}elseif(strlen($_GET['goods_sn'])>0){
+			$condition[]=" b.sku like '%".trim($_GET['goods_sn'])."%'";
+		}
+		
+		$conditions=implode(" and ",$condition);
+
+		$sql="select a.tags, a.goods_id,a.store_id,a.goods_name,a.if_show,b.sku,b.stock from ecm_goods a left join ecm_goods_spec b on a.goods_id = b.goods_id  where ".$conditions. " limit ". $page['limit']."";
+		$count_sql="select count(*) from ecm_goods a left join ecm_goods_spec b on a.goods_id = b.goods_id where".$conditions;
+		$page['item_count']=$db->getOne($count_sql);   //获取统计数据
+		$page11 = isset($_GET['page']) ? $_GET['page'] : 1;
+		$this->assign('page11',$page11);
+		$showgoods = $db->getAll($sql);
+		$this->_format_page($page);	
+		//$query['title'] = $_GET['title'];
+		//$query['tag'] = $_GET['goods_sn'];
+		$this->assign('page_info',$page);   //将分页信息传递给视图，用于形成分页条
+		//$this->assign('query',$query);
+		$this->assign('showgoods',$showgoods);
+		
+		
+		$this->display('show.index.html');
+    }
+	
+	
+	/**
+	    *    商品名称，库存，标签，上下架编辑
+	    *
+	    *
+	    *    @author    Hyber
+	    *    @return    void
+	    */
+	function edit()
+	{
+		$db=&db();
+		$id = isset($_REQUEST['id'])?$_REQUEST['id']:'';
+		if (!IS_POST)
+		{
+			$good = $db->getRow('select a.*,b.sku,b.stock from ecm_goods a left join ecm_goods_spec b on a.goods_id=b.goods_id  where a.goods_id ='.$id);
+			$this->assign('good',$good);
+			$this->display('show.form.html');
+		}else{
+			//dump($_POST);
+		    $store_id = trim($_POST['store_id']);
+		    $stores = explode(',',rtrim($store_id,','));
+           // dump($stores);
+            $sn = trim($_POST['goods_sn']);
+            $new_sn = $_POST['new_sn'];
+            $goods_name = trim($_POST['goods_name']);
+            $if_show = trim($_POST['if_show']);
+            $stock = $_POST['stock'];
+            $tags = $_POST['tags'];
+            $content = '';
+		for($i=0;$i<count($stores);$i++){
+			$sql1 = "select count(goods_id) from ecm_goods where store_id =".$stores[$i];
+			if($count = $db->getone($sql1)){
+				$sql="update ecm_goods a left join ecm_goods_spec b on a.goods_id = b.goods_id  set a.tags='{$tags}',a.goods_name='{$goods_name}',a.if_show={$if_show},b.stock={$stock},b.sku='{$new_sn}' where b.sku = '{$sn}' and a.store_id = {$stores[$i]}";
+				$num = $db->query($sql);
+				$storeid .= $stores[$i].",";
+				$content .= $stores[$i]."号店铺执行成功\n";
+			}else{
+				$content .= $stores[$i]."号店铺不存在\n";
+			}
+							
+		}
+			
+			$this->show_message($content,
+				'back_list',        'index.php?app=show&goods_sn='.$new_sn	
+				);
+		}
+		
+		
+	}
+	
+
+}
+
+?>

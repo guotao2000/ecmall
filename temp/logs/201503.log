@@ -1,0 +1,51 @@
+Mon, 02 Mar 2015 11:25:12 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+MySQL Query:select state kuaixun_state,p_id kuaixun_id,price kuaixun_price from  ecm_kuaixun_promotion_v where (unix_timestamp() between  start_time and end_time ) and  FIND_IN_SET('',store_id) and  state in (3) and goods_id=
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 03 Mar 2015 08:55:06 +0800	[256]MySQL Error[1146]: Table 'ecmall.ecm_upload' doesn't exist
+MySQL Query:select count(id) from ecm_upload
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Tue, 10 Mar 2015 14:41:49 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+MySQL Query:SELECT a.goods_id,a.spec_id,b.store_id,a.sku from ecm_goods_spec a LEFT JOIN ecm_goods b on a.goods_id =b.goods_id
+where a.sku='6940477401297' and b.store_id=
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 10 Mar 2015 14:42:51 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+MySQL Query:SELECT a.goods_id,a.spec_id,b.store_id,a.sku from ecm_goods_spec a LEFT JOIN ecm_goods b on a.goods_id =b.goods_id
+where a.sku='6940477401297' and b.store_id=
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 10 Mar 2015 14:42:58 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+MySQL Query:SELECT a.goods_id,a.spec_id,b.store_id,a.sku from ecm_goods_spec a LEFT JOIN ecm_goods b on a.goods_id =b.goods_id
+where a.sku='6940477401297' and b.store_id=
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 10 Mar 2015 15:20:29 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+MySQL Query:SELECT a.goods_id,a.spec_id,b.store_id,a.sku from ecm_goods_spec a LEFT JOIN ecm_goods b on a.goods_id =b.goods_id
+where a.sku='6940477401297' and b.store_id=
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 10 Mar 2015 15:23:20 +0800	[2]file_get_contents(jsapi_ticket.json) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory	\app\weixinyxw.php	44
+Tue, 10 Mar 2015 15:50:40 +0800	[2]file_get_contents(jsapi_ticket.json) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory	\app\weixinyxw.php	44
+Tue, 10 Mar 2015 16:03:47 +0800	[2]file_get_contents(jsapi_ticket.json) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory	\app\weixinyxw.php	44
+Tue, 10 Mar 2015 16:03:53 +0800	[2]file_get_contents(jsapi_ticket.json) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory	\app\weixinyxw.php	44
+Wed, 25 Mar 2015 16:41:41 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND coupon_id = 23' at line 1
+MySQL Query:SELECT use_times,coupon.coupon_id FROM ecm_coupon coupon WHERE store_id =  AND coupon_id = 23
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[534]	\eccore\model\mysql.php	286
+Thu, 26 Mar 2015 11:36:41 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\xEF\xBF\xBD' at line 1
+MySQL Query:select cate_name from ecm_gcategory where cate_id=�
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Thu, 26 Mar 2015 11:41:22 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+MySQL Query:SELECT * from ecm_gcategory where cate_id in()
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Fri, 27 Mar 2015 15:53:36 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order by sort_order desc limit 0,1' at line 1
+MySQL Query:select first_price from ecm_shipping where enabled=1 and store_id=  order by sort_order desc limit 0,1 
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[458]	\eccore\model\mysql.php	286
+Mon, 30 Mar 2015 14:44:58 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') order by weight desc' at line 1
+MySQL Query:select p_id from ecm_promotion where p_id in () order by weight desc
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Mon, 30 Mar 2015 14:49:34 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') order by weight desc' at line 1
+MySQL Query:select p_id from ecm_promotion where p_id in () order by weight desc
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Mon, 30 Mar 2015 14:49:39 +0800	[256]MySQL Error[1064]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') order by weight desc' at line 1
+MySQL Query:select p_id from ecm_promotion where p_id in () order by weight desc
+Wrong File:  D:\PHPECMALL\ecmall\eccore\model\mysql.php[508]	\eccore\model\mysql.php	286
+Tue, 31 Mar 2015 20:40:57 +0800	[2]include(D:\PHPECMALL\ecmall/extend/ecmall.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory	\app\storeyxw.app.php	92
+Tue, 31 Mar 2015 20:41:38 +0800	[2]include(D:\PHPECMALL\ecmall/extend/ecmall.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory	\app\storeyxw.app.php	92
+Tue, 31 Mar 2015 20:42:16 +0800	[2]include(D:\PHPECMALL\ecmall/extend/ecmall.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory	\app\storeyxw.app.php	92
+Tue, 31 Mar 2015 20:45:17 +0800	[2]include(D:\PHPECMALL\ecmall/extend/ecmall.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory	\app\storeyxw.app.php	92

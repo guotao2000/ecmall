@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base href="{$site_url}/" />
+<!-- Use IE7 mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7 charset={$charset}" />
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+<meta property="qc:admins" content="15154471466301630163606375" />
+{$page_seo}
+
+<meta name="author" content="ecmall.shopex.cn" />
+<meta name="generator" content="ECMall {$ecmall_version}" />
+<meta name="copyright" content="ShopEx Inc. All Rights Reserved" />
+
+<link href="{res file=css/common.css}" rel="stylesheet" type="text/css" />
+<link href="{res file=css/ecmall.css}" rel="stylesheet" type="text/css" />
+<script>
+var gods_hot = "{$goods_hot_search}";
+var store_hot = "{$store_hot_search}";
+</script>
+<script type="text/javascript" src="index.php?act=jslang"></script>
+<script type="text/javascript" src="{lib file=jquery.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{lib file=ecmall.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/nav.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/select.js}" charset="utf-8"></script>
+<script type="text/javascript" src="{res file=js/common.js}" charset="utf-8"></script>
+<script type="text/javascript">
+//<!CDATA[
+var SITE_URL = "{$site_url}";
+var PRICE_FORMAT = '{$price_format}';
+
+//]]>
+</script>
+{$_head_tags}
+<!--<editmode></editmode>-->
+</head>
+<script type="text/javascript">
+$(function() {
+	var sWidth = $("#focus").width(); //获取焦点图的宽度（显示面积）
+	var len = $("#focus div").length; //获取焦点图个数
+	var index = 0;
+	var picTimer;
+	$("#focus div").hover(function() {
+		$(this).siblings().css("opacity",0.7);
+	},function() {
+		$("#focus div").css("opacity",1);
+	});
+});
+
+</script>
+<body>
+<div class="main_shanshan">
+<!-- 头部 -->
+	<div class="header">
+    	<div class="header_rtop">
+            <div class="header_rtopright">
+                <ul class="operate_nav">
+                	<li class="opnav_carts">
+						<a href="{url app=cart}" class="carts_btn">购物车{$cart_goods_kinds}件</a>
+                        <div class="opnav_carts_con" style="display:none;">
+                        <!-- {if !$carts_list} -->
+                        <!-- 没有商品时 -->
+                        	<div class="occ_noproducts" style="display:;">
+                            	<div class="occ_noprotext">您购物车里还没有任何商品。</div>
+                                <div class="occ_noprobtn"><a href="{url app=cart}"><img src="{res file=images/look_catsbtn.gif}" alt="" border="0" /></a></div>
+                            </div>
+                            <!-- {else} -->
+                         <!-- 有商品时 -->
+                         <script type="text/javascript">
+	                         function drop_cart_item_h(store_id, rec_id){
+								    var tr = $('#cart_item_' + rec_id);
+								    var li = $('#cart_item_h'+ rec_id)
+								    var amount_span = $('#cart' + store_id + '_amount');
+								    var cart_goods_kinds = $('#cart_goods_kinds');
+								    $.getJSON('index.php?app=cart&act=drop&rec_id=' + rec_id, function(result){
+								        if(result.done){
+								            //删除成功
+								            if(result.retval.cart.quantity == 0){
+								                window.location.reload();    //刷新
+								            }
+								            else{
+								                tr.remove(); 
+								                li.remove();
+								                //移除
+								                amount_span.html(price_format(result.retval.amount));  //刷新总费用
+								                cart_goods_kinds.html(result.retval.cart.kinds);       //刷新商品种类
+								            }
+								        }
+								    });
+	                          }
+                         </script>
+                            <div class="occ_haveprots" style="display:;">
+                            	<div class="occ_hp_title">最近加入的商品：</div>
+                                <ul class="occ_hp_list">
+                            	<!-- {foreach from=$carts_list item=cart_list name=c_l} -->
+                                	 <li id="cart_item_h{$cart_list.rec_id}">
+                                    	<div class="occ_hp_lleft">
+                                    	<a href="{url app=goods&id=$cart_list.goods_id}"><img src="{$cart_list.goods_image}" alt="{$cart_list.goods_name}" width="50" height="50" border="0" /></a></div>
+                                        <div class="occ_hp_lmid">
+                                        	<p><a href="{url app=goods&id=$cart_list.goods_id}">{$cart_list.goods_name|truncate:24}</a></p>
+                                            <p class="hui">{$cart_list.specification|escape}</p>
+                                        </div>
+                                        <div class="occ_hp_lright">
+                                        	<p>￥<b class="green">{$cart_list.price}</b></p>
+                                            <p><a href="javascript:;" onclick="drop_cart_item_h({$cart_list.store_id}, {$cart_list.rec_id});" class="green">删除</a></p>
+                                        </div>
+                                    </li> 
+                                 <!-- {/foreach} -->
+                                </ul>
+                                <div class="clear"></div>
+                                <!-- {if $cart_goods_kinds >5} -->
+                                <div class="occ_hp_other">
+                                <p>购物车里还有<?php echo $this->_var['cart_goods_kinds']-5; ?>件商品</p></div>
+                                <!-- {/if} -->
+                                <div class="occ_hp_otbtn"><a href="{url app=cart}"><img src="{res file=images/look_catsbtn.gif}" alt="" border="0" /></a></div>
+                                <div class="clear"></div>
+                            </div>
+                            <!-- {/if} -->
+                        </div>
+                    </li>
+                    <li class="opnav_zxian"><span></span></li>
+                    <li class="opnav_myss">
+                    	<a href="{url app=member}" class="myss_btn">我的山山</a>
+                        <div class="opnav_myss_con" style="display:none;">
+                        	<ul class="omc_mine">
+                            	<li><a href="{url app=buyer_order}">已买到的商品</a></li>
+                                <li><a href="{url app=seller_order}">已卖出的商品</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="opnav_zxian"><span></span></li>
+                    <li class="opnav_myss2">
+                    	<a href="{url app=my_favorite}" class="myss_btn2"> 收藏夹 </a>
+                        <div class="opnav_myss_con2" style="display:none;">
+                        	<ul class="omc_mine2">
+                            	<li><a href="{url app=my_favorite}">收藏的商品</a></li>
+                                <li><a href="{url app=my_favorite&type=store}">收藏的店铺</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="opnav_zxian"><span></span></li>
+                    <li class="opnav_myss3">
+                    	<a href="#" class="myss_btn3">山山礼品卡</a>
+                        <div class="opnav_myss_con3" style="display:none;">
+                        	<ul class="omc_mine3">
+                            	<li><a href="#">购买</a></li>
+                                <li><a href="#">激活</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="opnav_zxian"><span></span></li>
+                    <li class="opnav_myss4">
+                    	<a href="#" class="myss_btn4">客户服务</a>
+                        <div class="opnav_myss_con4" style="display:none;">
+                        	<ul class="omc_mine4">
+                            	<li><a href="{url app=apply}">商家入驻</a></li>
+                                <li><a href="#">常见问题</a></li>
+                                <li><a href="#">投诉维权</a></li>
+                                <li><a href="#">在线咨询</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="h_rtwel">您好  <!-- {if $user_info.user_name} -->{$user_info.user_name}<!-- {else} --><a href="{url app=member}">{$visitor.user_name|escape}</a><!-- {/if} -->！
+            <!--{if !$visitor.user_id}-->
+            <!-- {if $user_info.user_name} -->
+                                     积分<font color="#fff" ><!-- {if $buyer_info.jifen} -->{$buyer_info.jifen}<!-- {else} -->0<!-- {/if} --></font> 消息 【0】
+            <a href="{url app=member&act=logout}">退出</a>
+            <!-- {else} -->
+            <a href="{url app=member&act=login&ret_url=$ret_url}">请登录</a>
+            <a href="{url app=member&act=register&ret_url=$ret_url}">免费注册</a>
+            <!-- {/if} -->
+            <!-- {else} -->
+                                         积分<font color="#fff" ><!-- {if $buyer_info.jifen} -->{$buyer_info.jifen}<!-- {else} -->0<!-- {/if} --></font> {sprintf lang=you_have_pm var1=new_message}
+            <a href="{url app=member&act=logout}">{$lang.logout}</a>
+            <!-- {/if} -->
+            </div>
+        </div>
+        <!--logo, 搜索 -->
+    	<div class="headerc">
+        	<div class="h_jiao"></div>
+        	<div class="header_left"><p><a href="#"><img src="{res file=images/logo.jpg}" alt="" border="0" /></a></p></div>
+        	<div class="header_right">
+                <div class="header_rsearch">
+                	<div class="search">
+                	 <form method="GET" action="{url app=search}">
+                    	<div class="search_l">
+                	        <p>商品 </p>
+                	        <em></em>
+                	        <span class=""></span>
+                	        <ul style="display:none;">
+	                        	<li ectype="index" >商品 </li>
+	                            <li ectype="store" >店铺 </li>
+                            </ul>
+                            <input type="hidden" name="act" value="index" />
+                        </div>
+                         <input type="hidden" name="app" value="search" />
+                        <div class="search_r">
+                        <input type="text" name="keyword" value="" class="search_k" />
+                        <input type="submit" name="Submit" value="" class="search_btn" />
+                        </div>
+                      </form>
+                    </div>
+                    <div class="search_key">
+                    <a href="#">高级搜索</a> | 
+                    <span>热门搜索：</span> 
+                     <!--{foreach from=$hot_keywords item=keyword}-->
+                     <a href="{url app=search&keyword=$keyword}">{$keyword}</a>
+                     <!--{/foreach}-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--logo, 搜索完 -->
+    </div>
+
+    <!-- 导航 -->
+   	<div class="nav">
+    	<div class="nav_con">
+        	<div class="nav_allpro"><a href="#" class="allpropic"></a></div>
+        	<ul class="nav_conl">
+			    <li><a class="{if $index}navacurrent{else}{/if}" href="index.php"><span>{$lang.index}</span></a></li>
+			    <!--  {foreach from=$navs.middle item=nav name=nav_n}-->
+			    <!-- {if !$smarty.foreach.nav_n.last} -->
+			    <li><a class="{if !$index and $nav.link eq $current_url}navacurrent{else}{/if}" href="{$nav.link}"{if $nav.open_new} target="_blank"{/if}><span>{$nav.title|escape}</span></a></li>
+			    <!-- {else} -->
+			    <li><a style="width:90px;" class="{if !$index and $nav.link eq $current_url}navacurrent{else}{/if}" href="{$nav.link}"{if $nav.open_new} target="_blank"{/if}><span>{$nav.title|escape}</span></a></li>
+			    <!-- {/if} -->
+			    <!--{/foreach}-->
+            </ul>
+            <ul class="nav_conr">
+            	<li><a href="#">山山社区</a></li>
+                <li style="float:left;width:1px; height:13px; background:#ccc; margin-top:9px;"></li> 
+                <li><a href="#">健康关注</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 导航完 -->
+  <!-- 头部结束 -->

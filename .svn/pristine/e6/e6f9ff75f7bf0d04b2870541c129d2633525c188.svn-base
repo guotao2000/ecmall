@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-找回密码成功</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        <!--离线应用的另一个技巧-->
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        <!--指定的iphone中safari顶端的状态条的样式-->
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        <!--告诉设备忽略将页面中的数字识别为电话号码-->
+        <meta content="telephone=no" name="format-detection" />
+        <!--设置开始页面图片-->
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        <!--在设置书签的时候可以显示好看的图标-->
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/com/com.css}"/> 
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/home/index.css}"/>
+        <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/register/index.css}"/>
+        <script src="{res file=bqmart/js/jquery.js}"></script>
+        <!-- 控制整体标签宽度的js -->
+        <script src="{res file=bqmart/template/js/com/com.js}"></script>
+        <!-- 控制整体标签宽度的js end -->
+        <!-- 控制图片缩放比例的js -->
+        <script src="{res file=bqmart/template/js/com/template.js}"></script>
+        <!-- 控制图片缩放比例的js end -->
+</head>
+<body>
+<div class="com-content">
+<!-- 头部区域开始 by-wei 2014.12.08  -->
+        <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">找回密码成功</span>
+          <a href="{url app=default}" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+<!-- 头部区域结束 end -->
+<!-- 确认订单信息页面中心区域开始-->
+  <div class="com-content-area" id="js-com-content-area" style=" margin:0px;">
+      <!-- 确认订单信息页面内容区域开始-->
+         <div class="page-role good-page">
+    <div class="pxui-area">
+        <div class="password_success-top">
+              <p>
+               <span class="password_success-topicon"></span>客官：恭喜您密码找回成功~~
+              </p>
+        </div>
+        <div class="bq_cplb_bg"></div>
+        <div class="password_success-info">
+             <div class="password_success-img">
+                <img src="themes/bqmart/template/images/cart/bq_login_success.png"> </div>
+             <p>
+             倍全最快20分钟送货上门哦~~
+             </p>
+             <div class="password_success-btn">
+                 <a href="{url app=member}" type="button">去 登 录</a>
+             </div>
+        </div>
+    </div>
+</div>
+
+      <!-- 找回密码底部区域开始-->
+      {include file='member.footer.html'}
+      <!-- 找回密码底部区域结束-->
+
+</div> 
+<!-- 确认订单信息页面中心区域开始-->
+</div>
+<!--底部浮动菜单开始-->
+ {include file='store.menu.html'}
+<!--底部浮动菜单结束-->
+</body>
+</html>

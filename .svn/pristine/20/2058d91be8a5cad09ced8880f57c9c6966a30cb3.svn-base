@@ -1,0 +1,366 @@
+<!doctype html>
+<html>
+  <head>
+    <title>倍全商城-{$store.store_name|escape}-首页</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+    <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+    <!--离线应用的另一个技巧-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <!--指定的iphone中safari顶端的状态条的样式-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <!--告诉设备忽略将页面中的数字识别为电话号码-->
+    <meta content="telephone=no" name="format-detection" />
+    <!--设置开始页面图片-->
+    <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+    <!--在设置书签的时候可以显示好看的图标-->
+    <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+    <link rel="stylesheet" type="text/css" href="{res file=bqmart/template/css/home/cplb.css}"  />	
+    <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/com/com.css}"/>
+    <script src="{res file=bqmart/js/jquery.js}"></script>
+    <!-- 控制整体标签宽度的js -->
+    <script src="{res file=bqmart/template/js/com/com.js}"></script>
+    <!-- 控制整体标签宽度的js end -->
+    <!-- 控制图片缩放比例的js -->
+    <script src="{res file=bqmart/template/js/com/template.js}"></script>
+    <!-- 控制图片缩放比例的js end -->
+    <!-- 控制抢购模块左右切换的js 开始-->
+    <script type="text/javascript" src="{res file=bqmart/template/js/home/swipe.js}" charset="utf-8"></script>
+    <!-- 控制抢购模块左右切换的js 结束-->
+    <!--控制产品列表加减数量的js开始 -->
+    <script type="text/javascript" src="{res file=bqmart/template/js/com/jquery.spinner.js}"></script>
+    <!--控制产品列表加减数量的js结束 -->
+  </head>
+  <body>
+    <div class="com-content">
+       <!-- 头部区域开始 by-wei 2014.12.08  -->
+        <div class="com-header-area" id="js-com-header-area">
+          <a href="{url app=default}" class="com-header-logo"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title">{$store.store_name|escape}</span>
+          <a href="{url app=default}" class="com-header-shop "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+      <!-- 头部区域结束 end -->
+      <!--中间内容区域开始 by-wei 2014.12.08 --> 
+        <div class="com-content-area" id="js-com-content-area">
+          <div class="page-role home-page">
+            <link type="text/css" rel="stylesheet" href="{res file=bqmart/template/css/home/index.css}"/>
+          <!-- 幻灯片轮播图动作控制js开始 -->
+            <script src="{res file=bqmart/template/js/com/jquery.touchslider.min.js}"></script>
+            <script src="{res file=bqmart/template/js/home/index.js}"></script>
+            <script>
+              jQuery(function($) {
+              $(window).resize(function(){
+                 var width=$('#js-com-header-area').width();
+              $('.touchslider-item a').css('width',width);
+              $('.touchslider-viewport').css('height',340*(width/640));
+                }).resize();	
+              $(".touchslider").touchSlider({mouseTouch: true, autoplay: true});
+              });
+            </script>	
+          <!-- 幻灯片区域开始 By-Wei 2014.12.08 -->
+            <div class="touchslider">
+              <div class="touchslider-viewport">
+              {foreach from=$goods_images item=goods_image}
+                <div class="touchslider-item">
+                    <a href="{$goods_image.image_link}">
+                      <img src="{$goods_image.image_url}" style="vertical-align:top;"/>
+                    </a>
+                </div>
+              {foreachelse}
+              	<div class="touchslider-item">
+              		暂无图片
+              	</div>
+              {/foreach}
+              </div>
+              <div class="touchslider-navtag">
+                  <span class="touchslider-nav-item touchslider-nav-item-current"></span>
+                  <span class="touchslider-nav-item "></span>
+                  <span class="touchslider-nav-item "></span>                  
+              </div>
+            </div>
+          <!-- 幻灯片区域结束 -->
+          <!--- 搜索开始 By-Wei 2014.12.08 -->
+          <div class="search" style="position:relative">
+          <span class="input-box">
+          <!-- 本店搜索  开始 -->
+          <form action="" id="searchForm"  name="searchForm" method="get" >
+              <input type="text" name="keyword" id="keyword" class="new-input"  value="" placeholder="请输入关键词" style="background: none repeat scroll 0 0 #fff;border: 0 none;border-radius: 0;color: #bdbdbd;vertical-align: middle;width: 85%; padding:4px 0px;">
+          	  <input type="hidden" name="app" value="store" />
+              <input type="hidden" name="act" value="search" />
+              <input type="hidden" name="id" value="{$store.store_id}" />
+          </form>	
+          <!-- 本店搜索 结束 -->
+          <a href="javascript:void(0)" onclick="$('#searchForm').submit();" class="btn-search"><span>search</span></a>
+          </span>
+          <div class="new-srch-lst" id="shelper" style="position: absolute; top: 2em; left: 3.28em; z-index: 10; width: 404.2px; display: none;"></div>
+          </div>
+          <!--  搜索结束-->
+        <!-- 分类图标开始-->
+          <div class="category" style="padding:10px 0px;">
+            <ul class="cate-menu tbl-type" id="categoryMenu">
+			 <li class="tbl-cell route4 route">
+                      <a href="index.php?app=category&id={$smarty.get.id}" class="menu4" res="1">
+                        <span class="menu4-icon"><span></span></span>
+                      <span class="cate-name">分类</span>
+                  </a>
+              </li>
+              <li class="tbl-cell route2 route">
+                <a href="{url app=hongbao}" id="html5_cart" class="menu2" >
+                    <span class="menu2-icon"><span></span></span>
+                      <span class="cate-name">红包</span>
+                  </a>
+              </li>
+              <li class="tbl-cell route3 route">
+                <a href="{url app=cart}" class="menu3">
+                    <span class="menu3-icon"><span></span></span>
+                      <span class="cate-name">购物车</span>
+                  </a>
+              </li>
+             <li class="tbl-cell route1 route">
+                <a href="{url app=buyer_order}" class="menu1" onclick="clickResponse(this)" res="1">
+                    <span class="menu1-icon"><span></span></span>
+                      <span class="cate-name">我的订单</span>
+                  </a>
+              </li>
+              <li class="tbl-cell route5 route">
+                <a href="{url app=my_favorite&type=goods}" class="menu6" onclick="clickResponse(this)" res="1">
+                    <span class="menu6-icon"><span></span></span>
+                      <span class="cate-name">收藏夹</span>
+                  </a>
+              </li>
+              </ul>
+        </div>
+      <!--- 分类图标结束-->
+      <!-- WAP通栏横条BD_1开始 By Wei 2014.12.08-->
+          <div class="bq_bkad">
+              <div class="bq_bk_slide">
+                <a href="#"><img src="/themes/bqmart/images/bq_tonglan_ad_1.jpg"  width="100%" ></a>
+              </div>
+          </div>
+      <!-- WAP通栏横条BD_1结束-->
+      <!-- 爆款广告位2开始-->
+      <div class="bq_bkad" >
+        <div class="bq_bk_slide">
+          <a href="#"><img src="/themes/bqmart/images/bqadl_1.jpg"  width="50%"></a><a href="#"><img src="/themes/bqmart/images/bqadr_1.jpg"  width="50%"></a>
+        </div>
+      </div>
+      <!-- 爆款广告位2结束-->
+      <!-- 爆款广告位1开始-->
+      <div class="bq_bkad" style="margin-top:10px;">
+          <div class="bq_bk_slide">
+            <a href="#"><img src="/themes/bqmart/images/bqad_4.jpg"  width="100%" ></a>
+          </div>
+      </div>
+      <!-- 爆款广告位1结束-->
+          <div class="pxui-area">
+          <div class="bq_cplb_bg"></div>
+          <div class="pxui-tab pxui-tab-style pxui-tab-no-top" id="js-tab-style">
+          <a>热销商品</a>
+          <a class="selected">精品推荐</a>
+          <a>最新商品</a>
+          </div>
+          <div class="pxui-shoes" id="js-home-tab-0" style="display:none;">
+          <!--热销产品列表开始-->
+          <div class="liebiao">
+            <!-- 列表产品开始-->
+              <div class="zxList">
+               <ul>
+               {foreach from=$hot_sale_goods item=hot_goods}
+               	 <li class="clearfix">
+                   <a href="{url app=goods&id=$hot_goods.goods_id}" style=" border-right:none; float:none; margin-left:0px;"><img src="{$hot_goods.default_image}"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="{url app=goods&id=$hot_goods.goods_id}" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">{$hot_goods.goods_name|escape}</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：{$hot_goods.price|price}</span>                 <!-- <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>100</del></span> -->
+                      <span style="position:absolute; right:10px; bottom:18px;" gid="{$hot_goods.spec_id}"   sid="{$hot_goods.store_id}"><input type="text" class="spinnerExample"/></span>
+                   </div>
+                  </li>
+               {foreachelse}
+                 <li class="clearfix">暂无热销商品</li>
+               {/foreach}
+
+                                        
+               </ul>
+              </div>
+            <!--列表产品结束-->
+          </div>
+          <!--热销产品列表结束-->
+          </div>
+          <div class="pxui-show-more" style="display:none;" lastid="1" template="#js-bk-template" srcProperty="goodsrc" container="#js-home-tab-0 > div" url="/home/ajax?act=bk_more">
+          <img src="template/images/public/loading.gif" width="24" height="24"/>
+         
+          </div>
+          <div class="pxui-shoes" id="js-home-tab-1" >
+          <!--精品产品列表开始-->
+          <div class="liebiao">
+             <!-- 列表产品开始-->
+             <div class="zxList">
+                <ul>
+                {foreach from=$recommended_goods item=rec_goods}
+                <li class="clearfix">
+                   <a href="{url app=goods&id=$rec_goods.goods_id}" style=" border-right:none; float:none; margin-left:0px;"><img src="{$rec_goods.default_image}"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="{url app=goods&id=$rec_goods.goods_id}" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">{$rec_goods.goods_name|escape}</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：{$rec_goods.price|price}</span>                 <!-- <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>100</del></span> -->
+                      <span style="position:absolute; right:10px; bottom:18px;" gid="{$rec_goods.spec_id}"  sid="{$rec_goods.store_id}"><input type="text" class="spinnerExample"/></span>
+                   </div>
+                  </li>
+                {foreachelse}
+                <li class="clearfix">暂无推荐商品</li>
+                {/foreach}
+                 
+                </ul>
+              </div>
+             <!--列表产品结束-->
+          </div>
+          <!--精品产品列表结束-->
+          </div>
+          <div class="pxui-show-more"  lastid="1" template="#js-bk-template" srcProperty="goodsrc" container="#js-home-tab-1 > div" url="/home/ajax?act=bk_more&sid=94">
+          <img src="template/images/public/loading.gif" width="24" height="24"/>
+
+          </div>
+          <div class="pxui-shoes" id="js-home-tab-2" style="display:none;">
+          <!--最新商品列表开始-->
+          <div class="liebiao">
+             <!-- 列表产品开始-->
+             <div class="zxList">
+                <ul>
+                
+                  {foreach from=$new_goods item=latest_goods}
+                <li class="clearfix">
+                   <a href="{url app=goods&id=$latest_goods.goods_id}" style=" border-right:none; float:none; margin-left:0px;"><img src="{$latest_goods.default_image}"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="{url app=goods&id=$latest_goods.goods_id}" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">{$latest_goods.goods_name|escape}</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：{$latest_goods.price|price}</span>                 <!-- <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>100</del></span> -->
+                      <span style="position:absolute; right:10px; bottom:18px;" gid="{$latest_goods.spec_id}"  sid="{$latest_goods.store_id}"><input type="text" class="spinnerExample"/></span>
+                   </div>
+                  </li>
+                {foreachelse}
+                <li class="clearfix">暂无最新商品</li>
+                {/foreach}
+                                 
+                 </ul>
+              </div>
+             <!--列表产品结束-->
+           </div>
+          <!--最新商品列表结束-->
+          </div>
+          <div class="pxui-show-more" style="display:none;" lastid="1" template="#js-bk-template" srcProperty="goodsrc" container="#js-home-tab-2 > div"  url="/home/ajax?act=bk_more&sid=95">
+          <img src="template/images/public/loading.gif" width="24" height="24"/>
+
+          </div>
+          <div class="pxui-shoes" id="js-home-tab-3" style="display:none;">
+          <div>
+          </div>
+          </div>
+          <div class="pxui-show-more" style="display:none;" lastid="1" template="#js-bk-template" srcProperty="goodsrc" container="#js-home-tab-3 > div"  url="/home/ajax?act=bk_more&sid=96">
+          <img src="template/images/public/loading.gif" width="24" height="24"/>
+        
+          </div>
+          <div class="pxui-shoes" id="js-home-tab-4" style="display:none;">
+          <div>
+          </div>
+          </div>
+          <div class="pxui-show-more" style="display:none;" lastid="1" template="#js-bk-template" srcProperty="goodsrc" container="#js-home-tab-4 > div"  url="/home/ajax?act=bk_more&sid=97">
+          <img src="template/images/public/loading.gif" width="24" height="24"/>
+     
+          </div>
+          </div>
+
+          </div>
+		</div>
+       <!--中间内容区域结束 End-wei 2014.12.08 --> 
+     {include file='member.footer.html'}
+      
+</div>
+  {include file='store.menu.html'}
+</body>
+<!-- 秒杀倒计时js控制开始 -->
+<script type="text/javascript">
+//添加到购物车  begin
+function add_to_shop(spec_id, quantity,store_id)
+{	
+	var url = '/index.php?app=cart&act=to_shop&spec_id='+spec_id+'&quantity='+quantity+'&store_id='+store_id;
+	$.getJSON(url, '', function(data){
+		if (data.done)
+		{
+			window.location.href='index.php?app=cart';
+		}
+		else
+		{ 
+			alert(data.msg);
+		}
+	});
+}
+//end
+
+var StartTime = {$sec_start_time};
+StartTime = StartTime * 1000;
+var EndTime= {$sec_end_time};
+EndTime = EndTime * 1000;
+var NowTime = {$sec_now_time};
+NowTime = NowTime * 1000;
+var nMS = StartTime - NowTime;   
+var nMSB = EndTime - NowTime;     
+function GetRTime(){
+	nMS = nMS - 1000;
+	var nD = Math.floor(nMS/(1000 * 60 * 60 * 24));
+	var nH = Math.floor(nMS/(1000*60*60)) % 24;
+	var nM = Math.floor(nMS/(1000*60)) % 60;
+	var nS = Math.floor(nMS/1000) % 60;
+	if (nMS <= 0){
+		window.clearInterval(timer_rt);
+		$("#sec_tip").html("距离秒杀结束还有：");
+		document.getElementsByName('qiang_gou').item(0).disabled = false;
+	   var timer_rt_s = window.setInterval("GetRTime_s()", 1000);
+	}else{
+	   //document.getElementsByName('sec_tip').item(0).value = '距离秒杀开始还有：';
+	   
+	   $(".hours").text(nH);
+	   $(".second").text(nM);
+	   $(".miao").text(nS); 
+	}
+}
+
+function GetRTime_s(){
+	nMSB = nMSB - 1000;
+	var nD = Math.floor(nMSB/(1000 * 60 * 60 * 24));
+	var nH = Math.floor(nMSB/(1000*60*60)) % 24;
+	var nM = Math.floor(nMSB/(1000*60)) % 60;
+	var nS = Math.floor(nMSB/1000) % 60;
+	if (nMSB < 0){
+	   document.getElementsByName('qiang_gou').item(0).disabled = true;
+	   $('#sec_id').html('秒杀活动已结束');
+	}else{
+	   //document.getElementsByName('sec_tip').item(0).value = '距离秒杀结束还有：';
+	   
+	   $(".hours").text(nH);
+	   $(".second").text(nM);
+	   $(".miao").text(nS); 
+	}
+}
+
+$(document).ready(function () {
+	 timer_rt = window.setInterval("GetRTime()", 1000);
+});
+</script>
+<!-- 秒杀倒计时js控制结束 -->
+<!-- 控制产品列表加减数量的执行函数开始-->
+<script type="text/javascript">
+$('.spinnerExample').spinner({
+	value:0,
+	min:0
+});
+</script>
+
+<!-- 控制产品列表加减数量的执行函数结束-->
+
+</html>

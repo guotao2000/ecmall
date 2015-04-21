@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteRule ^index_nitify.html$ index.php?app=bqaliwap&act=notify [L]
+  RewriteRule ^index_call.html$ index.php?app=bqaliwap [L]
+ 
+
+</IfModule>

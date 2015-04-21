@@ -1,0 +1,55 @@
+{include file="header.html"}
+<script type="text/javascript">
+	function add(){
+		var content = "<tr><td>上传文件:</td><td>"; 
+		content += "<input type='file' name='file[]'><span style='cursor:pointer;' onclick='remove(this)'>&nbsp;&nbsp;-</span>"; 
+		content += "</td></tr>";
+		$("#up").append(content); 
+	}
+	
+	function remove(obj) { 
+		$(obj).parent().parent().remove(); 
+	} 
+</script>
+{$build_editor}
+{$build_upload}
+<div id="rightTop">
+    <p>文件管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=file">{$lang.manage}</a></li>
+        {if $article.article_id}
+        <li><a class="btn1" href="index.php?app=file&amp;act=add">{$lang.add}</a></li>
+        {else}
+        <li><span>{$lang.add}</span></li>
+        {/if}
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" enctype="multipart/form-data" id="file_form">
+        <table class="infoTable">
+         <!--{if !$file}-->   
+        <tr class="tatr1" id="up" >
+            <td align="left">上传文件:</td>
+            <td align="left"><input  name="file[]" type="file" /><span onclick="add()" style="cursor:pointer;">&nbsp;&nbsp;+</span></td></tr>
+        <tr>
+			<td align="left"><input type="submit" class="formbtn" value="确定上传" /></td>
+		</tr>
+        </table>
+		<!--{else}-->
+		 <table class="infoTable">
+         <input name="id" type="hidden" value="{$file.id}" />
+		<input type="hidden" name="oldname" value="{$file.filename}" />
+        <tr class="tatr1" id="up" >
+            <td align="left">上传文件:</td>
+            <td align="left"><input  name="filename" type="text" value="{$file.filename}" /></td></tr>
+        <tr>
+			
+			<td align="left"><input type="submit" class="formbtn" value="确定修改" /></td>
+		</tr>
+		
+        </table>
+		<!--{/if}-->
+    </form>
+</div>
+{include file="footer.html"}

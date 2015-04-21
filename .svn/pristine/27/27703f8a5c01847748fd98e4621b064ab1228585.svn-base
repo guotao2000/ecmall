@@ -1,0 +1,13 @@
+<?php
+if(isset($_GET['uin'])&&preg_match("/^[-]?\d+$/",$_GET['uin']))
+{
+	echo "he";
+	 setcookie("uin","");
+
+	  setcookie("uin",$_GET['uin']);
+}
+
+echo $_COOKIE['uin'];
+print_r($_COOKIE);
+	
+?>

@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="qc:admins" content="15154471466301630163606375" />
+{$page_seo}
+<link href="{res file=css/dl.css}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{res file=css/common.css}" />
+<script type="text/javascript" src="{lib file=jquery.js}"></script>
+<script type="text/javascript" src="{res file=js/common.js}"></script>
+{$_head_tags}
+<!--<editmode></editmode>-->
+</head>
+
+<body>
+<script type="text/javascript"><!--
+function login_submit(){
+	var user_name = $("#user_name").val();
+	
+	var password = $("#password").val();
+	if(user_name == null || password == null){
+			return false;
+		}else{
+			//AJAX
+		
+			$.get("index.php?app=member&act=check_password",{user_name:user_name,password:password},function(data){
+				var data=data;
+//				alert(data);
+				if(data =='false'){
+					$(".gaog").show();
+					}
+				
+				if(data=='true'){
+//					alert(data);
+					$("#login_form").submit();
+					}
+				});
+			}
+}
+--></script>
+<!-- 头部 -->
+	<div class="header">
+    	<div class="header_dl"><p><a href="/"><img src="{res file=images/logo.jpg}" alt="" border="0" /></a></p></div>
+    </div>
+  <!-- 头部完 -->
+    <!-- 中间部分 -->
+	<div class="dl_all">
+  <p class="fl ssscpic"><img src="{res file=images/dl_03.jpg}" /></p>
+  <div class="dl_Right fl">
+    <p><img src="{res file=images/dl_06.jpg}" /></p>
+    <div class="dl_Rightc">
+      <div class="dl_wao">
+        <form method="post" id="login_form" name="login_form">
+        <ul>
+          <li>
+            <h5>会员登录</h5>
+            <span class="fr"><a href="index.php?app=member&act=register&ret_url="><img src="{res file=images/dl_09.jpg}" /></a></span></li>
+          <li class="dlzh">
+            <label class="fl dl_zh1">{$lang.user_name}：</label>
+            <input class="dl_zh" id="user_name" name="user_name" value="" type="text" tabindex="1" />
+          </li>
+          <li class="dlzh">
+            <label class="fl dl_zh1">{$lang.password}：</label>
+            <input class="dl_zh" id="password" name="password" value="" type="password" tabindex="1" />
+          </li>
+          <li class="gaog" style="display:none;" >
+          <p>您输入的密码和账户名不匹配，请重新输入。或者您<a href="{url app=find_password}">忘记了密码</a>？</p>
+          </li>
+          <div class="hig_15"></div>
+        </ul>
+        <div class="dl_neni">
+          <p class="fl"><a onclick="login_submit()" ><img src="{res file=images/dl_19.jpg}" onmouseover="this.src='{res file=images/dl_14.jpg}'" onmouseout="this.src='{res file=images/dl_19.jpg}'"></a></p>
+          <span class="fl" style="color:#fff"><a href="{url app=find_password}" >忘记密码？</a></span></div>
+         <input type="hidden" name="ret_url" value="{$ret_url}" />
+          </form>
+      </div>
+      <div class="dl_opt">
+        <h6>您可以使用以下山山商城合作伙伴的账户登录：</h6>
+        <ul>
+          <li class="dl_da">
+            <p><a href="{url app=third_login&act=qq}"><img src="{res file=images/dl_23.jpg}" /></a></p>
+            <p><a href="{url app=third_login&act=wangyi}"><img src="{res file=images/dl_25.jpg}" /></a></p>
+            <p><a href="{url app=third_login&act=sina}"><img src="{res file=images/dl_27.jpg}" /></a></p>
+            <p><a href="{url app=third_login&act=douban}"><img src="{res file=images/dl_29.jpg}" /></a></p>
+          </li>
+          <li>
+            <p><a href="{url app=third_login&act=renren}"><img src="{res file=images/dl_35.jpg}" /></a></p>
+            <p><a href="{url app=third_login&act=kaixin}"><img src="{res file=images/dl_37.jpg}" /></a></p>
+            <p><a href="{url app=third_login&act=alipay}"><img src="{res file=images/dl_39.jpg}" /></a></p>
+            <p><a href="{url app=third_login&act=tenpay}"><img src="{res file=images/dl_41.jpg}" /></a></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p><img src="{res file=images/dl_42.jpg}" /></p>
+  </div>
+</div>
+	<!-- 中间部分完 -->
+    <!-- 脚部 footer star -->
+    <div class="footer">
+        <div class="helpbar">
+            <div class="f_desc">
+                <dl id="ensure">
+                   <dt><span>消费者保障</span></dt>
+                   <dd>
+                       <a href="" target="">退货退款流程</a>
+                       <a href="" target="">我要发起维权</a>
+                       <a href="" target="">客服中心</a>
+                   </dd>
+                </dl>
+                <dl id="beginner">
+                   <dt><span>新手上路</span></dt>
+                   <dd>
+                       <a href="" target="">新手学堂</a>
+                       <a href="" target="">交易安全</a>
+                       <a href="" target="">消费警示</a>
+                       <a href="" target="">我的山山</a>
+                   </dd>
+                </dl>
+                <dl id="payment">
+                   <dt><span>支付与配送</span></dt>
+                   <dd>
+                       <a href="" target="">在线支付</a>
+                       <a href="" target="">邮政汇款</a>
+                       <a href="" target="">银行转账</a>
+                       <a href="" target="">配送方式</a>
+                       <a href="" target="">配送验货及签收</a>
+                   </dd>
+                </dl>
+                <dl id="seller">
+                   <dt><span>帮助中心</span></dt>
+                   <dd>
+                       <a href="" target="">账户管理</a>
+                       <a href="" target="">购买问题</a>
+                       <a href="" target="">投诉维权 </a>
+                       <a href="" target="">商户服务</a>
+                   </dd>
+                </dl>
+                <dl id="about">
+                   <dt><span>关于山山</span></dt>
+                   <dd>
+                       <a href="" target="">山山简介</a>
+                       <a href="" target="">山山动态</a>
+                       <a href="" target="">诚聘英才 </a>
+                       <a href="" target="">联系我们</a>
+                   </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="footbar">
+            <div class="f_pic">
+                <ul>
+                    <li class="zp"><a href="" target="_blank"></a></li>
+                    <li class="jp"><a href="" target="_blank"></a></li>
+                    <li class="th"><a href="" target="_blank"></a></li>
+                    <li class="cj"><a href="" target="_blank"></a></li>
+                    <li class="sd"><a href="" target="_blank"></a></li>
+                    <li class="fp"><a href="" target="_blank"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright©2011-2012<a href="">shanshan360.com</a>   财源科技 版权所有</p>
+            <p><a href=""><img src="images/link_1.gif" /></a><a href=""><img src="images/link_2.gif" /></a><a href=""><img src="images/link_3.gif" /></a><a href=""><img src="images/link_4.gif" /></a></p>
+        </div>
+    </div>
+    <!-- footer end -->
+</div>
+</body>
+</html>

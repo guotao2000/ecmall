@@ -1,0 +1,6 @@
+<?php
+$string="2,4";
+echo  intval($string);
+
+	
+?>

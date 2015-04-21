@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+
+.goods_anjian{
+
+	background-repeat:no-repeat;
+	background-size:12px 12px;
+	background-position:0px 0px;}
+/*箭头向下*/
+.down{
+	background-image:url(/themes/bqmart/images/jt2.png);}
+.up{
+	background-image:url(/themes/bqmart/images/jt.png);}
+.zq_payment:hover,.new li{
+	cursor:pointer;
+	}

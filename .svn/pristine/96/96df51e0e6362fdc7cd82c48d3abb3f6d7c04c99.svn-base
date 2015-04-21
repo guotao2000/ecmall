@@ -1,0 +1,23 @@
+﻿<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <title>微信安全支付</title>
+
+	<script type="text/javascript">
+
+	    function myfunction() {
+
+	        document.getElementById('yxw').click()
+	    }
+	</script>
+</head>
+<body onload="myfunction()">
+	<br /><br /><br /><br />
+	<div align="center">
+		<a href="/bqwxpay/demo/js_api_call.php" id="yxw" >加载中。。。。</a>
+	</div>
+	<div>
+	
+	</div>
+</body>
+</html>

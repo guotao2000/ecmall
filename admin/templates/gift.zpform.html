@@ -1,0 +1,131 @@
+{include file="header.html"}
+<script type="text/javascript">
+	function addTime(obj){
+		$.get('index.php',{app:'discount',act:'ajax_col',schedule_id:obj.value},
+			function(data){
+				$("#start_time_id").val(data.start_time);
+				$("#end_time_id").val(data.end_time);
+			},'json');
+			//alert(obj.value);
+		
+	}
+	
+	function search(){
+		var obj = $('#goods_name');
+		var obj1 = $('#goods_sn');
+		var sid  = $('#sid');
+		$.post('index.php',{app:'gift',act:'ajax_search',goods_name:obj.val(),goods_sn:obj1.val(),sid:sid.val()},
+			function(data){
+				$('#bb').html(data);
+				$('#bbhead').css('display','block');
+				//alert(data);
+			});
+	}
+	//删除商品
+	function drop(obj,id){
+		var obj = $('#goods_name');
+		$.post('index.php',{app:'gift',act:'ajax_drop',id:id},
+			function(data){
+				//alert('11111');
+				$("#"+id).remove();
+			});
+	}
+	
+	
+	function add(obj,id){
+		//var c_id = $('#cuxiao_id').val();
+		var p_name = $('#pa_name').val();
+		//var p_type = $('#p_type option:selected').val();
+		var p_price = $("#p"+id).val();
+		var p_num = $("#"+id).val();
+		$.post('index.php',{
+		app:'gift',
+		act:'ajax_add',
+		goods_id:id,
+		//cuxiao_id:c_id,
+		pa_name:p_name,
+		//p_type:p_type,
+		p_price:p_price,
+		p_num:p_num
+		},
+		function(data){
+			$('#tian').append(data).css('display','block');
+			//alert(data);
+		});
+	}
+	
+	
+</script>
+
+<div id="rightTop">
+    <p>满赠满减管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=discount">{$lang.manage}</a></li>
+		<li><a class="btn1" href="index.php?app=discount&amp;act=add">添加满赠满减</a></li>
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" id="file_form" autocomplete="off">
+	   <table class="infoTable">
+            <tr>
+                <th class="paddingT15">
+                    促销名称:</th>
+                <td class="paddingT15 wordSpacing5">
+					<input type="text"  class="Wdate" style="width:255px" id="pa_name" name="pa_name" value="{$list.promotion_name}" />
+					<input type="hidden"  style="width:255px" id="cuxiao_id" name="cuxiao_id" value="{$list.id}" />
+					<span class="grey"></span>
+                </td>
+            </tr>
+           
+			<!--<tr>
+                <th class="paddingT15">
+                    组合类型:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <select id="p_type" name="p_type">
+						<option>--选择组合类型--</option>
+							<option  value="1">组合A</option>
+							<option  value="2">组合B</option>
+					</select>
+                </td>
+            </tr>  -->
+			
+			<tr id="kkk">
+                <th class="paddingT15">
+                    商品搜索:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="text"  class="Wdate" id="goods_name" style="width:255px" name="goods_name" />
+                	<span class="grey"></span>
+					商品条码搜索：<input type="text"  class="Wdate" id="goods_sn" style="width:255px" name="goods_sn" />
+					<span class="grey"></span>
+					<input class="formbtn" type="button" name="Submit"   value="搜索" onclick="search()" />
+                </td>
+				
+            </tr>
+	
+			     
+	        <!--<tr>
+	            <th></th>
+	            <td class="ptb20">
+	                <input class="formbtn" type="submit" name="Submit" value="提交" />
+	                <input class="formbtn" type="reset" name="Submit2" value="重置" />
+	            </td>
+	        </tr>-->
+        </table>
+		
+		<table class="infoTable">
+		
+			<tbody id="tian" style="display:none;">
+				<tr><th>商品编号</th><th>商品名称</th><th>商品原价</th><th>商品促销价</th><th>促销数量</th><th>操作</th></tr>
+			</tbody>
+		</table>
+		<br />
+		<table class="infoTable">
+			<thead id="bbhead" style="display:none;"><tr><th>商品编号</th><th>商品名称</th><th>商品价格</th><th>商品促销价</th><th>促销数量</th><th>选择</th></tr></thead>
+			<tbody id="bb"></tbody>
+		</table>
+		<input type="hidden" id="sid" value="{$store_id}" />
+		 <input class="formbtn" type="button" onclick="location.href='index.php?app=gift&amp;act=edit&amp;id={$id}'" value="返回" />
+    </form>
+</div>
+{include file="footer.html"}

@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+
+.shoplist{
+	height: auto;
+	margin-bottom:150px;
+	}
+.shoplist h3{
+	font-family:微软雅黑;
+	color:#6B6965;
+	margin-left:20px;
+	margin-bottom:10px;
+	}
+.shoplist ul{
+	background:#FFF;
+	}
+.shoplist ul li {
+	position:relative;
+	margin:5px 0px;
+	border-top:1px solid #D3CFCA;
+	background:#FFF;
+	padding:5px 0px;
+	}
+
+.shop_icon{
+	position:absolute;
+	top:15px;
+	left:20px;
+	width:47px;
+	height:40px;
+	background-position:-40px -108px;
+	background-size: 200px 180px;
+
+	}
+.shoplist ul li div.shop_name{
+	margin:3px 0px;
+	margin-left:80px;
+	border-left:1px solid #E1DFDA;
+	padding-left:20px;
+	font-size:16px;
+	font-family:微软雅黑;
+	line-height:24px;
+	color:#605E59;
+	}
+.shoplist ul li div.shop_name span{
+	color:#C00;
+	}
+.shop_anjian{
+	position:absolute;
+	top:15px;
+	right:30px;
+	width:47px;
+	height:40px;
+	background-position: -106px -45px;
+	background-size: 200px 180px;
+	
+	} 

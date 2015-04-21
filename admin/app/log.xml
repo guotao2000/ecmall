@@ -1,0 +1,75 @@
+21:20:28 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuJQbuvXZNwnR-yOOnpk5Ir4]]></FromUserName>
+<CreateTime>1429363257</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[qrscene_224]]></EventKey>
+<Ticket><![CDATA[gQFn8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1dVUDJjTzNseUpHeGVCQnJCV19zAAIEX67_VAMEAAAAAA==]]></Ticket>
+</xml>
+21:20:28 T 
+21:21:08 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuMIsECRodQlUk3ATNPCVu74]]></FromUserName>
+<CreateTime>1429363297</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[subscribe]]></Event>
+<EventKey><![CDATA[qrscene_144]]></EventKey>
+<Ticket><![CDATA[gQEf8ToAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL2RFUGswWWZsMXBHdm5qM0dGMl9zAAIEpPzBVAMEAAAAAA==]]></Ticket>
+</xml>
+21:21:08 T <xml>
+<ToUserName><![CDATA[oaNgWuMIsECRodQlUk3ATNPCVu74]]></ToUserName>
+<FromUserName><![CDATA[gh_5c20261e5f68]]></FromUserName>
+<CreateTime>1429363268</CreateTime>
+<MsgType><![CDATA[news]]></MsgType>
+<ArticleCount>2</ArticleCount>
+<Articles>
+    <item>
+        <Title><![CDATA[【面膜0元购】春风十里 不如停下来享受美丽]]></Title>
+        <Description><![CDATA[]]></Description>
+        <PicUrl><![CDATA[http://wap.bqmart.cn/data/wxfile/1425950004.jpg]]></PicUrl>
+        <Url><![CDATA[http://mp.weixin.qq.com/s?__biz=MzA4ODUwNDkzNg==&mid=203465635&idx=1&sn=a2c6e9f14882288781eb97c698fa9b55#rdoaNgWuMIsECRodQlUk3ATNPCVu74]]></Url>
+    </item>
+    <item>
+        <Title><![CDATA[倍全——中国社区O2O落地项目第一平台]]></Title>
+        <Description><![CDATA[]]></Description>
+        <PicUrl><![CDATA[http://wap.bqmart.cn/data/wxfile/1420783423.jpg]]></PicUrl>
+        <Url><![CDATA[http://mp.weixin.qq.com/s?__biz=MzA4ODUwNDkzNg==&mid=202362622&idx=2&sn=65d486e6baf0757f6909eb6a53729526#rdoaNgWuMIsECRodQlUk3ATNPCVu74]]></Url>
+    </item>
+</Articles>
+</xml>
+21:21:17 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuMIsECRodQlUk3ATNPCVu74]]></FromUserName>
+<CreateTime>1429363306</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></EventKey>
+</xml>
+21:21:17 T <xml>
+<ToUserName><![CDATA[oaNgWuMIsECRodQlUk3ATNPCVu74]]></ToUserName>
+<FromUserName><![CDATA[gh_5c20261e5f68]]></FromUserName>
+<CreateTime>1429363277</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[跳转链接 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></Content>
+</xml>
+21:26:21 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuKIlwwjC1em4ASoK1bPlRKw]]></FromUserName>
+<CreateTime>1429363610</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[VIEW]]></Event>
+<EventKey><![CDATA[https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></EventKey>
+</xml>
+21:26:21 T <xml>
+<ToUserName><![CDATA[oaNgWuKIlwwjC1em4ASoK1bPlRKw]]></ToUserName>
+<FromUserName><![CDATA[gh_5c20261e5f68]]></FromUserName>
+<CreateTime>1429363581</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[跳转链接 https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx64794ef985549154&redirect_uri=http://wap.bqmart.cn&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect]]></Content>
+</xml>
+21:28:16 R <xml><ToUserName><![CDATA[gh_5c20261e5f68]]></ToUserName>
+<FromUserName><![CDATA[oaNgWuCcRm8_pqv7YecPS0n2RyuM]]></FromUserName>
+<CreateTime>1429363726</CreateTime>
+<MsgType><![CDATA[event]]></MsgType>
+<Event><![CDATA[SCAN]]></Event>
+<EventKey><![CDATA[187]]></EventKey>
+<Ticket><![CDATA[gQFp8DoAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL1kwT0lJWXpscTVIU2Npb25lMl9zAAIEE9LvVAMEAAAAAA==]]></Ticket>
+</xml>
+21:28:16 T 

@@ -1,0 +1,72 @@
+{include file="header.html"}
+<script type="text/javascript">
+	function addTime(obj){
+	    $.get('index.php', { app: '_ms_promotion', act: 'ajax_col', schedule_id: obj.value },
+			function(data){
+				$("#start_time_id").val(data.start_time);
+				$("#end_time_id").val(data.end_time);
+			},'json');
+			//alert(obj.value);
+		
+	}
+	
+	function search(){
+		var obj = $('#goods_name');
+		$.post('index.php', { app: '_ms_promotion', act: 'ajax_col', goods_name: obj.val() },
+			function(data){
+				//alert(data.retval);
+				//alert(data);
+				//var content = "<tr><td class='paddingT15' >商品名称:</td><td class='paddingT15 wordSpacing5'>"; 
+				//content += "<select><option>111111</option><option>222222222</option></select>"; 
+				//content += "</td></tr>";
+				$('#aaa').html(data);
+				$('.sp').css('display','block');
+			});
+	}
+	
+	
+</script>
+
+<div id="rightTop">
+    <p>秒杀管理</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=_ms_promotion">{$lang.manage}</a></li>
+		<li><a class="btn1" href="index.php?app=_ms_promotion&amp;act=add">添加促销</a></li>	  
+       
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" id="file_form" autocomplete="off">
+        <table class="infoTable"> 
+		
+			
+			<tr class="sp"><th class="paddingT15">
+                    商品名:</th>
+					<td class="paddingT15 wordSpacing5"><input type="text"  readonly="readonly" class="Wdate" style="width:255px" name="goods_name" value="{$zhuhe.goods_name}" /></td>
+			</tr>
+			<tr class="sp"><th class="paddingT15">
+                    商品促销价:</th>
+					<td class="paddingT15 wordSpacing5"><input type="text"  class="Wdate" style="width:255px" name="promotion_price" value="{$zhuhe.price}" /></td>
+			</tr>
+			<tr class="sp">
+			<th class="paddingT15">
+                    商品促销数量:
+					<td class="paddingT15 wordSpacing5"><input type="text"  class="Wdate" style="width:255px" name="promotion_num" value="{$zhuhe.quantity}" /></td>
+			</tr>  
+			     
+	        <tr>
+	            <th></th>
+	            <td class="ptb20">
+	                <input class="formbtn" type="submit" name="Submit" value="提交" />
+	                <input class="formbtn" type="reset" name="Submit2" value="重置" />
+					<input class="formbtn" type="button" onclick="history.back()" value="返回" />
+	            </td>
+	        </tr>
+            <input type="hidden" name="p_id" value="{$zhuhe.p_id}" />
+			<input type="hidden" name="id" value="{$zhuhe.id}" />
+			<input type="hidden" name="goods_id" value="{$zhuhe.goods_id}" />
+        </table>
+    </form>
+</div>
+{include file="footer.html"}

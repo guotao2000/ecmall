@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+    <head>
+        <title>倍全商城-订单支付页面</title>
+        <meta charset="utf-8">
+        <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+        <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+        
+        <meta content="yes" name="apple-mobile-web-app-capable" />
+        
+        <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+        
+        <meta content="telephone=no" name="format-detection" />
+        
+        <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+        
+        <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+        <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/com/com.css'; ?>"/> 
+        <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/home/index.css'; ?>"/>
+        <script src="<?php echo $this->res_base . "/" . 'bqmart/js/jquery.js'; ?>"></script>
+        
+        <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/com.js'; ?>"></script>
+        
+        
+        <script src="<?php echo $this->res_base . "/" . 'bqmart/template/js/com/template.js'; ?>"></script>
+        
+        
+        <script type="text/javascript" src="<?php echo $this->res_base . "/" . 'bqmart/template/js/cart/jquery.inputbox.js'; ?>"></script>
+        
+		<script type="text/javascript" >
+		function yxwgopay()
+		{
+
+		   if($("input[name='payment_id']:checked").val().length>0)
+		   {
+		     $('#goto_pay').submit();
+		   }else{
+		   alert('请选择一种支付方式');
+		   return false;
+		   }
+		}
+		</script>
+</head>
+<body>
+<div class="com-content">
+
+  <div class="com-header-area" id="js-com-header-area">
+          <a href="javascript:history.back(-1);" class="com-header-retun"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title" style="padding-left:0px;">订单支付</span>
+          <a href="<?php echo url('app=default'); ?>" class="com-header-home "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+
+
+  <div class="com-content-area" id="js-com-content-area" style=" margin:0px;">
+      
+      <form action="index.php?app=bqds&act=gopay_yxw&order_id=<?php echo $this->_var['order']['order_id']; ?>" method="POST" id="goto_pay">
+         <div class="page-role good-page">
+         <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/good/index.css'; ?>" />
+         <link type="text/css" rel="stylesheet" href="<?php echo $this->res_base . "/" . 'bqmart/template/css/order/index.css'; ?>" />
+
+    <div class="pxui-area">
+        <div class="bq_payorder-box" id="js-attrs-title">
+           
+            
+           <div class="payorder_ok-title">
+              <p>
+               <span class="payorden_ok-icon"></span>亲订单提交成功，快去支付啦~~
+              </p>
+           </div>
+           <div class="payorder-info">
+              <p>订 单 号：<span><?php echo $this->_var['order']['order_sn']; ?></span></p>
+              <p>支付金额：<span><?php echo price_format($this->_var['order']['order_amount']); ?></span></p>
+              <div>
+              </div>
+           </div>
+           <div class="payorder_zffs-box">
+              <div class="payorder_zffs-title">
+                请选择一种支付方式
+              </div>
+              <div class="payorder_zffs-info">
+                <div class="zffs_box">
+            
+              <?php $_from = $this->_var['wappayments']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'payment');if (count($_from)):
+    foreach ($_from AS $this->_var['payment']):
+?>
+                <span class="text yxwspan" style="margin-top:5px;" onclick="payclick(this)" >
+                   <input type="radio" name="payment_id" value=" <?php echo $this->_var['payment']['payment_code']; ?>"  />
+                  
+                   <?php echo $this->_var['payment']['payment_name']; ?>
+                </span>
+                 <?php endforeach; else: ?>
+                 <span class="text" style="margin-top:5px;" onclick="alert('该店铺已经关闭请选择其他店铺购买！！！');return false;" >
+                
+                  
+                   该店铺已经关闭请选择其他店铺购买！！！
+                </span>
+               <?php endif; unset($_from); ?><?php $this->pop_vars();; ?>
+
+        
+                
+              </div>
+              </div>
+           </div>
+             
+           
+             <div class="make_order-submit">
+                 <input type="submit"  class="make_order-sbbtn" value="去 支 付" onclick="yxwgopay();return false;"  style="color:#FFF; border:none;"/>
+             </div>
+                      
+         </div>
+    </div>
+</div>
+<input type="hidden" value="<?php echo $this->_var['order']['order_sn']; ?>" name="trade_sn"/>
+</form>
+      
+         <?php echo $this->fetch('member.footer.html'); ?>
+
+</div> 
+
+</div>
+
+ <?php echo $this->fetch('store.menu.html'); ?>
+
+</body>
+
+<script type="text/javascript" language="javascript">
+
+    function payclick(that) {
+        // alert($(that).html());
+        $(that).children("input:first").attr("checked", true);
+    }
+    function qidongd() {
+
+        // alert(1);
+        that = $(".yxwspan").get(0);
+        $(that).children("input:first").attr("checked", true);
+    }
+    $(function () {
+
+        $('div[name="city"]').inputbox({
+            height: 24,
+            width: 100
+        });
+
+        $('.cbt').inputbox();
+
+        $('[name="rbt"], [name="rbt2"]').inputbox();
+        if ($(".yxwspan").size() > 0) {
+            qidongd();
+        }
+
+    });
+      
+</script>
+
+</html>

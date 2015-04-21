@@ -1,0 +1,106 @@
+﻿<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style type="text/css">
+body,td {font-size:13px;}
+</style>
+
+</head><body><h1 align="center">订单信息</h1>
+<table cellpadding="1" width="100%">
+    <tbody><tr>
+        <td width="8%">卖家名称：</td>
+        <td>{$order.seller_name|escape}<!-- 购货人姓名 --></td>
+        <td align="right">下单时间：</td><td>{$order.add_time|date:complete}<!-- 下订单时间 --></td>
+        <td align="right">支付方式：</td><td>{$order.payment_name|escape}<!-- 支付方式 --></td>
+        <td align="right">订单编号：</td><td>{$order.order_sn|escape}<!-- 订单号 --></td>
+    </tr>
+    <tr>
+        <td>付款时间：</td><td>{$order.pay_time|date:complete}</td><!-- 付款时间 -->
+        <td align="right">发货时间：</td><td>{$order.ship_time|date:complete}<!-- 发货时间 --></td>
+        <td align="right">配送方式：</td><td>{$order_extm.shipping_name|escape}<!-- 配送方式 --></td>
+        <td align="right">订单状态：</td><td>{if $order.status eq 11}等待买家付款{/if}
+                        {if $order.status eq 12}等待买家收货付款{/if}
+                        {if $order.status eq 13}买家已付款{/if}
+                        {if $order.status eq 20}等待卖家发货{/if}
+                        {if $order.status eq 21}货到付款已发货{/if}
+                        {if $order.status eq 30}卖家已发货{/if}
+                        {if $order.status eq 40}交易完成{/if}
+                        {if $order.status eq 0}交易关闭{/if} 
+                        {if $order.status eq 51}退货申请中{/if}
+                        {if $order.status eq 52}退货审核中{/if}
+                        {if $order.status eq 53}退货失败{/if}
+                        {if $order.status eq 54}退货成功{/if} 
+                        <!-- 订单状态 --></td>
+    </tr>
+    <tr>
+        <td>收货地址：</td>
+        <td colspan="1">
+        {$order_extm.region_name|escape}&nbsp;{$order_extm.address|escape}&nbsp;<!-- 收货人地址 -->
+        </td>
+		<td align="right">买家用户名：</td>
+        <td>{if $order.from_weixin eq 1}{$order.wx_nickname}{else}{$order.buyer_name|escape}{/if}&nbsp;<!-- 买家用户名 --></td>
+        <td align="right">收货人：</td>
+        <td>{$order_extm.consignee|escape}&nbsp;<!-- 收货人姓名 --></td>
+        <td align="right">手机：</td>
+        <td>{$order_extm.phone_mob|escape}</td>
+        
+    </tr>
+</tbody></table>
+<table style="border-collapse:collapse;border-color:#000;" border="1" width="100%">
+    <tbody><tr align="center">
+        <td bgcolor="#cccccc">商品名称  <!-- 商品名称 --></td>
+        <td bgcolor="#cccccc">货号    <!-- 商品货号 --></td>
+        <td bgcolor="#cccccc">属性  <!-- 商品属性 --></td>
+        <td bgcolor="#cccccc">价格 <!-- 商品单价 --></td>
+        <td bgcolor="#cccccc">数量<!-- 商品数量 --></td>
+        <td bgcolor="#cccccc">小计    <!-- 价格小计 --></td>
+    </tr>
+    <!--{foreach from=$goods_list item=goods}-->
+    <tr>
+        <td>&nbsp;{$goods.goods_name|escape}<!-- 商品名称 -->
+        </td>
+        <td>&nbsp;{$goods.goods_sn|escape} <!-- 商品货号 --></td>
+        <td><!-- 商品属性 -->{$goods.specification|escape}
+        </td>
+        <td align="right">{$goods.price|price}元&nbsp;<!-- 商品单价 --></td>
+        <td align="right">{$goods.quantity}&nbsp;<!-- 商品数量 --></td>
+        <td align="right">{$goods.per_amount|price}元&nbsp;<!-- 商品金额小计 --></td>
+    </tr>
+    <!--{/foreach}-->
+    <tr>
+        <!-- 发票抬头和发票内容 -->
+        <td colspan="4">
+                </td>
+        <!-- 商品总金额 -->
+        <td colspan="2" align="right">商品总金额：{$order.goods_amount|price}元</td>
+    </tr>
+</tbody></table>
+<table border="0" width="100%">
+    <tbody><tr align="right">
+        <td>                        <!-- 配送费用 -->
+        + 配送费用：{$order_extm.shipping_fee|price}元                        <!-- 订单总金额 -->
+        </td>
+    </tr>
+    <tr align="right">
+        <td>
+        - 红&#12288;包：{$order.discount|price}元        </td>
+    </tr>
+    <tr align="right">
+        <td>
+        = 应付款金额：{$order.order_amount|price}元        </td>
+    </tr>
+</tbody></table>
+<table border="0" width="100%">
+            
+    <tbody><tr><!-- 网店名称, 网店地址, 网店URL以及联系电话 -->
+        <td>
+        倍全商城
+        </td>
+    </tr>
+    <tr><!-- 带参数二维码 -->
+        <td>
+        	<img src="{$qrcode_src}" />
+        </td>
+    </tr>
+    <tr align="right"><!-- 订单操作员以及订单打印的日期 -->
+        <td>打印时间：{$otime|date:complete}&nbsp;&nbsp;&nbsp;操作者：{$user_name|escape}</td>
+    </tr>
+</tbody></table></body></html>

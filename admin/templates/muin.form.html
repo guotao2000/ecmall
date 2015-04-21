@@ -1,0 +1,56 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>修改推荐号</p>
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=muin">{$lang.manage}</a></li>
+        <li><span>修改</span></li>
+		 
+		<!--<li><a class="btn1" href="index.php?app=discount&amp;act=list_zhuhe">组合列表</a></li>-->
+            
+    </ul>
+</div>
+
+<div class="info">
+    <form method="post" id="file_form" autocomplete="off">
+        <table class="infoTable">
+			<tr>
+                <th class="paddingT15">
+                    推荐号:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="text"  class="Wdate" style="width:255px" name="old_uin" value="{$gift.promotion_name}" />
+                	<span class="grey"></span>
+                </td>
+            </tr>      
+   
+            <tr>
+                <th class="paddingT15">
+                    修改成:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="text"  class="Wdate" style="width:255px" name="new_uin" value="{$gift.store_id}" />
+                	<span class="grey"></span>
+                </td>
+            </tr>       
+			
+			
+			
+			<tr>
+                <th class="paddingT15">
+                    操作人:</th>
+                <td class="paddingT15 wordSpacing5">
+                   <input type="text"  class="Wdate" style="width:255px" name="operate_person" value="{$gift.operate_person}" />
+                	<span class="grey"></span>
+                </td>
+            </tr>       
+	        <tr>
+	            <th></th>
+	            <td class="ptb20">
+	                <input class="formbtn" type="submit" name="Submit" value="保存" />
+	                <input class="formbtn" type="reset" name="Submit2" value="重置" />
+					<input class="formbtn" type="button" onclick="location.href='index.php?app=muin'" value="返回" />
+	            </td>
+	        </tr>
+        </table>
+		<input type="hidden" name="id" value="{$gift.id}" />
+    </form>
+</div>
+{include file="footer.html"}

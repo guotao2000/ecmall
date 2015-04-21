@@ -1,0 +1,683 @@
+<!doctype html>
+<html>
+  <head>
+    <title>倍全商城-首页</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="倍全,倍全商城,倍全订货,社区O2O,社区便利店,网上超市,济南社区020,便利店O2O,济南社区便利店" />
+    <meta name="description" content="倍全商城-倍全旗下品牌，济南同城最快速的便利店商品订购派送网站" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="bookmark" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport" />
+    <!--离线应用的另一个技巧-->
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <!--指定的iphone中safari顶端的状态条的样式-->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <!--告诉设备忽略将页面中的数字识别为电话号码-->
+    <meta content="telephone=no" name="format-detection" />
+    <!--设置开始页面图片-->
+    <!--<link rel="/touch/apple-touch-startup-image" href="startup.png" />-->
+    <!--在设置书签的时候可以显示好看的图标-->
+    <!--<link rel="apple-touch-icon" href="/touch/iphon_tetris_icon.png"/>-->
+    <link rel="stylesheet" type="text/css" href="template/css/home/cplb.css"  />	
+    <link type="text/css" rel="stylesheet" href="template/css/com/com.css"/>
+    <script src="js/jquery.js"></script>
+    <!-- 控制整体标签宽度的js -->
+    <script src="template/js/com/com.js"></script>
+    <!-- 控制整体标签宽度的js end -->
+    <!-- 控制图片缩放比例的js -->
+    <script src="template/js/com/template.js"></script>
+    <!-- 控制图片缩放比例的js end -->
+    <!-- 控制抢购模块左右切换的js 开始-->
+    <script type="text/javascript" src="template/js/home/swipe.js" charset="utf-8"></script>
+    <!-- 控制抢购模块左右切换的js 结束-->
+    <!--控制产品列表加减数量的js开始 -->
+    <script type="text/javascript" src="template/js/com/jquery.spinner.js"></script>
+    <!--控制产品列表加减数量的js结束 -->
+  </head>
+  <body>
+    <div class="com-content">
+       <!-- 头部区域开始 by-wei 2014.12.08  -->
+        <div class="com-header-area" id="js-com-header-area">
+          <a href="#" class="com-header-logo"></a>
+		  <dfn></dfn>
+          <span class="bq_header_title">倍全海尔绿城店</span>
+          <a href="xuandian.htm" class="com-header-shop "><del></del></a>
+		  <div class="clear"></div>
+        </div>
+      <!-- 头部区域结束 end -->
+      <!--中间内容区域开始 by-wei 2014.12.08 --> 
+        <div class="com-content-area" id="js-com-content-area">
+          <div class="page-role home-page">
+            <link type="text/css" rel="stylesheet" href="template/css/home/index.css"/>
+          <!-- 幻灯片轮播图动作控制js开始 -->
+            <script src="template/js/com/jquery.touchslider.min.js"></script>
+            <script src="template/js/home/index.js"></script>
+            <script>
+              jQuery(function($) {
+              $(window).resize(function(){
+                 var width=$('#js-com-header-area').width();
+              $('.touchslider-item a').css('width',width);
+              $('.touchslider-viewport').css('height',340*(width/640));
+                }).resize();	
+              $(".touchslider").touchSlider({mouseTouch: true, autoplay: true});
+              });
+            </script>	
+          <!-- 幻灯片区域开始 By-Wei 2014.12.08 -->
+            <div class="touchslider">
+              <div class="touchslider-viewport">
+                  <div class="touchslider-item">
+                    <a href="#">
+                      <img src="images/bqhd_7.jpg" style="vertical-align:top;"/>
+                    </a>
+                  </div>
+                  <div class="touchslider-item">
+                    <a href="#">
+                      <img src="images/bqhd_2.jpg" style="vertical-align:top;"/>
+                    </a>
+                  </div>
+                  <div class="touchslider-item">
+                    <a href="#">
+                      <img src="images/bqhd_3.jpg" style="vertical-align:top;"/>
+                    </a>
+                  </div>
+                  <div class="touchslider-item">
+                    <a href="#">
+                      <img src="images/bqhd_4.jpg" style="vertical-align:top;"/>
+                    </a>
+                  </div>
+                  <div class="touchslider-item">
+                    <a href="#">
+                      <img src="images/bqhd_5.jpg" style="vertical-align:top;"/>
+                    </a>
+                  </div>
+                  <div class="touchslider-item">
+                    <a href="#">
+                      <img src="images/bqhd_6.jpg" style="vertical-align:top;"/>
+                    </a>
+                  </div>
+                  <div class="touchslider-item">
+                    <a href="#">
+                      <img src="images/bqhd_1.jpg" style="vertical-align:top;"/>
+                    </a>
+                  </div>
+              </div>
+              <div class="touchslider-navtag">
+                  <span class="touchslider-nav-item touchslider-nav-item-current"></span>
+                  <span class="touchslider-nav-item "></span>
+                  <span class="touchslider-nav-item "></span>
+                  <span class="touchslider-nav-item "></span>
+                  <span class="touchslider-nav-item "></span>
+                  <span class="touchslider-nav-item "></span>
+                  <span class="touchslider-nav-item "></span>
+              </div>
+            </div>
+          <!-- 幻灯片区域结束 -->
+          <!--- 搜索开始 By-Wei 2014.12.08 -->
+          <div class="search" style="position:relative">
+          <span class="input-box">
+          <form action="search.php" id="searchForm"  name="searchForm" method="get" >
+              <input type="text" name="keywords" id="keyword" class="new-input"  value="" placeholder="请输入关键词" style="background: none repeat scroll 0 0 #fff;border: 0 none;border-radius: 0;color: #bdbdbd;vertical-align: middle;width: 85%; padding:4px 0px;">
+          </form>	
+          <a href="javascript:void(0)" onclick="$('#searchForm').submit();" class="btn-search"><span>search</span></a>
+          </span>
+          <div class="new-srch-lst" id="shelper" style="position: absolute; top: 2em; left: 3.28em; z-index: 10; width: 404.2px; display: none;"></div>
+          </div>
+          <!--  搜索结束-->
+        <!-- 分类图标开始-->
+          <div class="category" style="padding:10px 0px;">
+            <ul class="cate-menu tbl-type" id="categoryMenu">
+              <li class="tbl-cell route1 route">
+                <a href="#" class="menu1" onclick="clickResponse(this)" res="1">
+                    <span class="menu1-icon"><span></span></span>
+                      <span class="cate-name">我的订单</span>
+                  </a>
+              </li>
+              <li class="tbl-cell route2 route">
+                <a href="#" id="html5_cart" class="menu2" >
+                    <span class="menu2-icon"><span></span></span>
+                      <span class="cate-name">红包</span>
+                  </a>
+              </li>
+              <li class="tbl-cell route3 route">
+                <a href="#" class="menu3">
+                    <span class="menu3-icon"><span></span></span>
+                      <span class="cate-name">购物车</span>
+                  </a>
+              </li>
+              <li class="tbl-cell route4 route">
+                      <a href="#" class="menu4" onclick="clickResponse(this)" res="1">
+                        <span class="menu4-icon"><span></span></span>
+                      <span class="cate-name">充值</span>
+                  </a>
+              </li>
+              <li class="tbl-cell route5 route">
+                <a href="#" class="menu6" onclick="clickResponse(this)" res="1">
+                    <span class="menu6-icon"><span></span></span>
+                      <span class="cate-name">收藏夹</span>
+                  </a>
+              </li>
+              </ul>
+        </div>
+      <!--- 分类图标结束-->
+      <!-- WAP通栏横条BD_1开始 By Wei 2014.12.08-->
+          <div class="bq_bkad">
+              <div class="bq_bk_slide">
+                <a href="#"><img src="images/bq_tonglan_ad_1.jpg"  width="100%" ></a>
+              </div>
+          </div>
+      <!-- WAP通栏横条BD_1结束-->
+      <!-- 抢购模块开始  By Wei 2012.12.09-->
+      	<!-- 抢购产品循环列表开始 -->
+	    <div class="content-box">
+		   <div class="content-box-category">
+			<span><strong>天天折扣抢购</strong></span>
+		    </div>
+		    <div class="content-box-list" id="slider-id">
+				<ul>
+					<div class="slider-item">
+						<li>
+							<div style="width:99%;">
+							   <a href="" class="product-image-link"><img src="images/bqmiaosha_1.jpg" /></a>
+						    </div>
+							<div style="width:99%; overflow: hidden; position:relative;">
+							    <a href="" class="product-title-link">叔纸皮核桃叔纸皮核桃叔纸皮核桃198g</a>
+							    <p>折扣价：￥65.00</p>
+                                <a href="#" class="bq_qianggou_anniu" style=" color:#FFF;">抢购</a>
+							</div>
+						</li>	
+						<li>
+							<div style="width:99%; ">
+							    <a href="" class="product-image-link"><img src="images/bqmiaosha_2.jpg" /></a>
+							</div>
+							<div style="width:99%; overflow: hidden; position:relative;">
+							    <a href="" class="product-title-link">皮核桃纸皮核桃198g叔纸皮核桃</a>
+							    <p>折扣价：￥65.00</p>
+                                <a href="#" class="bq_qianggou_anniu" style=" color:#FFF;">抢购</a>
+						     </div>
+						</li>
+					</div>
+					<div class="slider-item">
+						<li>
+							<div style="width:99%;">
+							   <a href="" class="product-image-link"><img src="images/bqmiaosha_3.jpg" /></a>
+							</div>
+							<div style="width:99%; overflow: hidden; position:relative;">
+							  <a href="" class="product-title-link">c叔纸皮核桃叔纸皮核桃飘零大叔198g</a>
+							  <p>折扣价：￥65.00</p>
+                              <a href="#" class="bq_qianggou_anniu" style=" color:#FFF;">抢购</a>
+						    </div>
+						</li>
+						<li>
+							<div style="width:99%;">
+							    <a href="" class="product-image-link"><img src="images/bqmiaosha_4.jpg" /></a>
+							</div>
+							<div style="width:99%; overflow: hidden; position:relative;">
+							    <a href="" class="product-title-link">d飘叔纸皮核桃叔纸皮核桃零大叔198g</a>
+							     <p>折扣价：￥65.00</p>
+                                 <a href="#" class="bq_qianggou_anniu" style=" color:#FFF;">抢购</a>
+						    </div>
+						</li>	
+					</div>	
+				</ul>	
+		</div>
+            <div class="bq_zuoyou_mnue">
+               <span class="bq_qg_prev"></span>
+               <span class="bq_qg_next"></span>
+             </div>
+		</div>
+	<!-- 抢购产品循环列表结束 -->
+    <script type="text/javascript">
+	window.mySwipe = new Swipe(document.getElementById('slider-id'), {
+	startSlide: 0,
+	speed: 400,
+	auto: 3000,
+	continuous: true,
+	disableScroll: false,
+	stopPropagation: false,
+	callback: function(index, elem) {},
+	transitionEnd: function(index, elem) {}
+	});           
+    </script>
+      
+      <!-- 抢购模块结束  Eed Wei 2012.12.09-->
+      <!-- 爆款广告位2开始-->
+      <div class="bq_bkad" >
+        <div class="bq_bk_slide">
+          <a href="#"><img src="images/bqadl_1.jpg"  width="50%"></a><a href="#"><img src="images/bqadr_1.jpg"  width="50%"></a>
+        </div>
+      </div>
+      <!-- 爆款广告位2结束-->
+      <!--秒杀模块开始 By Wei 2012.12.08-->
+      
+   
+        <div data-role="page" id="mypage"> 
+           <div class="content-box-category" style="background:#F0F0F2;">
+			<span><strong>天天折扣秒杀</strong></span>
+		    </div>
+         	<div role="main" class="ui-content">
+        		<ul class="sliderlist">
+              <!-- <li>
+                  <div class="miaosha_list">
+                  <div class="img"><img src="images/miaosha_img1.jpg"><div class="dw"><img src="images/miaosha_position.png"></div></div>
+                  <div class="zhuangtai">已售<font color="#da1a19">1579</font> <span><a class="anniu" href="#" onclick="addCart(201)">马上抢</a></span></div>
+                  <div class="money">
+                      <div class="left">
+                          <h2>￥71.00&nbsp&nbsp<span>￥89.00</span></h2>
+                      </div>
+                      <div class="right">
+                          <ul class="time">
+                          <li class="hours"></li>
+                          <li class="none">:</li>
+                          <li class="second"></li>
+                          <li class="none">:</li>
+                          <li class="miao"></li>
+                          <div class="clear"></div>
+                      </ul>
+                      </div>
+                      <div class="clear"></div>
+                  </div>
+                  <div class="textbox">
+                      <h2><a href="#">【秒杀】多力葵花籽油5L/桶 </a> </h2>
+                      <div class="text">
+                          （非转基因）橄榄与黄金3益随机送
+                      </div>
+                  </div>
+              </div>
+              </li>
+              <li>
+                  <div class="miaosha_list">
+                  <div class="img"><img src="images/miaosha_img2.jpg"><div class="dw"><img src="images/miaosha_position.png"></div></div>
+                 <div class="zhuangtai">已售<font color="#da1a19">1579</font> <span><a class="anniu" href="#" onclick="addCart(201)">马上抢</a></span></div>
+                  <div class="money">
+                      <div class="left">
+                          <h2>￥399.00&nbsp&nbsp<span>￥4889.00</span></h2>
+                      </div>
+                      <div class="right">
+                          <ul class="time">
+                          <li class="hours"></li>
+                          <li class="none">:</li>
+                          <li class="second"></li>
+                          <li class="none">:</li>
+                          <li class="miao"></li>
+                          <div class="clear"></div>
+                      </ul>
+                      </div>
+                      <div class="clear"></div>
+                  </div>
+                  <div class="textbox">
+                      <h2><a href="#">【秒杀】圣芝波尔多歌德城堡AOC/6支装 </a></h2>
+                      <div class="text">
+                          [法国波尔多城堡]
+                      </div>
+                  </div>
+              </div>
+              </li>
+              -->
+              <li>
+                  <div class="miaosha_list">
+                  <div class="img"><img src="images/miaosha_img3.jpg"><div class="dw"><img src="images/miaosha_position.png"></div></div>
+                 <div class="zhuangtai">已售<font color="#da1a19">1579</font> <span><a class="anniu" href="#" onclick="addCart(201)">马上抢</a></span></div>
+                  <div class="money">
+                     <div class="left">
+                          <h2>￥37.00&nbsp&nbsp<span>￥54.00</span></h2>
+                      </div>
+                      <div class="right">
+                          <ul class="time">
+                          <li class="hours"></li>
+                          <li class="none">:</li>
+                          <li class="second"></li>
+                          <li class="none">:</li>
+                          <li class="miao"></li>
+                          <div class="clear"></div>
+                      </ul>
+                      </div>
+                      <div class="clear"></div>
+                  </div>
+                  <!--<div class="textbox">
+                      <h2><a href="#">【秒杀】 原味卤肉面113g*12桶装整箱出售</a></h2>
+                      <div class="text">
+                          [统一企业]统一来一桶
+                      </div>
+                  </div>-->
+              </div>
+              </li>
+            </ul>    
+          </div>
+            
+        </div>
+      <!--秒杀模块结束 By Wei 2012.12.08-->
+      <!-- 爆款广告位1开始-->
+      <div class="bq_bkad" style="margin-top:10px;">
+          <div class="bq_bk_slide">
+            <a href="#"><img src="images/bqad_4.jpg"  width="100%" ></a>
+          </div>
+      </div>
+      <!-- 爆款广告位1结束-->
+          <div class="pxui-area">
+          <div class="bq_cplb_bg"></div>
+          <div class="pxui-tab pxui-tab-style pxui-tab-no-top" id="js-tab-style">
+          <a>热销商品</a>
+          <a class="selected">精品推荐</a>
+          <a>特价促销</a>
+          </div>
+          <div class="pxui-shoes" id="js-home-tab-0" style="display:none;">
+          <!--热销产品列表开始-->
+          <div class="liebiao">
+            <!-- 列表产品开始-->
+              <div class="zxList">
+               <ul>
+                 <li class="clearfix">
+                   <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp1.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：99</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>100</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                 <li class="clearfix">
+                   <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp1.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：99</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>100</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                 <li class="clearfix">
+                   <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp1.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：99</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>100</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                 <li class="clearfix">
+                   <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp1.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：99</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>100</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                 <li class="clearfix">
+                   <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp1.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：99</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>100</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                 <li class="clearfix">
+                   <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp1.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml圣牧全程有机儿童奶1X12X190ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：99</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>100</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>                        
+               </ul>
+              </div>
+            <!--列表产品结束-->
+          </div>
+          <!--热销产品列表结束-->
+          </div>
+          <div class="pxui-show-more" style="display:none;" lastid="1" template="#js-bk-template" srcProperty="goodsrc" container="#js-home-tab-0 > div" url="/home/ajax?act=bk_more">
+          <img src="template/images/public/loading.gif" width="24" height="24"/>
+          <a href="/mobile/search.php?encode=YToyOntzOjg6ImtleXdvcmRzIjtzOjA6IiI7czoxODoic2VhcmNoX2VuY29kZV90aW1lIjtpOjE0MTYzODczNzE7fQ==">显示更多 <i class="arrow2-bottom"></i></a>
+          </div>
+          <div class="pxui-shoes" id="js-home-tab-1" >
+          <!--精品产品列表开始-->
+          <div class="liebiao">
+             <!-- 列表产品开始-->
+             <div class="zxList">
+                <ul>
+                 <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">可口可乐汽水330ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：2.0</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>2.5</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                 <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">可口可乐汽水330ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：2.0</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>2.5</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                 <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">可口可乐汽水330ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：2.0</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>2.5</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                 <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">可口可乐汽水330ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：2.0</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>2.5</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                 <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">可口可乐汽水330ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：2.0</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>2.5</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                 <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">可口可乐汽水330ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：2.0</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>2.5</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+
+                </ul>
+              </div>
+             <!--列表产品结束-->
+          </div>
+          <!--精品产品列表结束-->
+          </div>
+          <div class="pxui-show-more"  lastid="1" template="#js-bk-template" srcProperty="goodsrc" container="#js-home-tab-1 > div" url="/home/ajax?act=bk_more&sid=94">
+          <img src="template/images/public/loading.gif" width="24" height="24"/>
+          <a href="/mobile/search.php?encode=YToyOntzOjg6ImtleXdvcmRzIjtzOjA6IiI7czoxODoic2VhcmNoX2VuY29kZV90aW1lIjtpOjE0MTYzODczNzE7fQ==">显示更多 <i class="arrow2-bottom"></i></a>
+          </div>
+          <div class="pxui-shoes" id="js-home-tab-2" style="display:none;">
+          <!--特价促销产品列表开始-->
+          <div class="liebiao">
+             <!-- 列表产品开始-->
+             <div class="zxList">
+                <ul>
+                  <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">五粮醇新三代浓香型白酒50度度500ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：88</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>98</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                  <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">五粮醇新三代浓香型白酒50度度500ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：88</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>98</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                  <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">五粮醇新三代浓香型白酒50度度500ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：88</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>98</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                  <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">五粮醇新三代浓香型白酒50度度500ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：88</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>98</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                  <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">五粮醇新三代浓香型白酒50度度500ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：88</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>98</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                  <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">五粮醇新三代浓香型白酒50度度500ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：88</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>98</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                  <li class="clearfix">
+                    <a href="xiangqing.htm" style=" border-right:none; float:none; margin-left:0px;"><img src="images/bq_cplb_jp2.jpg"></a>
+                   <div class="zxProInfo" style="line-height:22px;" >
+                      <p class="proName" style="line-height:22px; margin-bottom:5px;"><a href="#" style=" border-right:none; float:none; margin-left:0px; border-bottom:none;">五粮醇新三代浓香型白酒50度度500ml</a></p>
+                   <!--  <p class="proSlogan">超值特价，数量有限！</p>-->
+                      <span class="proPrice" style="display:block;">倍全价：88</span>                 <span style="margin-left:20px; font-size:12px; display:block; margin-top:3px;">市场价：<del>98</del></span>
+                      <span style="position:absolute; right:10px; bottom:18px;"><input type="text" class="spinnerExample"/></span>
+                  </div>
+                 </li>
+                
+                 </ul>
+              </div>
+             <!--列表产品结束-->
+           </div>
+          <!--特价促销产品列表结束-->
+          </div>
+          <div class="pxui-show-more" style="display:none;" lastid="1" template="#js-bk-template" srcProperty="goodsrc" container="#js-home-tab-2 > div"  url="/home/ajax?act=bk_more&sid=95">
+          <img src="template/images/public/loading.gif" width="24" height="24"/>
+          <a href="/mobile/search.php?encode=YToyOntzOjg6ImtleXdvcmRzIjtzOjA6IiI7czoxODoic2VhcmNoX2VuY29kZV90aW1lIjtpOjE0MTYzODczNzE7fQ==">显示更多 <i class="arrow2-bottom"></i></a>
+          </div>
+          <div class="pxui-shoes" id="js-home-tab-3" style="display:none;">
+          <div>
+          </div>
+          </div>
+          <div class="pxui-show-more" style="display:none;" lastid="1" template="#js-bk-template" srcProperty="goodsrc" container="#js-home-tab-3 > div"  url="/home/ajax?act=bk_more&sid=96">
+          <img src="template/images/public/loading.gif" width="24" height="24"/>
+          <a>显示更多 <i class="arrow2-bottom"></i></a>
+          </div>
+          <div class="pxui-shoes" id="js-home-tab-4" style="display:none;">
+          <div>
+          </div>
+          </div>
+          <div class="pxui-show-more" style="display:none;" lastid="1" template="#js-bk-template" srcProperty="goodsrc" container="#js-home-tab-4 > div"  url="/home/ajax?act=bk_more&sid=97">
+          <img src="template/images/public/loading.gif" width="24" height="24"/>
+          <a>显示更多 <i class="arrow2-bottom"></i></a>
+          </div>
+          </div>
+
+          </div>
+		</div>
+       <!--中间内容区域结束 End-wei 2014.12.08 --> 
+       <!--底部区域开始 By Wei 2014.12.08-->
+       <div class="com-footer-area" id="js-com-footer-area">
+			<div class="com-footer-nav">
+				<a href="#">商家入驻</a><a href="#">帮助中心</a><a href="#">反馈建议</a>
+			</div>
+			<div class="com-footer">
+				<p>
+					<strong style="line-height:28px;">
+						© 2014-2015 Bei Quan By Wei<br />
+                        京ICP备14026542号-1
+                        
+					</strong>
+				</p>
+                <br /> 
+                <p style="border-bottom:none;">
+                <a href='/mobile/'>倍全商城 </a>
+                 - -有倍全的地方就有家！
+                </p>
+             </div>
+		</div>
+       <!--底部区域结束 End Wei 2014.12.08-->
+      
+</div>
+      <!-- 浮动菜单开始  By Wei 2014.12.08 -->
+       <div class="bq_manu  home-page ">
+        <div style="position: fixed; bottom:0px; width:100%; z-index:999;"> 
+          <div class="pxui-tab pxui-tab-nav pxui-tab-no-top">
+           <a  href="default.htm" class="selected"><i></i>首&nbsp;页<span></span></a>
+          <a href="category.htm"><i></i>搜&nbsp;索<span></span></a>
+          <a href="cart.htm"><i></i><b class="bq_cart-manu_bg">2</b>购物车<span></span></a>
+          <a href="user.htm"><i></i>我&nbsp;的<span></span></a>
+          </div>
+        </div>
+        </div>
+       <!-- 浮动菜单结束  End Wei 2014.12.08 -->
+</body>
+<!-- 秒杀倒计时js控制开始 -->
+<script type="text/javascript">
+var startTime = new Date();
+startTime.setFullYear(2015, 1, 1);
+startTime.setHours(23);
+startTime.setMinutes(59);
+startTime.setSeconds(59);
+startTime.setMilliseconds(999);
+var EndTime=startTime.getTime();
+function GetRTime(){
+	var NowTime = new Date();
+	var nMS = EndTime - NowTime.getTime();
+	var nD = Math.floor(nMS/(1000 * 60 * 60 * 24));
+	var nH = Math.floor(nMS/(1000*60*60)) % 24;
+	var nM = Math.floor(nMS/(1000*60)) % 60;
+	var nS = Math.floor(nMS/1000) % 60;
+	if (nMS < 0){
+		$("#dao").hide();
+		$(".banner_box .time").show();
+	}else{
+	   $(".banner_box .time").show();
+	   $("#daoend").hide();
+	   $("#RemainD").text(nD);
+	   $(".hours").text(nH);
+	   $(".second").text(nM);
+	   $(".miao").text(nS); 
+	}
+}
+
+$(document).ready(function () {
+	var timer_rt = window.setInterval("GetRTime()", 1000);
+});
+</script>
+<!-- 秒杀倒计时js控制结束 -->
+<!-- 控制产品列表加减数量的执行函数开始-->
+<script type="text/javascript">
+$('.spinnerExample').spinner({});
+</script>
+
+<!-- 控制产品列表加减数量的执行函数结束-->
+
+</html>

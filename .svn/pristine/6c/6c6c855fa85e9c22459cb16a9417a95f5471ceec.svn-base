@@ -1,0 +1,76 @@
+﻿<?php
+
+/* 店铺控制器 */
+class Store_copygoodsApp extends StorebaseApp
+{
+	function copygoods()
+	{
+		$goods_id=$_GET["goods_id"];
+		$storeids=$_GET["sids"];
+		$storeids=array_filter(explode(",",$storeids));
+		$gggid=$goods_id;
+		//echo $goods_id."---".$storeids;
+		$db=&db();
+		//先判断这个店铺是不是存在这个商品
+		$sql_sgoods=" select a.*,b.store_id from ecm_goods_spec a left join ecm_goods b on a.goods_id=b.goods_id where a.goods_id=".$gggid;
+		$row_sgoods=$db->getRow($sql_sgoods);
+		
+		if(!count($row_sgoods))
+		{
+			echo "没有相关数据；";
+			exit();
+		}
+		$counti=0;
+		foreach($storeids as $uid)
+		{
+			$sql_store="select count(*) from ecm_store where store_id=".$uid;
+			$row_store=$db->getOne($sql_store);
+			//echo $sql_store;
+			//var_dump(count($row_store));
+			if(!$row_store)
+			{
+				echo "店铺编号：".$uid."，不存在！；";
+				continue;
+			}
+			
+			//先判断这个店铺是不是已经存在这个商品，如果存在即可不用插入
+			$sql_new=" select a.*,b.store_id from ecm_goods_spec a left join ecm_goods b on a.goods_id=b.goods_id where store_id=".$uid." and sku=".$row_sgoods['sku'];
+			$One_new=$db->getRow($sql_new);
+			if(!count($One_new))
+			{
+				echo "店铺编号：".$uid."，存在条码为：".$One_new['sku']."的数据；";
+			    continue;
+			}
+			
+		
+		//复制商品信息
+
+		$gggid = $goods_id;
+		$sql = "INSERT INTO " . DB_PREFIX ."goods(store_id,type,goods_name,description,cate_id,cate_name,brand,spec_qty,spec_name_1,spec_name_2,if_show,closed,close_reason,add_time,last_update,default_spec,default_image,recommended,cate_id_1,cate_id_2,cate_id_3,cate_id_4,price,tags,from_goods_id) SELECT '{$uid}',type,goods_name,description,cate_id,cate_name,brand,spec_qty,spec_name_1,spec_name_2,if_show,closed,close_reason,add_time,last_update,default_spec,default_image,recommended,cate_id_1,cate_id_2,cate_id_3,cate_id_4,price,tags,goods_id FROM " . DB_PREFIX ."goods where goods_id='{$gggid}'";
+
+		$db->query($sql);
+		$sql = "select @@IDENTITY;";
+		$gnid = $db->getOne($sql);
+		
+		/*$sql = "INSERT INTO " . DB_PREFIX ."goods_image(goods_id,image_url,thumbnail,sort_order,file_id) SELECT '{$gnid}',image_url,thumbnail,sort_order,file_id FROM " . DB_PREFIX ."goods_image where goods_id in (select goods_id FROM " . DB_PREFIX ."goods where goods_id='{$gggid}')";
+		$user_mod->db->query($sql);*/
+		$sql = "INSERT INTO " . DB_PREFIX ."goods_spec(goods_id,spec_1,spec_2,color_rgb,price,stock,sku) SELECT '{$gnid}',spec_1,spec_2,color_rgb,price,stock,sku FROM " . DB_PREFIX ."goods_spec where goods_id='{$gggid}'";
+		$db->query($sql);
+
+		$sql = "select @@IDENTITY;";
+		$specid = $db->getOne($sql);
+
+		$db->query("UPDATE ". DB_PREFIX ."goods SET default_spec={$specid} WHERE goods_id={$gnid}");
+
+		$sql = "INSERT INTO " . DB_PREFIX ."goods_statistics(goods_id,views,collects,carts,orders,sales,comments) SELECT '{$gnid}',views,collects,carts,orders,sales,comments FROM " . DB_PREFIX ."goods_statistics where goods_id='{$gggid}'";
+		$db->query($sql);
+		$sql = "INSERT INTO " . DB_PREFIX ."category_goods(cate_id,goods_id) SELECT cate_id,'{$gnid}' FROM " . DB_PREFIX ."category_goods where goods_id='{$gggid}'";
+		$db->query($sql);
+		$counti++;
+		}
+		echo "复制成功".$counti."条！！";
+	}
+    	
+}
+
+?>

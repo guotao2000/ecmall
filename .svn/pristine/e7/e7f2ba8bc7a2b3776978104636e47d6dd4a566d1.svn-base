@@ -1,0 +1,850 @@
+<?php
+
+/**
+ *    促销管理控制器
+ *
+ *    @author    Hyber
+ *    @usage    none
+ */
+class PromoteApp extends BackendApp
+{
+    var $schedule_mod;
+	var $kuaixun_promotion_mod;
+	var $_goods_mod;
+	var $goods_spec_mod;
+    
+    function __construct()
+    {
+        $this->PromoteApp();
+    }
+
+    function PromoteApp()
+    {
+        parent::BackendApp();
+
+        $this->schedule_mod =& m('schedule');
+		$this->kuaixun_promotion_mod =& m('kuaixunpromotion');
+		$this->_goods_mod =& m('goods');
+		$this->goods_spec_mod = & m('goodsspec');
+	
+    }
+
+    
+    function index()
+    {
+    
+        $this->display('schedule.index.html');
+    }
+    
+    //增加档期
+    function add_schedule(){
+        //获取传来的值
+        $schedule_name = isset($_POST['schedule_name'])? trim($_POST['schedule_name']):'';
+        $start_time = isset($_POST['start_time'])? trim($_POST['start_time']):'';
+        $end_time = isset($_POST['end_time'])? trim($_POST['end_time']):'';
+        $operate_person = isset($_POST['operate_person'])? trim($_POST['operate_person']):'';
+						
+        //检测档期标题唯一性
+        $unique = $this->schedule_mod->unique($schedule_name);
+        if(!empty($unique)){
+            $this->show_message('该标题已存在，请重新填写！',
+                'back_list',    'index.php?app=promote'
+            );
+            return;
+        } else {
+            //将日期转换成UNIX时间戳
+			$start_time = gmstr2time($start_time) + 28800;
+			$end_time = gmstr2time($end_time) + 28800;
+            //对日期进行比较
+            if($start_time > $end_time || $start_time == $end_time ){
+                $this->show_message('开始和结束时间设置错误！',
+                    'back_list',    'index.php?app=promote'
+                );
+                return;
+            }
+			
+            $data = array(
+                'schedule_name' => $schedule_name,
+                'start_time' => $start_time,
+                'end_time' => $end_time,
+                'operate_person' => $operate_person,
+                'add_time' => gmtime()
+            );
+            if($this->schedule_mod->add($data)){
+                $this->show_message('档期添加成功！',
+                    'back_list',    'index.php?app=promote&amp;act=list_schedule'
+                );
+            } else {
+                $this->show_message('档期添加失败！',
+                    'back_list',    'index.php?app=promote'
+                );
+            }
+        }
+        
+    }
+    
+    //档期列表
+    function list_schedule(){
+		$schedule_state = intval($_GET['schedule_state']);
+		$schedule_name = !empty($_GET['schedule_name'])? trim($_GET['schedule_name']) : '';
+        //查询条件
+		$conditions = '';
+		if(empty($schedule_name) && $schedule_state == 0){
+			$conditions .= '';
+		}
+		if(empty($schedule_name) && ($schedule_state == 1 || $schedule_state == 2)){
+			$conditions .= 'schedule_state=' . $schedule_state;	
+		}
+		if(!empty($schedule_name) && $schedule_state == 0){
+			$conditions .= "schedule_name like '%" . $schedule_name . "%'";
+		}
+		if(!empty($schedule_name) && ($schedule_state == 1 || $schedule_state == 2)){
+			$conditions .= "schedule_name like '%" . $schedule_name . "%' AND schedule_state=" . $schedule_state;
+		}
+        //分页
+        $page   =   $this->_get_page(10);   
+        $schedule = $this->schedule_mod->find(array(
+            'fields'   => '*',
+            'conditions'  => $conditions,
+        	
+            'limit'   => $page['limit'],
+            'order'   => 'add_time DESC', 
+            'count'   => true   
+        )); 
+ 
+        
+        $page['item_count']=$this->schedule_mod->getCount();   
+        
+        foreach ($schedule as $key =>$value){
+            if($schedule[$key]['schedule_state'] == 1){
+                $schedule[$key]['schedule_state'] = '未启用';
+            }
+            if($schedule[$key]['schedule_state'] == 2){
+                $schedule[$key]['schedule_state'] = '启用';
+            }
+        }
+		
+		foreach($schedule as $key => $val){
+			$schedule[$key]['start_time'] = date('Y-m-d H:i:s', $schedule[$key]['start_time']);
+			$schedule[$key]['end_time'] = date('Y-m-d H:i:s', $schedule[$key]['end_time']);
+		}
+        
+        $this->_format_page($page);
+        $this->import_resource(array('script' => 'inline_edit.js'));
+		$this->assign('filtered', $conditions? 1 : 0);
+        $this->assign('page_info', $page);   
+        $this->assign('schedule', $schedule);
+        $this->display('schedule.list.html');
+    }
+    
+    //编辑档期
+    function edit_schedule(){
+        if(!IS_POST){
+            $schedule_id = isset($_GET['id'])? intval($_GET['id']):0;
+            $schedule_array = $this->schedule_mod->find($schedule_id); 
+			foreach($schedule_array as $key => $val){
+				$schedule_array[$key]['start_time'] = date('Y-m-d H:i:s', $schedule_array[$key]['start_time']);
+				$schedule_array[$key]['end_time'] = date('Y-m-d H:i:s', $schedule_array[$key]['end_time']);
+			}
+            $schedules = array();  
+            foreach($schedule_array as $v){
+                $schedules = $v;
+            }
+            $this->assign('schedules', $schedules);
+            $this-> display('schedule.edit.html');
+        }else{
+            $schedule_id = isset($_POST['schedule_id'])? intval($_POST['schedule_id']):0;
+            $schedule_name = isset($_POST['schedule_name'])? trim($_POST['schedule_name']):'';
+            $start_time = isset($_POST['start_time'])? trim($_POST['start_time']):'';
+            $end_time = isset($_POST['end_time'])? trim($_POST['end_time']):'';
+            $operate_person = isset($_POST['operate_person'])? trim($_POST['operate_person']):'';
+            //将日期转换成UNIX时间戳
+            $start_time = gmstr2time($start_time) + 8*60*60;;
+            $end_time = gmstr2time($end_time) + 8*60*60;;
+            //对日期进行比较
+            if($start_time > $end_time || $start_time == $end_time ){
+                $this->show_message('开始和结束时间设置错误！',
+                'back_list',    'index.php?app=promote&amp;act=edit_schedule&amp;id=' . $schedule_id
+                );
+                return;
+            }
+            $data = array(
+                'schedule_name' => $schedule_name,
+                'start_time' => $start_time,
+                'end_time' => $end_time,
+                'operate_person' => $operate_person
+            );
+			
+			$this->schedule_mod->edit($schedule_id, $data);
+			$this->show_message('档期修改成功！',
+				'back_list',    'index.php?app=promote&amp;act=list_schedule'
+				);
+
+        }        
+    }
+    //删除档期
+    function drop_schedule(){
+        $schedule_ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+        if (!$schedule_ids)
+        {
+            $this->show_warning('该档期不存在！');
+            return;
+        }
+        $schedule_ids=explode(',', $schedule_ids);
+        $message = '删除成功！';
+      
+        if (!$this->schedule_mod->drop($schedule_ids))        //删除
+        {
+            $this->show_warning($this->schedule_mod->get_error());
+        
+            return;
+        }
+        
+        $this->show_message($message);
+    }
+    //启用档期操作
+    function enable_schedule(){
+        $schedule_ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+        if (!$schedule_ids)
+        {
+            $this->show_warning('该档期不存在！');
+            return;
+        }
+        $schedule_ids=explode(',', $schedule_ids);
+        $message = '启用成功！';
+        $data = array('schedule_state' => 2);
+        for($i=0; $i<count($schedule_ids); $i++){
+            $this->schedule_mod->edit($schedule_ids[$i], $data);
+        }
+                
+        $this->show_message($message);
+    }
+    //不启用操作
+    function disable_schedule(){
+        $schedule_ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+        if (!$schedule_ids)
+        {
+            $this->show_warning('该档期不存在！');
+            return;
+        }
+        $schedule_ids=explode(',', $schedule_ids);
+        $message = '不启用操作成功！';
+        $data = array('schedule_state' => 1);
+        for($i=0; $i<count($schedule_ids); $i++){
+            $this->schedule_mod->edit($schedule_ids[$i], $data);
+        }
+        $this->show_message($message);
+    }
+    //增加快讯
+    function add_kuaixun(){
+        if(!IS_POST){
+            //获取档期编号
+            $schedule_id = isset($_GET['scid'])? intval($_GET['scid']):0;
+            //判断档期状态
+            $schedule_temp = $this->schedule_mod->find($schedule_id);
+            foreach($schedule_temp as $v){
+                $schedules = $v;
+            }
+            if(isset($schedules['schedule_state']) && $schedules['schedule_state'] == 1){
+                $this->show_message('请先启用档期！',
+                    'back_list',    'index.php?app=promote&amp;act=list_schedule'
+                );
+                return;
+            }
+            if(isset($schedules['schedule_state']) && $schedules['schedule_state'] == 2){
+                //获取档期的开始时间和结束时间
+                $start_time = trim($schedules['start_time']);
+				$start_time = date('Y-m-d H:i:s', $start_time);
+				$end_time = trim($schedules['end_time']);
+				$end_time = date('Y-m-d H:i:s', $end_time);
+                $this->assign('start_time', $start_time);
+                $this->assign('end_time', $end_time);
+                $this->display('kuaixun.add.html');
+            }
+            
+        } else {
+			//上传文件
+			if(is_uploaded_file($_FILES["kuaixun_picurl"]["tmp_name"])){
+				$upfile=$_FILES["kuaixun_picurl"];
+				$name=trim($upfile["name"]);
+				$name=gmtime() . strstr($name, '.');
+				$type=$upfile["type"];
+				$size=$upfile["size"];
+				$tmp_name=$upfile["tmp_name"];
+				$error=$upfile["error"];
+
+				switch($type){
+					case "image/jpg": $ok = 1;
+						break;
+					case "image/jpeg": $ok = 1;
+						break;
+					case "image/png": $ok = 1;
+						break;
+					case "image/gif" : $ok = 1;
+						break;
+					default:$ok = 0;
+						break;
+				}
+
+				if($ok == 0){
+					$this->show_warning('上传文件类型不正确！');
+					return;
+				}
+
+				if($size > 2000000){
+					$this->show_warning('上传文件大小不能超过2M！');
+					return;
+				}
+				
+				if($ok == 1 && $error == 0){
+					//检测目录
+					if(!is_dir($_SERVER['DOCUMENT_ROOT'] . '/data/miaosha_pic')){
+						mkdir($_SERVER['DOCUMENT_ROOT'] . '/data/miaosha_pic');
+					}
+					
+					$flag = move_uploaded_file($tmp_name, $_SERVER['DOCUMENT_ROOT'] . "/data/miaosha_pic/" . $name);
+					if($flag){
+						//$picurl = SITE_URL . "/data/cate_pic/" . $name;
+						$picurl = "/data/miaosha_pic/" . $name;
+					}else{
+						$this->show_warning('图片上传失败！');
+						return;						
+					}
+					
+				}
+
+			}
+
+			//获取POST传值
+			$kuaixun_name = isset($_POST['kuaixun_name'])? trim($_POST['kuaixun_name']):'';
+			$start_time = isset($_POST['start_time'])? trim($_POST['start_time']):'';
+			$end_time = isset($_POST['end_time'])? trim($_POST['end_time']):'';
+			$store_ids = isset($_POST['store_ids'])? trim($_POST['store_ids']):'';
+			$kuaixun_price = isset($_POST['kuaixun_price'])? trim($_POST['kuaixun_price']):0;
+			$operate_person = isset($_POST['operate_person'])? trim($_POST['operate_person']):'';
+			
+			$kuaixun_picurl = $picurl;
+
+			//检测快讯名称的唯一性
+			$unique = $this->kuaixun_promotion_mod->unique($kuaixun_name);
+			if(!empty($unique)){
+				$this->show_message('该标题已存在，请重新填写！',
+					'back_list',    'index.php?app=promote&amp;act=add_kuaixun'
+				);
+				return;
+			}
+			//将日期转换成UNIX时间戳
+			$start_time = gmstr2time($start_time) + 8*60*60;
+            $end_time = gmstr2time($end_time) + 8*60*60;
+            //对日期进行比较
+            if($start_time > $end_time || $start_time == $end_time ){
+                $this->show_message('开始和结束时间设置错误！',
+                'back_list',    'index.php?app=promote&amp;act=add_kuaixun'
+                );
+                return;
+            }
+			
+			//获取时间
+			$data = array(
+				'kuaixun_name' => $kuaixun_name,
+				'start_time' => $start_time,
+				'end_time' => $end_time,
+				'store_ids' => $store_ids,
+				'kuaixun_price' => $kuaixun_price,
+				'operate_person' => $operate_person,
+				'add_time' => gmtime(),
+				'kuaixun_picurl' => $kuaixun_picurl
+			);
+			if($this->kuaixun_promotion_mod->add($data)){
+				$this->show_message('快讯添加成功！',
+                'back_list',    'index.php?app=promote&amp;act=list_kuaixun'
+                );
+			} else {
+				$this->show_message('快讯添加失败！',
+                'back_list',    'index.php?app=promote&amp;act=add_kuaixun'
+                );
+			}
+
+
+
+        }
+        
+    }
+	//快讯列表
+	function list_kuaixun(){
+		$kuaixun_name = !empty($_GET['kuaixun_name'])? trim($_GET['kuaixun_name']) : '';
+        $kuaixun_state = !empty($_GET['kuaixun_state'])? intval($_GET['kuaixun_state']) : 0;
+        //查询条件
+		$conditions = '';
+		if(empty($kuaixun_name) && $kuaixun_state == 0){
+			$conditions .= '';
+		}
+		if(empty($kuaixun_name) && ($kuaixun_state == 5 || $kuaixun_state == 1 || $kuaixun_state == 2 || $kuaixun_state == 3 || $kuaixun_state == 4)){
+			$conditions .= 'kuaixun_state=' . $kuaixun_state;	
+		}
+		if(!empty($kuaixun_name) && $kuaixun_state == 0){
+			$conditions .= "kuaixun_name like '%" . $kuaixun_name . "%'";
+		}
+		if(!empty($kuaixun_name) && ($kuaixun_state == 5 || $kuaixun_state == 1 || $kuaixun_state == 2 || $kuaixun_state == 3 || $kuaixun_state == 4)){
+			$conditions .= "kuaixun_name like '%" . $kuaixun_name . "%' AND kuaixun_state=" . $kuaixun_state;
+		}
+		
+        //分页
+        $page   =   $this->_get_page(10);   
+        $kuaixuns = $this->kuaixun_promotion_mod->find(array(
+            'fields'   => '*',
+            'conditions'  => $conditions,
+            'limit'   => $page['limit'],
+            'order'   => 'add_time DESC', 
+            'count'   => true   
+        ));    
+        $page['item_count']=$this->kuaixun_promotion_mod->getCount();   
+        foreach ($kuaixuns as $key =>$value){
+			$state = intval($kuaixuns[$key]['kuaixun_state']);
+			switch($state){
+				case 1: $kuaixuns[$key]['kuaixun_state'] = '申请';
+						break;
+				case 2: $kuaixuns[$key]['kuaixun_state'] = '确认';
+						break;
+				case 3: $kuaixuns[$key]['kuaixun_state'] = '执行中';
+						break;
+				case 4: $kuaixuns[$key]['kuaixun_state'] = '已结束';
+						break;
+				case 5: $kuaixuns[$key]['kuaixun_state'] = '已取消';
+						break;
+				default: echo 'error';
+				        break;
+			}
+        }
+		
+		//print_r($kuaixuns);
+		//exit;
+		
+		foreach($kuaixuns as $key => $val){
+			$kuaixuns[$key]['start_time'] = date("Y-m-d H:i:s", $kuaixuns[$key]['start_time']);    
+			$kuaixuns[$key]['end_time'] = date("Y-m-d H:i:s", $kuaixuns[$key]['end_time']);                
+			//$kuaixuns[$key]['start_time'] = local_getdate($kuaixuns[$key]['start_time']);
+			//$kuaixuns[$key]['end_time'] = local_getdate($kuaixuns[$key]['end_time']);
+		}
+		
+        $this->_format_page($page);
+        $this->import_resource(array('script' => 'inline_edit.js'));
+        $this->assign('filtered', $conditions? 1 : 0); 
+        $this->assign('page_info', $page);   
+        $this->assign('kuaixuns', $kuaixuns);
+		$this->display('kuaixun.list.html');
+	}
+	//删除快讯
+	function drop_kuaixun(){
+		$kuaixun_ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+        if (!$kuaixun_ids)
+        {
+            $this->show_warning('该快讯不存在！');
+            return;
+        }
+        $kuaixun_ids=explode(',', $kuaixun_ids);
+        $message = '删除成功！';
+
+		$mod_kuaixun = &m('kuaixunpromotion');
+		//同时删除文件
+		/*for($i=0; $i<count($kuaixun_ids); $i++){
+			$kuaixun_picurl = $mod_kuaixun->db->getOne("select kuaixun_picurl from ecm_kuaixun_promotion where kuaixun_id=" . $kuaixun_ids[$i]);
+			chmod($_SERVER['DOCUMENT_ROOT'] . $kuaixun_picurl, 0755);
+			unlink($_SERVER['DOCUMENT_ROOT'] . $kuaixun_picurl);
+		}*/
+      
+        if (!$this->kuaixun_promotion_mod->drop($kuaixun_ids))        //删除
+        {
+            $this->show_warning($this->kuaixun_promotion_mod->get_error());
+        
+            return;
+        }
+        
+        $this->show_message($message);
+	}
+	//添加快讯商品
+	function add_kuaixun_goods(){
+			$kuaixun_state = trim($_GET['kuaixun_state']);
+			$kuaixun_id = intval($_GET['kuaixun_id']);
+			//检测是否已经添加商品
+			$kuaixun_info = $this->kuaixun_promotion_mod->find($kuaixun_id);
+			foreach($kuaixun_info as $v){
+				$kuaixun_arr = $v;
+			}
+			/*if($kuaixun_arr['goods_id'] != 0){
+				$this->show_warning('已经添加过商品！');
+				return;
+			}*/
+			$kuaixun_state_num = $kuaixun_arr['kuaixun_state'];
+			if($kuaixun_state == '确认' || $kuaixun_state_num == 2)
+			{
+				/*$conditions = $this->_get_query_conditions(array(
+				array(
+							'field' => 'goods_name',
+							'equal' => 'like',
+							),
+						array(
+							'field' => 'store_name',
+							'equal' => 'like',
+							),
+						array(
+							'field' => 'brand',
+							'equal' => 'like',
+							),
+						array(
+							'field' => 'closed',
+							'type'  => 'int',
+							),
+						));*/
+			
+			$conditions = '';
+			if(!empty($_GET['goods_name']) && isset($_GET['goods_name'])){
+				$_GET['goods_name'] = trim($_GET['goods_name']);
+				$conditions .= " and goods_name like '%" . $_GET['goods_name'] . "%' ";	
+			}
+			
+			if(!empty($_GET['store_name']) && isset($_GET['store_name'])){
+				$_GET['store_name'] = trim($_GET['store_name']);
+				$conditions .= " and store_name like '%" . $_GET['store_name'] . "%' ";	
+			}
+			
+			if(!empty($_GET['goods_sn']) && isset($_GET['goods_sn'])){
+				$_GET['goods_sn'] = trim($_GET['goods_sn']);
+				$conditions .= " and sku like '%" . $_GET['goods_sn'] . "%' ";	
+			}
+			
+			if(!empty($_GET['closed']) && isset($_GET['closed'])){
+				$_GET['closed'] = trim($_GET['closed']);
+				$conditions .= " and closed=" . $_GET['closed'] . " ";	
+			}
+			
+
+			// 分类
+			$cate_id = empty($_GET['cate_id']) ? 0 : intval($_GET['cate_id']);
+			if ($cate_id > 0)
+			{
+				$cate_mod =& bm('gcategory');
+				$cate_ids = $cate_mod->get_descendant_ids($cate_id);
+				$conditions .= " AND cate_id" . db_create_in($cate_ids);
+			}
+
+			//更新排序
+			if (isset($_GET['sort']) && isset($_GET['order']))
+			{
+				$sort  = strtolower(trim($_GET['sort']));
+				$order = strtolower(trim($_GET['order']));
+				if (!in_array($order,array('asc','desc')))
+				{
+					$sort  = 'goods_id';
+					$order = 'desc';
+				}
+			}
+			else
+			{
+				$sort  = 'goods_id';
+				$order = 'desc';
+			}
+
+			$page = $this->_get_page();
+			$goods_list = $this->_goods_mod->get_list(array(
+				'conditions' => "1 = 1" . $conditions,
+				'count' => true,
+				'order' => "$sort $order",
+				'limit' => $page['limit'],
+				));
+			foreach ($goods_list as $key => $goods)
+			{
+				$goods_list[$key]['cate_name'] = $this->_goods_mod->format_cate_name($goods['cate_name']);
+			}
+			$this->assign('goods_list', $goods_list);
+
+			$page['item_count'] = $this->_goods_mod->getCount();
+			$this->_format_page($page);
+			$this->assign('page_info', $page);
+
+			// 第一级分类
+			$cate_mod =& bm('gcategory', array('_store_id' => 0));
+			$this->assign('gcategories', $cate_mod->get_options(0, true));
+			$this->import_resource(array('script' => 'mlselection.js,inline_edit.js'));
+				
+				//商品列表结束
+				$this->assign('kuaixun_id', $kuaixun_id);
+				$this->display('kuaixun.add.goods.html');
+			} else
+		  {
+				$this->show_message('快讯促销必须先确认然后再添加商品！',
+                'back_list',    'index.php?app=promote&amp;act=list_kuaixun'
+                );
+			}
+			
+		
+	}
+	//更改快讯状态为申请快讯
+	function apply_kuaixun(){
+		$kuaixun_ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+        if (!$kuaixun_ids)
+        {
+            $this->show_warning('该快讯不存在！');
+            return;
+        }
+        $kuaixun_ids=explode(',', $kuaixun_ids);
+        $message = '快讯状态更改成功！';
+		$data = array(
+			'kuaixun_state' => 1	
+		);
+		for($i=0; $i<count($kuaixun_ids); $i++){
+			$this->kuaixun_promotion_mod->edit($kuaixun_ids[$i], $data);
+		}
+        $this->show_message($message);
+	}
+	//更改快讯的状态为确认
+	function besure_kuaixun(){
+		$kuaixun_ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+        if (!$kuaixun_ids)
+        {
+            $this->show_warning('该快讯不存在！');
+            return;
+        }
+        $kuaixun_ids=explode(',', $kuaixun_ids);
+        $message = '快讯状态更改成功！';
+		$data = array(
+			'kuaixun_state' => 2	
+		);
+		for($i=0; $i<count($kuaixun_ids); $i++){
+			$this->kuaixun_promotion_mod->edit($kuaixun_ids[$i], $data);
+		}
+        $this->show_message($message);
+	}
+	//更改快讯状态为执行中
+	function executing_kuaixun(){
+		$kuaixun_ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+        if (!$kuaixun_ids)
+        {
+            $this->show_warning('该快讯不存在！');
+            return;
+        }
+        $kuaixun_ids=explode(',', $kuaixun_ids);
+        $message = '快讯状态更改成功！';
+		$data = array(
+			'kuaixun_state' => 3	
+		);
+		for($i=0; $i<count($kuaixun_ids); $i++){
+			$this->kuaixun_promotion_mod->edit($kuaixun_ids[$i], $data);
+		}
+        $this->show_message($message);
+	}
+	//更改快讯状态为已结束
+	function finished_kuaixun(){
+		$kuaixun_ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+        if (!$kuaixun_ids)
+        {
+            $this->show_warning('该快讯不存在！');
+            return;
+        }
+        $kuaixun_ids=explode(',', $kuaixun_ids);
+        $message = '快讯状态更改成功！';
+		$data = array(
+			'kuaixun_state' => 4	
+		);
+		for($i=0; $i<count($kuaixun_ids); $i++){
+			$this->kuaixun_promotion_mod->edit($kuaixun_ids[$i], $data);
+		}
+        $this->show_message($message);
+	}
+	//更改快讯状态为已取消
+	function canceled_kuaixun(){
+		$kuaixun_ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+        if (!$kuaixun_ids)
+        {
+            $this->show_warning('该快讯不存在！');
+            return;
+        }
+        $kuaixun_ids=explode(',', $kuaixun_ids);
+        $message = '快讯状态更改成功！';
+		$data = array(
+			'kuaixun_state' => 5	
+		);
+		for($i=0; $i<count($kuaixun_ids); $i++){
+			$this->kuaixun_promotion_mod->edit($kuaixun_ids[$i], $data);
+		}
+        $this->show_message($message);
+	}
+	//将商品添加到快讯中
+	function add_goods_to_kuaixun(){
+		$kuaixun_state = isset($_GET['kuaixun_state']) ? trim($_GET['kuaixun_state']) : '';
+		$kuaixun_id = isset($_GET['kuaixun_id'])? intval($_GET['kuaixun_id']):0;
+		$goods_ids = isset($_GET['id']) ? trim($_GET['id']) : '';
+		
+        if (!$goods_ids)
+        {
+            $this->show_warning('该商品不存在！');
+            return;
+        }
+        $goods_ids=explode(',', $goods_ids);
+		if(count($goods_ids) > 1){
+			$this->show_message('只能选择一个商品！',
+                'back_list',    'index.php?app=promote&amp;act=add_kuaixun_goods&amp;kuaixun_id=' . $kuaixun_id . '&amp;kuaixun_state=' . $kuaixun_state
+                );
+			return;
+		}
+		$goods_id = $goods_ids[0];
+		$goods_info = $this->_goods_mod->find($goods_id);
+		foreach($goods_info as $v){
+			$goods_info_arr = $v;
+		}
+		//获得商品的名称
+		$goods_name = $goods_info_arr['goods_name'];
+		$condition = 'goods_id=' . $goods_id;
+		$goods_spec = $this->goods_spec_mod->find(array('conditions' => $condition));		
+		foreach($goods_spec as $v){
+			$goods_spec_arr = $v;
+		}
+		//获得商品条形码sku
+		$goods_sn = $goods_spec_arr['sku'];
+		/*$data = array(
+			'goods_id' => $goods_id,
+			'goods_name' => $goods_name,
+			'goods_sn' => $goods_sn
+		);
+		$result = $this->kuaixun_promotion_mod->edit($kuaixun_id, $data);*/
+		$db = &db();
+		//添加商品
+		$db->query("update ecm_kuaixun_promotion set goods_id=" . $goods_id . ", goods_name='" . $goods_name . "', goods_sn='" . $goods_sn . "', store_ids=" . $goods_info_arr['store_id'] . " where kuaixun_id=" . $kuaixun_id);
+		
+		$this->show_message('操作成功！',
+                'back_list',    'index.php?app=promote&amp;act=edit_kuaixun&amp;id=' . $kuaixun_id
+                );
+		
+	}
+	//编辑快讯
+	function edit_kuaixun(){
+		if(!IS_POST){
+			$kuaixun_id = isset($_GET['id'])? intval($_GET['id']):0;
+			$kuaixuns = $this->kuaixun_promotion_mod->find($kuaixun_id);
+			foreach($kuaixuns as $k => $v){
+				$kuaixuns[$k]['start_time'] = date('Y-m-d H:i:s', $kuaixuns[$k]['start_time']);
+				$kuaixuns[$k]['end_time'] = date('Y-m-d H:i:s', $kuaixuns[$k]['end_time']);
+			}
+			foreach($kuaixuns as $k){
+				$kuaixuns_arr = $k;
+			}
+			$this->assign('kuaixuns', $kuaixuns_arr);
+			$this->display('kuaixun.edit.html');
+		}else{
+			//上传文件
+			if(is_uploaded_file($_FILES["kuaixun_picurl"]["tmp_name"])){
+				$upfile=$_FILES["kuaixun_picurl"];
+				$name=trim($upfile["name"]);
+				$name=gmtime() . strstr($name, '.');
+				$type=$upfile["type"];
+				$size=$upfile["size"];
+				$tmp_name=$upfile["tmp_name"];
+				$error=$upfile["error"];
+
+				switch($type){
+					case "image/jpg": $ok = 1;
+						break;
+					case "image/jpeg": $ok = 1;
+						break;
+					case "image/png": $ok = 1;
+						break;
+					case "image/gif" : $ok = 1;
+						break;
+					default:$ok = 0;
+						break;
+				}
+
+				if($ok == 0){
+					$this->show_warning('上传文件类型不正确！');
+					return;
+				}
+
+				if($size > 2000000){
+					$this->show_warning('上传文件大小不能超过2M！');
+					return;
+				}
+				
+				if($ok == 1 && $error == 0){
+					//检测目录
+					if(!is_dir($_SERVER['DOCUMENT_ROOT'] . '/data/miaosha_pic')){
+						mkdir($_SERVER['DOCUMENT_ROOT'] . '/data/miaosha_pic');
+					}
+					
+					$flag = move_uploaded_file($tmp_name, $_SERVER['DOCUMENT_ROOT'] . "/data/miaosha_pic/" . $name);
+					if($flag){
+						//$picurl = SITE_URL . "/data/cate_pic/" . $name;
+						$picurl = "/data/miaosha_pic/" . $name;
+						//chmod($_SERVER['DOCUMENT_ROOT'] . $_POST['kuaixun_picurl_hide'], 0755);
+						//unlink($_SERVER['DOCUMENT_ROOT'] . $_POST['kuaixun_picurl_hide']);
+					}else{
+						$this->show_warning('图片上传失败！');
+						return;						
+					}
+					
+				}
+
+			}
+
+			//获取传过来的值
+			$kuaixun_id = isset($_POST['kuaixun_id'])? intval($_POST['kuaixun_id']):0;
+			$kuaixun_name = isset($_POST['kuaixun_name'])? trim($_POST['kuaixun_name']):'';
+			$start_time = isset($_POST['start_time'])? trim($_POST['start_time']):'';
+			$end_time = isset($_POST['end_time'])? trim($_POST['end_time']):'';
+			$kuaixun_price = isset($_POST['kuaixun_price'])? trim($_POST['kuaixun_price']):0;
+			$store_ids = isset($_POST['store_ids'])? trim($_POST['store_ids']):'';
+			$operate_person = isset($_POST['operate_person'])? trim($_POST['operate_person']):'';
+			
+			$kuaixun_picurl = empty($picurl)? trim($_POST['kuaixun_picurl_hide']):trim($picurl);
+
+			//将日期转换成UNIX时间戳
+			//echo $start_time . '=====' . $end_time;
+			//exit;
+			$start_time = gmstr2time($start_time) + 28800;
+			$end_time = gmstr2time($end_time) + 28800;
+			$data = array(
+				'kuaixun_id' => $kuaixun_id,
+				'kuaixun_name' => $kuaixun_name,
+				'start_time' => $start_time,
+				'end_time' => $end_time,
+				'kuaixun_price' => $kuaixun_price,
+				'store_ids' => $store_ids,
+				'operate_person' => $operate_person,
+				'kuaixun_picurl' => $kuaixun_picurl
+			);
+			$result = $this->kuaixun_promotion_mod->edit($kuaixun_id, $data);
+			
+			/*$kuaixun_pro = &m('kuaixunpromotion');
+			
+			$sqlstr = "update ecm_kuaixun_promotion set kuaixun_name='" . $kuaixun_name  . "', start_time=unix_timestamp('" . $start_time . "'), end_time=unix_timestamp('" . $end_time . "'), kuaixun_price=" . $kuaixun_price . ", store_ids='" . $store_ids . "', operate_person='" . $operate_person . "', kuaixun_picurl='" . $kuaixun_picurl . "' where kuaixun_id=" . $kuaixun_id;
+			
+			$kuaixun_pro->db->query($sqlstr);*/
+			
+			
+			$this->show_message('操作成功！',
+                'back_list',    'index.php?app=promote&amp;act=list_kuaixun'
+                );
+		}
+		
+	}
+    //将日期转换成UNIX时间戳
+    function getTimestamp($dateStr = ''){
+        if(!isset($dateStr) || empty($dateStr)){
+            return false;
+        }
+        $dateStr = trim($dateStr);
+        $year = substr($dateStr, 0, 4);
+        $month = substr($dateStr, 5, 2);
+        $day = substr($dateStr, 8, 2);
+        $hour = substr($dateStr, 11, 2);
+        $minute = substr($dateStr, 14, 2);
+        $second = substr($dateStr, 17, 2);
+        
+        $timestamp = mktime($hour, $minute, $second, $month, $day, $year);
+        
+        return $timestamp;
+        
+    }
+    
+}
+
+?>

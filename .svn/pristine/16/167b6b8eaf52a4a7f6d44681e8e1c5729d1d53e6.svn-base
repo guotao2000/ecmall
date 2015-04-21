@@ -1,0 +1,113 @@
+{include file="header.html"}
+<div id="rightTop">
+    <p>促销管理</p>{$conditions}
+    <ul class="subnav">
+        <li><a class="btn1" href="index.php?app=promote">添加档期</a></li>
+        <li><a class="btn1" href="index.php?app=promote&amp;act=list_schedule">档期列表</a></li>
+        <li><span>快讯列表</span></li>
+        <li><a class="btn1" href="index.php?app=_ms_promotion">促销列表</a></li>
+    </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="promote" />
+                <input type="hidden" name="act" value="list_kuaixun" />
+                快讯名称:
+                <input class="queryInput" type="text" name="kuaixun_name" style="width:250px; vertical-align:middle;" value="{$smarty.get.kuaixun_name|escape}" />
+                快讯状态:
+                <select class="querySelect" id="kuaixun_state" name="kuaixun_state">
+					<option value="0" {if $smarty.get.kuaixun_state eq 0}selected="selected"{/if} >请选择</option>
+					<option value="1" {if $smarty.get.kuaixun_state eq 1}selected="selected"{/if} >申请</option>
+					<option value="2" {if $smarty.get.kuaixun_state eq 2}selected="selected"{/if} >确认</option>
+					<option value="3" {if $smarty.get.kuaixun_state eq 3}selected="selected"{/if} >执行中</option>
+					<option value="4" {if $smarty.get.kuaixun_state eq 4}selected="selected"{/if} >已结束</option>
+					<option value="5" {if $smarty.get.kuaixun_state eq 5}selected="selected"{/if} >已取消</option>
+                </select>
+                <input type="submit" class="formbtn" value="查询" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=promote&amp;act=list_kuaixun">取消</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $kuaixuns}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td>快讯名称</td>
+            <td>开始时间</td>
+            <td>结束时间</td>
+			<td>商品名称</td>
+			<td>快讯价格</td>
+			<td>执行店铺</td>
+            <td>快讯状态</td>
+            <td>录入时间</td>
+            <td>操作人</td>
+            <td>操作</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$kuaixuns item=kuaixun}-->
+        <tr class="tatr2">
+            <td class="firstCell">
+            	<input type="checkbox" class="checkitem" value="{$kuaixun.kuaixun_id}"/>
+            </td>
+            <td>{$kuaixun.kuaixun_name|escape}</td>
+            <td>{$kuaixun.start_time}</td>
+            <td>{$kuaixun.end_time}</td>
+			<td>{$kuaixun.goods_name|escape}</td>
+			<td>{$kuaixun.kuaixun_price|escape}</td>
+			<td>{$kuaixun.store_ids|escape}</td>
+            <td>{$kuaixun.kuaixun_state}</td>
+            <td>{$kuaixun.add_time|date:complete}</td>
+            <td>{$kuaixun.operate_person|escape}</td>
+           
+            <td>
+				<a href="index.php?app=promote&amp;act=add_kuaixun_goods&amp;kuaixun_id={$kuaixun.kuaixun_id}&amp;kuaixun_state={$kuaixun.kuaixun_state}">添加商品</a>|
+	            <a href="index.php?app=promote&amp;act=edit_kuaixun&amp;id={$kuaixun.kuaixun_id}">编辑</a>|
+	            <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=promote&amp;act=drop_kuaixun&amp;id={$kuaixun.kuaixun_id}');">删除</a>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="11">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $kuaixuns}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=promote&act=drop_kuaixun" presubmit="confirm('{$lang.drop_confirm}');" />
+			&nbsp;&nbsp;
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="申请" name="id" uri="index.php?app=promote&act=apply_kuaixun" />
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="确认" name="id" uri="index.php?app=promote&act=besure_kuaixun" />
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="执行中" name="id" uri="index.php?app=promote&act=executing_kuaixun" />
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+			<input class="formbtn batchButton" type="button" value="已结束" name="id" uri="index.php?app=promote&act=finished_kuaixun" />
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+			<input class="formbtn batchButton" type="button" value="已取消" name="id" uri="index.php?app=promote&act=canceled_kuaixun" />
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

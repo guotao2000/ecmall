@@ -1,0 +1,141 @@
+@charset "utf-8";
+
+/***
+用户登录页面样式开始
+By Wei
+2014.12.19
+****/
+html * {
+	margin: 0;
+	padding: 0;
+	font-family: Microsoft Yahei;
+font-size14px;
+}
+body {
+	text-align: center;
+	background: #f1f1f1;
+}
+a {
+	color: #999;
+	font-size: 12px;
+}
+/* login */
+
+.bq_login-box{
+	-moz-box-shadow: inset 0px 1px 30px #CDCDCD;
+	-webkit-box-shadow: inset 1px 0px 30px #CDCDCD;
+	box-shadow: inset 0px 1px 30px #CDCDCD;
+	background: #F5F5F5;
+	}
+
+.bq_login {
+	margin: 20px auto 30px;
+	width: 306px;
+	text-align: left;
+	border: solid #ccc 1px;
+	padding: 10px 0 60px;
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 2px 2px 2px #ccc;
+	position:relative;
+}
+
+.bq_login p{
+	position:absolute;
+	right:0px;
+	top:5px;
+	padding:3px 10px;
+	z-index:10;
+	}
+.bq_login p a{
+	display:block;
+	padding:2px 10px 3px;
+	color:#0A40DE;
+	font-size:14px;
+	line-height:28px;
+	border-radius:8px;
+	border: solid #C1C1C1 1px;
+	background: linear-gradient(#F0F0F0, #F0F0F0);
+	box-shadow: 2px 2px 2px #F0F0F0;
+	*background:#F0F0F0;
+	background: #F0F0F0\0;
+	}
+.bq_login label {
+	display: block;
+	padding: 0 20px;
+	text-transform: capitalize;
+    height:22px;
+	line-height: 28px;
+	margin-top: 10px;
+	margin-bottom:10px;
+	font-size:16px;
+	position: relative;
+}
+.bq_login label a {
+	position: absolute;
+	right: 25px;
+	top: 0px;
+	color:#F00;
+}
+.bq_login input {
+	margin-left: 15px;
+	width: 265px;
+	height: 24px;
+	border: solid #ccc 1px;
+	border-radius: 5px;
+	margin-top: 2px;
+}
+.bq_login span {
+	width: 95%;
+	margin: 20px auto;
+	height: 1px;
+	overflow: hidden;
+	border-bottom:1px dashed #CCC;
+	display: block;
+}
+.bq_login input[type=checkbox] {
+	width: 15px;
+	height: 15px;
+	border-radius: 1px;
+	background: linear-gradient(#fff, #ccc);
+	margin-top: 12px;
+	float: left;
+	border: solid #ccc 1px;
+}
+.bq_login input[type=checkbox] + label {
+	font-size: 12px;
+	color:#03C;
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	padding: 0;
+	padding-left: 10px;
+}
+.bq_login input[type=submit] {
+	width: 100px;
+	height: 40px;
+	line-height: 30px;
+	float: right;
+	border-radius: 8px;
+	margin-right: 20px;
+	border: solid #F74848 1px;
+	font-size: 16px;
+	background: linear-gradient(#F71F1F, #F71F1F);
+	box-shadow: 2px 2px 2px #F74848;
+	color: #fff;
+	cursor: position;
+    *background:#F71F1F;
+	background: #F71F1F\0;
+}
+.bq_login input[type=submit]:active {
+	position: relative;
+	left: 1px;
+	top: 1px;
+	color: red;
+}
+
+.bq_login .bq_login-anniu {
+	padding:0px;
+	}
+
+/***用户登录页面样式结束***/

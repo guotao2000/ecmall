@@ -1,0 +1,194 @@
+.bq_cat-box{
+	height: auto;
+	}
+.bq_cart-top{
+	height:60px;
+	-moz-box-shadow: inset 0px 1px 5px #888888;
+    -webkit-box-shadow: inset 1px 0px 5px #888888;
+    box-shadow: inset 0px 1px 5px #888888;
+	line-height:60px;
+	position:relative;
+	}
+
+.bq_cart-top p{
+	display:inline-block;
+	margin-left:50px;
+}
+.bq_cart-top b{
+	color:#F00;
+	}
+
+/* 复选框按钮样式开始 */
+
+.cb , .bq_cart_shoptitle .bq_cart_icon , .bq_cart_del{
+	background-image: url(../../images/cart/cart_icon.png);
+}
+
+
+.cb {
+	width: 26px;
+	height: 26px;
+    *display:inline;
+	zoom: 1;
+	background-position: 0 0;
+	cursor: pointer;
+	position:absolute;
+	top:18px;
+	left:13px;
+}
+.cb_active {
+	background-position: 0 -30px;
+}
+
+/**复选框按钮样式 end***/
+
+.bq_cart-top .bq_cart_jiesuan{
+	position:absolute;
+	right:13px;
+	top:13px;
+	width:70px;
+	height:35px;
+	background:#EC0000;
+	border-radius:8px;
+	line-height:33px;
+	text-align:center;
+	}
+.bq_cart-top .bq_cart_jiesuan a{
+	color:#FFF;
+	font-size:14px;
+	font-family:微软雅黑;
+	padding:6px 10px;
+	}
+
+/**cart certen By Wei 2014***/
+.bq_cart_shoptitle{
+	border-bottom:1px solid #E7E5E2;
+	height:40px;
+	line-height:40px;
+	background:#F2F2F2;
+	}
+.bq_cart_shoptitle h4{
+	display:block;
+	float:left;
+	margin-left:13px;
+	width:63%;
+	overflow:hidden;
+	color:#7A7772;
+	margin-top:7px;
+	}
+
+.bq_cart_shoptitle	.bq_cart_icon{
+	position:absolute;
+	top:7px;
+	left:-40px;
+	width:34px;
+	height:25px;
+	background-position: 0 -60px;
+	}
+.cart_shoptitle_r{
+	width:32%;
+	float:right;
+	position:relative;
+	}
+/***购物车商品列表开始**/
+.clearfix:after {
+    clear: both;
+    content: "...";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.bq_cart_goodlist{
+	clear:both;
+	width:100%;
+	}
+	
+.bq_cart_goodlist li{
+	border-bottom: 1px solid #E7E5E2;
+    height: auto;
+    left: 0;
+    overflow: hidden;
+    padding: 10px 0px;
+    position: relative;
+    top: 0;
+    width: 100%;
+	}
+.bq_cart_goodlist li .pointer {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.bq_cart_goodlist li img {
+    display: inline-block;
+    float: left;
+    height: auto;
+    margin:5px 10px 0 5px;
+    width: 29%;
+	border:1px solid #DAD7D2;
+	padding:5px;
+}
+
+.bq_cart_goodlist li .zxProInfo {
+    margin-left: 30%;
+    width: 60%;
+}
+
+.bq_cart_goodlist .proName {
+    color: #2c2c2c;
+    max-height: 42px;
+    overflow: hidden;
+	margin-left: 20px;
+	font-size:14px;
+}
+
+.bq_cart_goodlist .proSlogan {
+    color: #777;
+    margin-bottom: 10px;
+	margin-left: 20px;
+    max-height: 21px;
+    overflow: hidden;
+	font-size:14px;
+}
+
+.bq_cart_goodlist .proPrice {
+    color: #e0483d;
+    font-size: 15px;
+	margin-left: 20px;
+    font-weight: bold;
+}
+.bq_cart_goodlist .proPrice span {
+    color: #a4a4a4;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: line-through;
+}
+
+.bq_cart_del{
+	display:block;
+	height: 30px;
+    width: 22px;
+	position:absolute;
+	right:3%;
+	top:30%;
+	background-position: -46px 0px;
+	}
+.bq_cart_del a{
+	padding:5px 10px;
+	}
+/**购物车底部浮动菜单开始**/
+.fixed-add-to-cart input{
+	padding:5px ;
+	}
+.fixed-add-to-cart  p{
+	position:absolute;
+	top:30%;
+	left:5px;
+	font-size:16px;
+	
+    }
+/**购物车底部浮动菜单结束**/

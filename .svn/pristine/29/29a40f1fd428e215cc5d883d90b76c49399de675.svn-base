@@ -1,0 +1,115 @@
+{include file="header.html"}
+<script type="text/javascript">
+	function selChanged(id_val){
+		var selId = $('#selectOptionID_' + id_val).val();
+		if(selId == 0){
+			return;
+		}
+		/*if(selId == 1){
+			window.location.href = "index.php?app=weixin_follow&wx_id=" + id_val;
+		}
+		if(selId == 2){
+			window.location.href = "index.php?app=weixin_keyword&wx_id=" + id_val;
+		}
+		if(selId == 3){
+			window.location.href = "index.php?app=weixin_message&wx_id=" + id_val;
+		}
+		if(selId == 4){
+			window.location.href = "index.php?app=weixin_menu&wx_id=" + id_val;
+		}*/
+		if(selId == 5){
+			window.location.href = "index.php?app=weixin_code&wx_id=" + id_val;
+		}
+		
+	}
+</script>
+<div id="rightTop">
+  <p>微信公众平台管理（支持添加多个公众号）</p>
+  <ul class="subnav">
+    <li>
+    	<a class="btn1" href="index.php?app=weixin_config">添加公众号</a>
+    </li>
+    <li> 	
+    	<span>公众号列表</span>
+    </li>
+  </ul>
+</div>
+<div class="mrightTop">
+    <div class="fontl">
+        <form method="get">
+            <div class="left">
+                <input type="hidden" name="app" value="weixin_config" />
+                <input type="hidden" name="act" value="wx_list" />
+				 标题:
+                <input class="queryInput" type="text" name="title" value="{$query.title|escape}" />
+                <input type="submit" class="formbtn" value="查询" />
+            </div>
+            <!--{if $filtered}-->
+            <a class="left formbtn1" href="index.php?app=weixin_config&amp;act=wx_list">取消查询</a>
+            <!--{/if}-->
+        </form>
+    </div>
+    <div class="fontr">
+        {include file=page.top.html}
+    </div>
+</div>
+<div class="tdare">
+    <table width="100%" cellspacing="0" class="dataTable">
+        <!--{if $weixins}-->
+        <tr class="tatr1">
+            <td width="20" class="firstCell"><input type="checkbox" class="checkall" /></td>
+            <td>编号</td>
+            <td>公众号名称</td>
+            <td>接口配置URL</td>
+            <td>接口配置Token</td>
+            <td>微信AppId</td>
+            <td>微信AppSecret</td>
+            <td>操作</td>
+        </tr>
+        <!--{/if}-->
+        <!--{foreach from=$weixins item=weixin}-->
+        <tr class="tatr2">
+            <td class="firstCell">
+            <input type="checkbox" class="checkitem" value="{$weixin.wx_id}"/>
+            </td>
+            <td>{$weixin.wx_id}</td>
+            <td>{$weixin.account|escape}</td>
+            <td>{$weixin.url|escape}</td>
+            <td>{$weixin.token|escape}</td>
+            <td>{$weixin.appid|escape}</td>
+            <td>{$weixin.appsecret|escape}</td>
+            <td>
+            	<a href="index.php?app=weixin_config&amp;act=edit&amp;id={$weixin.wx_id}">{$lang.edit}</a>
+                |
+                <a href="javascript:drop_confirm('{$lang.drop_confirm}', 'index.php?app=weixin_config&amp;act=drop&amp;id={$weixin.wx_id}');">{$lang.drop}</a>
+            	<select class="querySelect" id="selectOptionID_{$weixin.wx_id}" name="selectOption" onchange="selChanged({$weixin.wx_id})">
+                	<option value="0">请选择...</option>
+                	<!--<option value="1">关注自动回复</option>
+                	<option value="2">关键词自动回复</option>
+                	<option value="3">消息自动回复</option>
+                	<option value="4">自定义菜单</option>-->
+                	<option value="5">带参数二维码</option>
+                </select>
+            </td>
+        </tr>
+        <!--{foreachelse}-->
+        <tr class="no_data">
+            <td colspan="7">{$lang.no_data}</td>
+        </tr>
+        <!--{/foreach}-->
+    </table>
+    <!--{if $weixins}-->
+    <div id="dataFuncs">
+        <div class="pageLinks">
+            {include file=page.bottom.html}
+        </div>
+        <div id="batchAction" class="left paddingT15">
+            &nbsp;&nbsp;
+            <input class="formbtn batchButton" type="button" value="{$lang.drop}" name="id" uri="index.php?app=weixin_config&act=drop" presubmit="confirm('{$lang.drop_confirm}');" />
+            &nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="clear"></div>
+    <!--{/if}-->
+</div>
+{include file="footer.html"}

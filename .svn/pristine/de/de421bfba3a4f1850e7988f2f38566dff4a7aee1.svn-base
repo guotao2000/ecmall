@@ -1,0 +1,60 @@
+<?php
+class BqsellerApp extends MallbaseApp
+{
+   function index()
+   {
+    $store_id = isset($_GET['store_id']) ? intval($_GET['store_id']) : 0;
+	$db=&db();
+	if( $store_id >0){
+		$sql="select count(*) totalcount from ecm_order where `status` in(12,20) and seller_id=".$store_id;
+	}else{
+		$sql="select count(*) totalcount from ecm_order where `status` in(12,20) ";
+	}
+	
+	if(isset($_SESSION["timestamp"]))
+	{
+		if( $store_id >0){
+	
+		$sql_time="select * from ecm_order where `status` in(12,20) and seller_id=".$store_id." and add_time>".$_SESSION["timestamp"]." order by add_time desc";
+	}else{
+			$sql_time="select * from ecm_order where `status` in(12,20) and add_time>".$_SESSION["timestamp"]." order by add_time desc";
+	
+	}
+	}else
+	{
+		if( $store_id >0){
+	
+		$sql_time="select * from ecm_order where `status` in(12,20) and seller_id=".$store_id." order by add_time desc";
+	}else{
+			$sql_time="select * from ecm_order where `status` in(12,20)  order by add_time desc";
+	
+	}
+	}
+	$row_sql=$db->getRow($sql_time);
+	if(count($row_sql)){
+		$_SESSION["timestamp"]=$row_sql['add_time'];
+		$have=true;
+	}else{
+		$_SESSION["timestamp"]=time();
+		$have=false;
+	}
+	if($have){
+		$totalcount=$db->getOne($sql);
+	}else{
+		$totalcount=0;
+	}
+	$sql_orderyxw="update ecm_order set `status`=40,finished_time=unix_timestamp() where TO_DAYS(NOW()) -TO_DAYS(FROM_UNIXTIME(ship_time))>7 and `status` in (30,13)";
+		$db->query($sql_orderyxw);
+	
+	if($store_id > 0){
+		$this->json_result(array('totalcount'=>$totalcount,'sql'=>$sql, 'url' => '/index.php?app=seller_order'),"获取成功！");
+	} else {
+			$this->json_result(array('totalcount'=>$totalcount,'sql'=>$sql, 'url' => '/admin/index.php?app=order'),"获取成功！");
+	}
+	
+	
+	 
+   }
+}
+
+?>
